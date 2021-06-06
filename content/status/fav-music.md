@@ -11,3 +11,7 @@ author: ""
 最近的单曲循环：   
 
 {{<aplayer server="netease" type="song" id="1423299026">}}
+
+来自 [肥皂](https://steamcommunity.com/profiles/76561198342114922/) 的点歌：   
+
+{{<aplayer server="netease" type="song" id="1386011473">}}
