@@ -126,8 +126,8 @@ disqusShortname = ""
 
     # credits line configuration
     copyrightBy = "by Kreee"
-    copyrightUseCurrentYear = true  # set to true to always display the current year in the copyright
-    copyrightYearOverride = "2021"
+    copyrightUseCurrentYear = false  # set to true to always display the current year in the copyright
+    copyrightYearOverride = "CC BY-NC 4.0"
     copyrightUrl = "https://github.com/ohmykreee"
     creditsText = "Bilberry Hugo Theme"
     creditsUrl = "https://github.com/Lednerb/bilberry-hugo-theme"
