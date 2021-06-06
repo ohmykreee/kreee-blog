@@ -5,7 +5,7 @@ date: 2021-03-01T15:44:08+08:00
 categories: ['Learning']
 tags: ['Selfhosted', 'Learning']
 author: "Kreee"
-noSummary: true
+noSummary: false
 
 resizeImages: false
 ---
@@ -13,7 +13,9 @@ resizeImages: false
 其实是因为服务器不是长时间运行的，会时不时关机/重启，还要重新到 Docker 里启动。   
 以及据说有安全隐患（其实其他软件配置不当也会有安全隐患233）   
 但是现在是真的闲的无聊 + 还是有很多软件是基于 Docker 的（还是只提供了 Docker 的安装教程，吐了），故打算核心服务直接部署在服务器里，整一些不重要的东西放在 Docker 里。   
-Now, let's begin!
+Now, let's begin!   
+
+<!--more-->
 
 
 -----

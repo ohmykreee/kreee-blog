@@ -5,10 +5,16 @@ date: 2021-06-04T14:24:37+08:00
 categories: ['Study']
 tags: ['Python', 'Learning']
 author: "Kreee"
-noSummary: true
+noSummary: false
 
 resizeImages: false
 ---
+（据说）Python 期末考的编程题会从这里面抽。   
+有些没有答案的题目是临时写的，如果写的很烂欢迎反馈。   
+愿人间没有挂科人。
+
+<!--more-->
+
 1. 从键盘输入三个数值，分别赋值给num1, num2和num3，并求它们的平均值。
 ```python
 # by Kreee

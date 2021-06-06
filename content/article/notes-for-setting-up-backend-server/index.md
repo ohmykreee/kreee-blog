@@ -5,13 +5,14 @@ date: 2021-01-13T22:58:38+08:00
 categories: ['Learning']
 tags: ['Selfhosted', 'Learning']
 author: "Kreee"
-noSummary: true
+noSummary: false
 
 resizeImages: false
 ---
------
 # Install CentOS
 OS: CentOS 7 Minimal 
+
+<!--more-->
  
 Summary:  
 1. Date & Time: Shanghai
