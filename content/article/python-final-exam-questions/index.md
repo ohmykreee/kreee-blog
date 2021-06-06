@@ -3,7 +3,7 @@ title: "Python 期末编程题题库"
 date: 2021-06-04T14:24:37+08:00
 
 categories: ['Study']
-tags: ['Python', 'Learning']
+tags: ['Python', 'Learning', '2021']
 author: "Kreee"
 noSummary: false
 

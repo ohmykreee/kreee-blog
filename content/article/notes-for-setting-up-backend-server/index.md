@@ -3,7 +3,7 @@ title: "Notes for Setting Up Back-end Server"
 date: 2021-01-13T22:58:38+08:00
 
 categories: ['Learning']
-tags: ['Selfhosted', 'Learning']
+tags: ['Selfhosted', 'Learning', '2021']
 author: "Kreee"
 noSummary: false
 
