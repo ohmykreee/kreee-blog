@@ -28,7 +28,7 @@ git init
 ```
 git remote add origin <remote address>
 git -M main # 切换默认分支到main(master 不再用)
-git pull main origin
+git pull <local> <remote>
 ```
 ### 提交修改
 ```
