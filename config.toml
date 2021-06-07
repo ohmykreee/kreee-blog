@@ -6,7 +6,7 @@ theme = "bilberry-hugo-theme"
 enableRobotsTXT = false
 
 # Change to one of your content languages defined at the end.
-DefaultContentLanguage = "zh"
+DefaultContentLanguage = "zh-cn"
 
 # Enable / Disable Google Analytics statistics for your site
 googleAnalytics = ""
@@ -24,12 +24,12 @@ disqusShortname = ""
   # Files are imported in the order they appear here, after
   # theme.css and theme.js, respectively.
   css_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css']
-  js_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js', 'https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js']
+  js_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js', 'https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js']
 
   # Description and meta data for the search engines
-  # author = "Kreee"
-  # description = "Bilberry Premium Theme for Hugo."
-  # keywords = "blog,personal,responsive,search,font awesome,pages,posts,multilingual,highlight.js,syntax highlighting,premium,shortcuts"
+  author = "Kreee"
+  description = "A Kreee's Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo."
+  keywords = "blog,personal,responsive,font awesome,pages,posts,highlight.js,syntax highlighting,premium"
 
   # How many articles should be displayed at once?
   paginate = 7
@@ -81,7 +81,7 @@ disqusShortname = ""
     # Enable an optional pinned page to display at the top of the index
     pinnedPost = "/status/fav-music/"
     # Set to true to pin only to the first page, false to all pages
-    # pinOnlyToFirstPage = true
+    pinOnlyToFirstPage = true
 
     # enable automatic localization of the article's PublishedDate with momentjs
     enableMomentJs = true
