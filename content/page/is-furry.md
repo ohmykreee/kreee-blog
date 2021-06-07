@@ -3,6 +3,7 @@ title: "福瑞控？"
 date: 2021-06-05T23:15:12+08:00
 draft: false
 excludeFromTopNav: true
+icon: "fas fa-paw"
 
 # set the link if you want to redirect the user.
 link: ""
