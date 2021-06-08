@@ -9,7 +9,7 @@ enableRobotsTXT = true
 DefaultContentLanguage = "zh-cn"
 
 # Enable / Disable Google Analytics statistics for your site
-googleAnalytics = "UA-198973792-1"
+# googleAnalytics = "UA-198973792-1"
 
 # Enable / Disable comments on the articles via Disqus.
 # disqusShortname = ""
@@ -24,7 +24,7 @@ googleAnalytics = "UA-198973792-1"
   # Files are imported in the order they appear here, after
   # theme.css and theme.js, respectively.
   css_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css', '/js/cookieconsent2/3.1.0/cookieconsent.min.css']
-  js_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js', 'https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js', '/js/cookieconsent2/3.1.0/cookieconsent.min.js', '/js/init-cookieconsent.js']
+  js_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js', 'https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js', '/js/cookieconsent2/3.1.0/cookieconsent.min.js', '/js/init-cookieconsent.js']
 
   # Description and meta data for the search engines
   author = "Kreee"
@@ -35,7 +35,7 @@ googleAnalytics = "UA-198973792-1"
   paginate = 7
 
   # Enable / Disable MathJax
-  enable_mathjax    = true
+  enable_mathjax    = false
 
   # Enable / Disable algolia search
   algolia_search    = false
