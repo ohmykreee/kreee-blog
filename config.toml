@@ -9,7 +9,7 @@ enableRobotsTXT = true
 DefaultContentLanguage = "zh-cn"
 
 # Enable / Disable Google Analytics statistics for your site
-googleAnalytics = "G-0HD0QK28WV"
+googleAnalytics = "UA-198973792-1"
 
 # Enable / Disable comments on the articles via Disqus.
 # disqusShortname = ""
@@ -23,8 +23,8 @@ googleAnalytics = "G-0HD0QK28WV"
   # Files are relative to the static/ directory or a URL.
   # Files are imported in the order they appear here, after
   # theme.css and theme.js, respectively.
-  css_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css']
-  js_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js', 'https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js']
+  css_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css', '/js/cookieconsent2/3.1.0/cookieconsent.min.css']
+  js_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js', 'https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js', '/js/cookieconsent2/3.1.0/cookieconsent.min.js', '/js/init-cookieconsent.js']
 
   # Description and meta data for the search engines
   author = "Kreee"
