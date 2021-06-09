@@ -38,12 +38,12 @@ DefaultContentLanguage = "zh-cn"
   enable_mathjax    = false
 
   # Enable / Disable algolia search
-  algolia_search    = false
-  # algolia_appId     = "45CEN6X6AT"
-  # algolia_apiKey    = "16030625f1a4d0dd3b8aefd794fd4cf1"
-  # algolia_indexName = "bilberry-hugo-theme"
+  algolia_search    = true
+  algolia_appId     = "BYCFQKEA4W"
+  algolia_apiKey    = "5b8f1a1d7557fc3b1bc0d99efbaa22ce"
+  algolia_indexName = "kreee-blog"
     # Set this option to false if you want to search within all articles in all languages at once
-  # algolia_currentLanguageOnly = true
+  algolia_currentLanguageOnly = false
 
   # Enable / Disable comments on the articles via commento
   # commentoJsURL = "https://commento.lednerb.de/js/commento.js"
