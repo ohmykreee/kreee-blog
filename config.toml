@@ -23,8 +23,8 @@ DefaultContentLanguage = "zh-cn"
   # Files are relative to the static/ directory or a URL.
   # Files are imported in the order they appear here, after
   # theme.css and theme.js, respectively.
-  css_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css', '/js/cookieconsent2/3.1.0/cookieconsent.min.css']
-  js_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js', 'https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js', '/js/cookieconsent2/3.1.0/cookieconsent.min.js', '/js/init-cookieconsent.js', '/js/clarity-tracker.js']
+  css_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css', 'https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css']
+  js_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js', 'https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js', 'https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js', '/js/init-cookieconsent.js', '/js/clarity-tracker.js']
 
   # Description and meta data for the search engines
   author = "Kreee"
