@@ -9,7 +9,7 @@ noSummary: false
 
 resizeImages: false
 ---
-# Install CentOS
+## Install CentOS
 OS: CentOS 7 Minimal 
 
 <!--more-->
@@ -26,7 +26,7 @@ When installing:
 1. Set a root password
 
 -----
-# First run & install some software
+## First run & install some software
 ```
 yum -y update
 yum -y install vim
@@ -37,7 +37,7 @@ yum -y install wget
 ```
 
 -----
-# Enable yum-cron
+## Enable yum-cron
 ```
 yum install -y yum-cron
 ```
@@ -57,7 +57,7 @@ systemctl enable yum-cron
 ```
 
 -----
-# Set up OpenSSH
+## Set up OpenSSH
 ```
 vim /etc/ssh/sshd_config
 ```
@@ -79,7 +79,7 @@ ifconfig -a
 ```
 
 -----
-# Set up Serial Port
+## Set up Serial Port
 Check if it is supported
 ```
 dmesg |grep tty
@@ -102,7 +102,7 @@ systemctl start serial-getty@ttyS0.service
 systemctl enable serial-getty@ttyS0.service
 ```
 -----
-# Set up AP & soft router
+## Set up AP & soft router
 ```
 ref: https://www.osradar.com/building-your-own-wireless-access-point-on-top-of-centos7/
 ```
@@ -179,7 +179,7 @@ systemctl enable havaged
 ```
 
 -----
-# Set up web-vmstats
+## Set up web-vmstats
 ```
 cd /usr/local/
 mkdir websocketd
@@ -225,7 +225,7 @@ journalctl -e -u webvmstats
 ```
 
 -----
-# Set up Zerotier
+## Set up Zerotier
 Use the script to install Zerotier:
 ```
 curl -s https://install.zerotier.com | sudo bash
@@ -241,7 +241,7 @@ systemctl enable zerotier-one
 ```
 
 -----
-# Set up FRP
+## Set up FRP
 ```
 mkdir /usr/local/frp
 ```
@@ -330,13 +330,13 @@ Give permission:
 chmod -R 700 /usr/local/frp/
 ```
 -----
-# Set up mumble server
+## Set up mumble server
 ```
 ref: https://wiki.mumble.info/wiki/Install_CentOS7
 ```
 
 -----
-# Set up Minecraft server
+## Set up Minecraft server
 Install java:
 ```
 yum install -y java-latest-openjdk.x86_64
@@ -402,7 +402,7 @@ firewall-cmd --complete-reload
 ```
 
 -----
-# Set up FTP
+## Set up FTP
 Install the ftp-daemon
 ```
 yum -y install vsftpd
@@ -449,7 +449,7 @@ systemctl enable vsftpd
 ```
 
 -----
-# NTP enable
+## NTP enable
 Install the ntp-daemon.
 ```
 yum install -y ntp
