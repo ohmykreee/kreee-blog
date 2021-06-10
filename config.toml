@@ -28,7 +28,7 @@ DefaultContentLanguage = "zh-cn"
 
   # Description and meta data for the search engines
   author = "Kreee"
-  description = "A Kreee's Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo."
+  # description = "A Kreee's Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo."
   keywords = "blog,personal,responsive,font awesome,pages,posts,highlight.js,syntax highlighting,premium"
 
   # How many articles should be displayed at once?
