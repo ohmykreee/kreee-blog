@@ -20,55 +20,54 @@ Now, let's begin!
 
 -----
 ## 安装 Docker
-```
-基于 https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/
-```
+> 基于 https://mirrors.tuna.tsinghua.edu.cn/help/docker-ce/
+
 如果是全新安装（并且使用的是 Minimal 安装的话），是没有预装 Docker 的。如果有请先卸载。   
 查询是否有 Docker ：
-```
+```bash
 rpm -qa | grep Docker
 ```
 卸载 Docker ：
-```
+```bash
 yum remove docker docker-common docker-selinux docker-engine
 ```
 安装依赖：
-```
+```bash
 yum install -y yum-utils device-mapper-persistent-data lvm2
 ```
 下载 repo 文件：
-```
+```bash
 wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
 ```
 替换软件仓库地址（此处为 TUNA ）   
-（什么时候我们学校也搞一个开源软件镜像库）
-```
+（什么时候我们学校也搞一个开源软件镜像库啊？）
+```bash
 sed -i 's+download.docker.com+mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc/yum.repos.d/docker-ce.repo
 ```
 安装 Docker ：
-```
+```bash
 yum makecache fast
 yum install -y docker-ce
 ```
 启动 Docker ：
-```
+```bash
 systemctl start docker
 ```
 
 -----
 ## Docker 的使用
 列出所有容器：
-```
+```bash
 docker ps -a
 ```
 启动一个容器（使用容器 ID ）：
-```
+```bash
 docker start *containerID*
 ```
 同理，停止 `stop` ，重启 `restart` ,清除 `rm` ,查看映射端口 `port` ，查看日志 `logs` 。
 
 创建容器并后台运行与进入后台容器：
-```
+```bash
 docker run -itd --name *yourname* *container*
 docker exec -it *containerID*
 ```
