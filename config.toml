@@ -27,9 +27,9 @@ DefaultContentLanguage = "zh-cn"
   js_modules = ['https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js', 'https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js', 'https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js', '/js/init-cookieconsent.js', '/js/clarity-tracker.js']
 
   # Description and meta data for the search engines
-  # author = "Kreee"
-  # description = "A Kreee's Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo."
-  # keywords = "blog,personal,responsive,font awesome,pages,posts,highlight.js,syntax highlighting,premium"
+  author = "Kreee"
+  description = "A Kreee's Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo."
+  keywords = "kreee,blog,personal,responsive,font awesome,pages,posts,highlight.js,syntax highlighting,hugo"
 
   # How many articles should be displayed at once?
   paginate = 7
