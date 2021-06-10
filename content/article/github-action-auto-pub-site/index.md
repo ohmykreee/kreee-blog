@@ -19,7 +19,7 @@ So, let's begin!
 <!--more-->
 
 废话不多说，上 `/.github/workflows/publish-site.yml` ：
-```
+```yml
 name: Publish site to GitHub Pages
 
 on:
@@ -61,8 +61,8 @@ jobs:
 ## 流程文件分析
 其实本人强烈推荐大家自己去 [官方文档](https://docs.github.com/cn/actions) 学习相关语法 + 看示例文件。下面就作为本人的学习成果（半吊子程度），分析一下这个 GitHub Action 流程文件。
 ### 触发条件
-[官方文档：触发工作流程的事件](https://docs.github.com/cn/actions/reference/events-that-trigger-workflows)
-```
+> [官方文档：触发工作流程的事件](https://docs.github.com/cn/actions/reference/events-that-trigger-workflows)
+```yml
 on:
   push:
     branches:
@@ -71,7 +71,7 @@ on:
 一目了然：在 `main` 分支有新的 push 事件时触发。
 
 ### 第一步：检验仓库
-```
+```yml
       - name: Checkout Repo
         uses: actions/checkout@master
         with:
@@ -81,8 +81,8 @@ on:
 然鹅默认情况下 `git pull` 是不会拉下 SubModules 内的文件（同时也需要自己手动更新 SubModules 的文件），也就导致了如果不声明 SubModules 的存在，到时候在 GitHub Action 的服务器上，准备被渲染的项目文件里就会缺少模板文件，然后就无了。
 
 ### 第二步：准备环境
-[该包 Action marketplace 主页](https://github.com/marketplace/actions/hugo-setup)
-```
+> [该包 Action marketplace 主页](https://github.com/marketplace/actions/hugo-setup)
+```yml
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
@@ -92,17 +92,17 @@ on:
 一目了然，设置好 Hugo 环境。可以传递参数指定 Hugo 版本，以及是否使用 extended 版本。
 
 ### 第三步：开始渲染网页
-```
+```yml
       - name: Build
         run: hugo
 ```
 也是一目了然，执行 `hugo` 命令。
 
 ### 第四步：push 到 `gh-pages` 分支并发布
-[该包 Action marketplace 主页](https://github.com/marketplace/actions/github-pages)   
-[官方文档：GitHub Actions 的上下文和表达式语法](https://docs.github.com/cn/actions/reference/context-and-expression-syntax-for-github-actions)   
-[官方文档：工作流程中的身份验证](https://docs.github.com/cn/actions/reference/authentication-in-a-workflow)   
-```
+> [该包 Action marketplace 主页](https://github.com/marketplace/actions/github-pages)   
+  [官方文档：GitHub Actions 的上下文和表达式语法](https://docs.github.com/cn/actions/reference/context-and-expression-syntax-for-github-actions)   
+  [官方文档：工作流程中的身份验证](https://docs.github.com/cn/actions/reference/authentication-in-a-workflow)   
+```yml
       - name: Deploy to GitHub Pages
         if: success()
         uses: crazy-max/ghaction-github-pages@v2
