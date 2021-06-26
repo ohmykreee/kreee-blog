@@ -14,14 +14,29 @@ resizeImages: false
 
 <!--more-->
 
+`requirements.txt` ：
+```plaintext
+pynput==1.7.3
+six==1.16.0
+```
+大佬建议直接用 `requirements.txt` 安装依赖。
+
+安装方法（建议使用Pycharm）：   
+新建项目，将代码复制粘贴。   
+然后在下面的 Terminal 标签页里运行：
+```plaintext
+pip install pynput
+```
+
+-----
 话不多说，直接上代码：
 ```python
 import pynput
 import time
 
-# Settings:
+# Setting are here:
 timeOfSleep = 5
-timeOfKeyStroke = 0.05
+timeOfKeyStroke = 0.01
 
 f = open('input.txt', 'w+')
 f.close()
@@ -29,6 +44,7 @@ input('Please edit the input.txt file. When ready, press ENTER...')
 
 inputFile = open('input.txt', 'r')
 inputContents = inputFile.read()
+inputFile.close()
 simKeys = list(inputContents)
 
 print('Will execute key stroke after {} secs...'.format(timeOfSleep))
@@ -44,20 +60,5 @@ input('Finished!' + '\n' + 'Warning: text in input.txt will be deleted! Press EN
 f = open('input.txt', 'r+')
 f.truncate()
 f.close()
-```
 
------
-
-依赖 `requirements.txt` ：
-```plaintext
-pynput==1.7.3
-six==1.16.0
-```
-大佬建议直接用 `requirements.txt` 安装依赖。
-
-安装方法（建议使用Pycharm）：   
-新建项目，将代码复制粘贴。   
-然后在下面的 Terminal 标签页里运行：
-```plaintext
-pip install pynput
 ```
