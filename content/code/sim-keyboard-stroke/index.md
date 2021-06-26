@@ -40,6 +40,10 @@ for i in simKeys:
     ctr.release(i)
 
 input('Finished!' + '\n' + 'Warning: text in input.txt will be deleted! Press ENTER to continue...')
+
+f = open('input.txt', 'r+')
+f.truncate()
+f.close()
 ```
 
 -----
