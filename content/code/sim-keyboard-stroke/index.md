@@ -42,7 +42,7 @@ f = open('input.txt', 'w+')
 f.close()
 input('Please edit the input.txt file. When ready, press ENTER...')
 
-inputFile = open('input.txt', 'r')
+inputFile = open('input.txt', 'r', encoding='utf-8')
 inputContents = inputFile.read()
 inputFile.close()
 simKeys = list(inputContents)
