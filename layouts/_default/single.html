@@ -14,14 +14,7 @@
         </div>
     {{ end }}
 	
-	<div id="utterances-frame">
-		<script src="https://utteranc.es/client.js"
-			repo="ohmykreee/kreee-blog"
-			issue-term="og:title"
-			label="Comment"
-			theme="github-light"
-			crossorigin="anonymous"
-			async>
-</script>
+	<div id="utterances-container" style="padding-left:96px">
+            {{ partial "utterances.html" . }}
 	</div>
 {{ end }}
