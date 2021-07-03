@@ -58,7 +58,7 @@ git submodule foreach git pull    #子模块更新
 ## Certbot
 ### dns-challenge 自签名
 ```bash
-certbot certonly –manual –preferred-challenges dns –email xxx@outlook.com –agree-tos -d *.ohmykreee.top
+certbot certonly --manual --preferred-challenges dns --email xxxxxx.xxxxx@outlook.com --agree-tos -d *.ohmykreee.top
 ```
 
 -----
