@@ -8,13 +8,18 @@ tags: ['Selfhosted', 'Learning', '2021']
 author: "Kreee"
 noSummary: false
 
-resizeImages: true
+resizeImages: false
 ---
-## What happended?
+## What happend?
 本来用 CentOS 7 用得开开心心的，结果了解到 Redhat 公司要整治一下我们这群白嫖怪（感觉被强行喂了一口💩）。   
 So, 为了服务器的可持续发展（其实是放假闲得无聊），顺便重装一下机器的系统，以及更新一下远古的备忘指南，Let's begin!
 
 <!--more-->
+
+-----
+**目录：**
+{{<toc>}}
+
 -----
 ## Install OS
 安装版本: Ubuntu server 20.04 LTS   
@@ -64,7 +69,8 @@ sudo dpkg-reconfigure --priority=low unattended-upgrades
 
 -----
 ## Set up Router
-
+因为被网络桥接和 NAT 彻底整“破防”，一气之下决定：   
+在系统里[虚拟出一个 OpenWRT ！](https://github.com/ohmykreee/kreee-blog/blob/main/content/article/openwrt-under-qemu-arm/index.md)
 
 -----
 ## Set up serial login with getty
@@ -86,6 +92,14 @@ sudo ufw status
 sudo ufw allow 8000/tcp
 sudo ufw allow 7000
 sudo ufw allow from 192.168.6.0/24 to any port 25577
+```
+删除已经添加的规则：
+```bash
+# 列出已有规则的编号
+sudo ufw status numbered
+# 根据编号删除规则
+sudo ufw delete 3
+sudo ufw reload
 ```
 
 -----
@@ -147,8 +161,9 @@ sudo chmod -R 0777 /tmp/netdata
 cd /tmp/netdata
 sudo bash ./kickstart.sh --local-files /tmp/netdata/netdata-(version-number-here).tar.gz /tmp/netdata/sha256sums.txt /tmp/netdata/go.d.plugin-(version-number-here).(OS)-(architecture).tar.gz /tmp/netdata/config.tar.gz /tmp/netdata/install-required-packages.sh --disable-telemetry
 ```
-**提示**：经常出问题的是 `install-required-packages.sh` ，需要特别关照。   
-然后就是修改配置文件 `/etc/netdata/netdata.conf` 。
+**提示**：安装时经常出问题的是 `install-required-packages.sh` ，需要特别关照。   
+然后就是修改配置文件 `/etc/netdata/netdata.conf` 。   
+在配置 SSL 的时候几率发生无法读取证书文件的问题（主要是 privkey.pem ）需要参考 https://certbot.eff.org/docs/using.html#where-are-my-certificates 来配置文件的权限。
 
 -----
 ## Set up NP-Client
@@ -180,7 +195,7 @@ sudo npc start
 sudo apt install default-jdk
 ```
 老版本的 Minecraft 需要 Java 8 ，需要自己去甲骨文官网下载二进制文件。   
-参考 `*.service` 文件：   
+参考用的 `/etc/systemd/system/*.service` 文件：   
 Java 8 ：
 ```ini
 [Unit]
