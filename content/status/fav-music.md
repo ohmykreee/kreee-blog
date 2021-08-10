@@ -10,5 +10,5 @@ author: ""
 ---
 最近的单曲循环：   
 
-{{<aplayer server="netease" type="song" id="16686548">}}
+{{<aplayer server="netease" type="song" id="1446188148">}}
 
