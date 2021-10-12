@@ -6,7 +6,17 @@ excludeFromTopNav: false
 weight: 4
 
 # set the link if you want to redirect the user.
-link: "https://www.ohmykreee.top/donate"
+link: ""
 # set the html target parameter if you want to change default behavior
 target: "_blank"
 ---
+
+## 富婆，饿饿，饭饭.jpg   
+
+![](/res/page/donate/donate.png)
+
+-----
+
+## （非实时）捐赠名单
+
+{{<donate-table>}}
