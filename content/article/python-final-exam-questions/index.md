@@ -857,4 +857,4 @@ primeNumbers(number)
 
 -----
 ### 客官，都看到最后了，何不来一张福瑞图呢👍 （误）   
-![](/images/python-questions-bonus.jpg)
+![](/article/python-final-exam-questions/python-questions-bonus.jpg)
