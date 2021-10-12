@@ -4,7 +4,8 @@
 <div id="donate-table"></div>
 
 <script>
-  var jsonfile = "https://blog.ohmykreee.top/res/page/donate/donate.json"
+  var baseurl = document.querySelector('meta[name="siteBaseUrl"]').content;
+  var jsonfile = baseurl.concat("/res/page/donate/donate.json");
     new gridjs.Grid({
   columns: ["时间", "留言", "备注"],
   search: true,
@@ -15,7 +16,9 @@
     "pagination": {
       "previous": "上一页",
       "next": "下一页"
-    }
+    },
+    loading: "加载中...",
+    noRecordsFound: "该关键词未找到"
   },
   pagination: {
     enabled: true,

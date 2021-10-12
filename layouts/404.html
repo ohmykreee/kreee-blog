@@ -1,0 +1,21 @@
+{{ define "main" }}
+
+<div class="content">
+    <div class="article-wrapper u-cf single">
+        <a class="bubble" href="{{ "/" | relLangURL}}">
+            <i class="fa fa-fw fa-exclamation-triangle"></i>
+        </a>
+
+        <article class="error404 article">
+            <div class="content">
+                <h3>嗷呜！</h3>
+                <p></p>
+                <p><strong>看来你来到了一个神秘的地方...（ 错误 404 ）</strong></p>
+                <p>请在页面底部选择一个链接或者 <a href="{{ "/" | relLangURL}}"> 点此回到主页</a>。</p>
+                <hr>
+                <p> PlaceHolder for testing </p>
+            </div>
+        </article>
+    </div>
+</div>
+{{ end }}
