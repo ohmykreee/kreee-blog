@@ -13,6 +13,6 @@ target: "_blank"
 
 是，咋了？   
 
-![](/res/page/is-furry/is-furry-01.jpg)   
+![](/images/is-furry-01.jpg)   
 
-（兽设在做了在做了，或者永远都： ![](/res/page/is-furry/is-furry-02.jpg)）
+（兽设在做了在做了，或者永远都： ![](/images/is-furry-02.jpg)）

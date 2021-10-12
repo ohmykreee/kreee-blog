@@ -16,5 +16,5 @@ target: "_blank"
 
 [Steam主页](https://steamcommunity.com/id/kreeejiang/)
 
-![](/res/page/about-me/about-me-01.gif)
+![](/images/about-me-01.gif)
 ~~干饭人，干饭魂，干饭人都是仌！~~
