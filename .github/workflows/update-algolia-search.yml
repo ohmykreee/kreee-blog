@@ -1,0 +1,25 @@
+name: Update Algolia search index
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  upload_algolia_index:
+    runs-on: ubuntu-latest
+    name: Update Algolia Index
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: tilburgsciencehub/algolia-uploader@master
+      with:
+        # Algolia app id
+        app_id: ${{ secrets.ALGOLIA_APP_ID }}
+        # Secret token in the organization's 'Setting > Secrets'
+        admin_key: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+        # The index name
+        index_name: ${{ secrets.ALGOLIA_INDEX_NAME }}
+        # The index file path relative to repo root.
+        index_file_path: index.json
