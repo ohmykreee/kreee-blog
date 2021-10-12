@@ -1,9 +1,10 @@
 name: Update Algolia search index
 
 on:
-  push:
-    branches:
-      - gh-pages
+  workflow_run:
+    workflows: ["Publish site to GitHub Pages"]
+    types:
+      - completed
 
 jobs:
   upload_algolia_index:
@@ -12,7 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0
+        ref: gh-pages
+
     - uses: tilburgsciencehub/algolia-uploader@master
       with:
         # Algolia app id
