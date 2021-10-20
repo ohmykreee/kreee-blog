@@ -69,7 +69,7 @@ git commit -a
 ```
 最后会变成：
 ```plaintext
-Z <-- A <-- B  <-- C <-- D <-- A'     <-- main <-- HEAD
+Z <-- A <-- B <-- C <-- D <-- A'     <-- main <-- HEAD
 ```
 
 -----
