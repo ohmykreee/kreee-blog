@@ -7,6 +7,8 @@ categories: ['Learning']
 tags: ['Python', 'JavaScript', 'Frontend', 'GitHub', 'Learning', '2021']
 author: "Kreee"
 noSummary: false
+
+resizeImages: true
 ---
 
 ~~又为：论如何嫖秃 GitHub 服务器~~
@@ -95,3 +97,25 @@ this_is_a_list = copy.deepcopy(another_list)
 这样就会有两个独立互不干扰的 list。
 
 这个操作在版本 1.0.5 以及之后已经弃用了，因为 `get_tweets.py` 从 `pop` 删除元素的操作（而且回想起来那种方法好像还存在 bug，有兴趣的可以回看那个版本）改成了 `append` 添加元素的操作。
+
+-----
+## Wolf-Chews-Tweets
+### 配置开发环境
+对，很痛苦，也绕了一点弯路。
+
+> 谁叫你用 Windows 做开发呢？   
+
+mvn 用的是 [nvm-windows](https://github.com/coreybutler/nvm-windows) 这个项目，注意点有这几个：   
+1. 安装目录不能包含空格，也就是说不能安装在 `Program Files` 文件夹下，推荐放在 `C:\nvm\` 或者 `D:\nvm\` ，不然会得到蜜汁乱码报错（估计是软件不适配中文环境的原因）。Node 的链接文件目录最好也放在这种盘根目录文件夹里。
+2. 可以使用 `nvm node_mirror <node_mirror_url>` 和 `nvm npm_mirror <npm_mirror_url>` 命令来添加镜像，加速下载。
+3. 在执行 `nvm use <node_version>` 时，会遭遇报错 `exit code 1 一堆乱码` ，解决方法就是用管理员权限开一个终端，再执行命令。
+4. Node 首次安装完后 VS Code 内置终端可能会无法使用 `node` 和 `npm` 命令，暂时没有搞明白原因（可能是系统环境变量没有同步？）。重启解。
+
+VS Code 那里又有一个大坑：   
+如果想在 VS Code 用微软亲儿子 Edge 浏览器调试 Javascript 代码时，里面其实是已经内置了 debugger for Microsoft Edge 的。我**本以为**这个 debugger 是直接“开箱即用”的：开始调试时，它会启动一个内置本地服务器，然后再打开浏览器开始调试。但事实是它并没有本地服务器这个功能，还得自己整一个本地服务器，不然你就会得到一个第一眼看上去不知所以然的报错：
+```plaintext
+crbug/1173575, non-JS module files deprecated.
+```
+还好 VS Code 插件里就有现成的 [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 插件。启动了之后在 `.vscode/launch.json` 里把 `url` 后面的端口改为开放的端口就行。
+
+只能说这波啊，这波微软欺骗了我单纯的感情（雾）。
