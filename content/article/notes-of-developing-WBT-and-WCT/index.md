@@ -75,8 +75,8 @@ Z <-- A <-- B <-- C <-- D <-- A'     <-- main <-- HEAD
 ```
 
 -----
-## Wolf-Bites-Tweets
-项目仓库：https://github.com/ohmykreee/wolf-bites-tweets
+## Wolf-Bites-Tweets v1
+项目仓库：[https://github.com/ohmykreee/wolf-bites-tweets](https://github.com/ohmykreee/wolf-bites-tweets)
 
 其实就是个比较简单的 Python 程序，写的也很快，花了两个晚上左右就把第一个版本 1.0.0 给写了出来，又花了几天肝 ~~水~~ 了两个版本。
 
@@ -100,10 +100,14 @@ this_is_a_list = copy.deepcopy(another_list)
 
 -----
 ## Wolf-Chews-Tweets
+准备写两个实现方式：一个是插入推特官方的小部件，一个是用别人造好的轮子 [nolimits4web
+/
+swiper](https://github.com/nolimits4web/swiper) 来写一个直接展示图片的组件。
 ### 配置开发环境
 对，很痛苦，也绕了一点弯路。
 
 > 谁叫你用 Windows 做开发呢？   
+> —— 不知名暴论者
 
 mvn 用的是 [nvm-windows](https://github.com/coreybutler/nvm-windows) 这个项目，注意点有这几个：   
 1. 安装目录不能包含空格，也就是说不能安装在 `Program Files` 文件夹下，推荐放在 `C:\nvm\` 或者 `D:\nvm\` ，不然会得到蜜汁乱码报错（估计是软件不适配中文环境的原因）。Node 的链接文件目录最好也放在这种盘根目录文件夹里。
@@ -119,3 +123,221 @@ crbug/1173575, non-JS module files deprecated.
 还好 VS Code 插件里就有现成的 [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) 插件。启动了之后在 `.vscode/launch.json` 里把 `url` 后面的端口改为开放的端口就行。
 
 只能说这波啊，这波微软欺骗了我单纯的感情（雾）。
+
+### 使用 Custom Elements
+准备使用自定义元素来调用生成我想要的内容。
+> 参考：[使用 custom elements - MDN Web Docs](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements)
+
+用法大致是用 `window.customElements.define` 命令来声明一个自定义元素，然后定义一个类来定义这个自定义元素的行为。
+
+不过想说一下，在参考文章里示例代码用的是 `constructor()` 方法，我认为在某些情况下并不是个好方法：
+```javascript
+class WolfChewsElement extends HTMLElement {
+  constructor() {
+    // 必须首先调用 super 方法
+    super();
+
+    // 元素的功能代码写在这里
+    ...
+  }
+}
+```
+在此之前，我想提醒一下：浏览器渲染 HTML 文件时也是按照从头到尾的顺序读取文件；也就是说，HTML 文件内代码的读取和执行是是受位置先后顺序影响的。
+
+回到这个问题上，`constructor()` 这个方法是用方法来定义一个类没错，并且是在这个类被创建的时候 **立即** 执行，也就是说当浏览器读取到这一行的代码时，会立即执行 `constructor()` 内的代码。于是问题来了：如果你的 `constructor()` 方法里有读取你自定义元素内属性的代码，并且这个代码执行的时候 DOM 还没有建立，**就会无法读取到属性内容并且返回 undifined**。
+
+于此同时，在Chrome版本76.0.3809.132（正式版本）（64 位）中，如果你在 `constructor()` 方法内有读取自定义元素内属性的行为，并且在 HTML 引用 js 文件时在 `script` 标签上没有添加 `defer` 属性，浏览器会直接返回 undifined。那这个 `defer` 又是什么东西呢？这个属性是告诉浏览器这个代码要等整个页面加载完成后再执行。（参考文章： [Why do I have to defer customElement definitions? - Stack Overflow](https://stackoverflow.com/questions/52176168/why-do-i-have-to-defer-customelement-definitions)）
+
+较好的方法应该是使用 `connectedCallback()` ,即在自定义元素首次被插入到文档 DOM 节点上时被调用：
+```javascript
+class WolfChewsElement extends HTMLElement {
+  connectedCallback() {
+    // 代码写在这里
+    ...
+  }
+
+  this_is_a_function() {
+    ...
+  }
+}
+```
+关于其他方法可以参考这里：[Web Components - MDN Web Docs](https://developer.mozilla.org/zh-CN/docs/Web/Web_Components)
+> 生命周期回调   
+> 定义在自定义元素的类定义中的特殊回调函数，影响其行为：
+> - connectedCallback: 当自定义元素第一次被连接到文档DOM时被调用。
+> - disconnectedCallback: 当自定义元素与文档DOM断开连接时被调用。
+> - adoptedCallback: 当自定义元素被移动到新文档时被调用。
+> - attributeChangedCallback: 当自定义元素的一个属性被增加、移除或更改时被调用。
+
+（在这里顺便附上我读取自定义元素的属性的方法，虽然方法不是我自己原创的，但是这个方法可以说是非常好，对于可选参数传递也能很好的读取：）
+```javascript
+// fetch value
+const config = {}
+const keys = ['url', 'method', 'index', 'container_id']
+for (let i = 0; i < this.attributes.length; i = i + 1) {
+    if (keys.includes(this.attributes[i].name)) {
+        config[this.attributes[i].name] = this.attributes[i].value
+    }
+}
+```
+
+### 跨域问题
+本来说是想直接用推特的 API ：`statuses/oembed` 来直接获取 embeded twitter 的 HTML 代码，结果遇到了跨域错误。
+
+简单来说，跨域（跨域资源共享）就是在一个域名下想要用 `XMLHttpRequest` 访问另外一个域名下的资源时，出现的情况。
+
+默认情况下，浏览器是默认拒绝跨域的，因为会有跨域攻击的可能存在（除非在发出请求的时候加上请求头： `Access-Control-Allow-Origin: *` 允许所有来源）。**于此同时**，对方服务器也需要允许跨域，否则这个跨域访问就无法完成。
+
+但现状是，所有的推特 API 都不支持跨域访问，官方的说法是建议推特 API 只用于后端中。无可奈何，只能使用推特的 `widgets.js` 来渲染推特，缺点就是加入推特自己的分析框架，而且好像关不掉的样子。
+
+更多信息可以去读读这篇文章：[跨源资源共享（CORS） - MDN Web Docs](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS)
+
+### 随机整数生成
+```javascript
+/**
+* Returns a random integer between min and max
+* Using Math.round() will give you a non-uniform distribution!
+* Both min and max can be randomed
+*/
+_getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min
+}
+```
+直接从 Stack Overflow 上抄的：[Javascript Random Integer Between two Numbers -Stack Overflow](https://stackoverflow.com/questions/10134237/javascript-random-integer-between-two-numbers)，至于原理我还没弄懂（谁叫我数学那么拉呢）。
+> Ctrl + C, Ctrl + V, work done!   
+> —— 某人的暴言
+
+### http_get 方法
+```javascript
+_httpGet (theUrl) {
+    try{
+        var xmlHttp = new XMLHttpRequest()
+        xmlHttp.open( "GET", theUrl, false ) // false for synchronous request
+        xmlHttp.send( null )
+        return xmlHttp.responseText
+    } catch (e) {
+        throw this._throwException('http request', e)
+    }
+}
+```
+也是直接从 Stack Overflow 上抄的：[HTTP GET request in JavaScript? - Stack Overflow](https://stackoverflow.com/questions/247483/http-get-request-in-javascript)，自己加了个 try{} 和 ~~脱裤子放屁行为（指 catch 了一个错误又顺手丢出去）~~ 。
+
+### 清空一个父 node 里的所有子 node
+三个方法，我都觉得不是很优雅。（参考文章： [Remove all child elements of a DOM node in JavaScript - Stack Overflow](https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript)）
+
+1. `parent.textContent = ''`   
+项目中使用的是这个方法。因为原来的父 node 里只有一个 text node，我估计这个方法能行，还没试过父 node 里套了一些奇奇怪怪的东西的情况。
+
+2. `parent.innerHTML = ''`   
+杀伤力极大，直接父 node 里啥都没有了，就是执行速度上要比上面一个要慢一点。在某些情况下不是很好用。
+
+3. 循环执行 `parentNode.removeChild()`   
+虽然这个看上去最优雅，但是总觉得这种 ~~暴力~~ 循环哪里看着怪怪的。
+```javascript
+while (parentNode.firstChild) {
+    parentNode.removeChild(parentNode).lastChild);
+}
+```
+### 让整个 div 可以被超链接
+可以说是一个很不错的一个 trick ，具体的话也不好说，直接放链接：[Make a div into a link - Stack Overflow](https://stackoverflow.com/questions/796087/make-a-div-into-a-link)
+
+### 使用 Grunt 完成一些自动化
+> 参考：[Getting started - GruntJS](https://gruntjs.com/getting-started)
+
+目前只想到自动化来缩小项目文件，所以整个配置都会变得很简单。
+
+在此之前要安装全局的 `grunt-cli` ，作用是调起项目中的 grunt 并运行，这样运行相应任务只要运行 `grunt <任务名>` 就行了：
+```bash
+npm install -g grunt-cli
+```
+
+然后在项目中安装 `grunt` 、 `grunt-contrib-uglify` 和 `grunt-contrib-cssmin`：
+```bash
+npm install grunt --save-dev
+npm install grunt-contrib-uglify --save-dev
+npm install grunt-contrib-cssmin --save-dev
+```
+安装完后可以考虑把 `node_modules` 添加到 `.gitignore` 里，如果不对包作直接的修改的话。
+
+直接上官方的示例 `Gruntfile.js` ，然后自己改改：
+```javascript
+module.exports = function(grunt) {
+
+    // Project configuration.
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        uglify: {
+            options: {
+            banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            },
+            build: {
+                src: 'wolf-chews.js',
+                dest: 'wolf-chews.min.js'
+            }
+        },
+        cssmin: {
+            build: {
+                src: 'wolf-chews.css',
+                dest: 'wolf-chews.min.css',
+            }
+        }
+    });
+  
+    // Load the plugins.
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+  
+    // Default task(s).
+    grunt.registerTask('build', ['uglify', 'cssmin']);
+  
+  };
+```
+
+如果之后想要用 GitHub Action 自动执行 `grunt` 命令，可以在 `package.json` 里设置测试用命令：
+```
+"scripts": {
+    "test": "node -e \"var g = require('grunt'); g.cli.tasks = ['build']; g.cli()\""
+},
+```
+这样就不用在 Action 流程里安装 `grunt-cli` 而直接执行 `npm test` 就行。
+
+编写 `publish-to-npm.yml` 用 GitHub Action 帮我完成这些任务并发布在 npm 上：
+```yaml
+name: Publish to NPM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: npm install
+      - run: npm test
+      - run: rm -rf .vscode .github
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          dry-run: false
+```
+
+-----
+于是，这个大坑就这样先告一段落了。
+
+各位看官可以在 [404页面](/404.html) 看到这个功能的实装了！
+
+-----
+你以为这就结束了吗？
+
+~~在另外一个夜黑风高的夜晚~~，当我躺在床上时，脑海里突然涌现一个想法：既然你都会 Javasript 了，要不你把 Wolf-bites-tweets 用 Javascript 重写一遍吧。
+
+于是，下期预告：Wolf-Bites-Tweets v2.0 的开发（Node.js）
+
+> 开坑不止，填坑不息。   
+> —— Kreee
