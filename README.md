@@ -1,4 +1,7 @@
 # Kreee's Blog
+
+![](https://github.com/ohmykreee/kreee-blog/actions/workflows/publish-site.yml/badge.svg)
+
 Just a blog, blogging my life.   
 ## 相关链接：
 - [博客主页](https://blog.ohmykreee.top/)   
