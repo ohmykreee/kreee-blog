@@ -100,6 +100,8 @@ this_is_a_list = copy.deepcopy(another_list)
 
 -----
 ## Wolf-Chews-Tweets
+项目仓库：[https://github.com/ohmykreee/wolf-chews-tweets](https://github.com/ohmykreee/wolf-chews-tweets)
+
 准备写两个实现方式：一个是插入推特官方的小部件，一个是用别人造好的轮子 [nolimits4web
 /
 swiper](https://github.com/nolimits4web/swiper) 来写一个直接展示图片的组件。
