@@ -13,6 +13,8 @@ resizeImages: true
 ## 万恶之源
 接上文： [wolf-bites-tweets 和 wolf-chews-tweets 开发小记](/article/notes-of-developing-wbt-and-wct/)
 
+项目地址： [https://github.com/ohmykreee/wolf-bites-tweets](https://github.com/ohmykreee/wolf-bites-tweets)
+
 为啥在已经有 wolf-bites-tweets v1 的情况下，还要重写并开发 v2.0.0 呢？原因有俩：   
 1. 想要节省下 build docker image 花掉的十几秒，以及那种直接运行的安全感。（？）
 2. JavaScript 初上手，想要体验一下用 Node.js 开发后端的流程。

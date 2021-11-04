@@ -10,9 +10,4 @@ author: ""
 ---
 最近的单曲循环：   
 
-{{<aplayer server="netease" type="song" id="1423349797">}}
-
------
-再放一首油管上最近超喜欢的歌：
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/wvAW1qLPmBo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{{<aplayer server="netease" type="song" id="1397619674">}}
