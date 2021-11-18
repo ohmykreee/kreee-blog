@@ -24,7 +24,7 @@ jobs:
       - name: Build
         run: |
           hugo
-          touch ./out/.nojekyll
+          touch ./public/.nojekyll
           
       - name: Deploy to GitHub Pages
         if: success()
