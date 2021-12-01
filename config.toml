@@ -47,8 +47,23 @@ DefaultContentLanguage = "zh-cn"
 
   # Enable / Disable comments on the articles via commento
   # commentoJsURL = "https://commento.lednerb.de/js/commento.js"
+
+  # Enable / Disable Giscus comments
+  giscus             = true
+  giscusJsUrl        = "https://giscus.app/client.js"
+  giscusRepository   = "ohmykreee/kreee-blog"
+  giscusRepositoryId = "MDEwOlJlcG9zaXRvcnkzNzQxMjE4ODE="
+  giscusMapping      = "og:title"
+  giscusCategory     = "Comments"
+  giscusCategoryId   = "DIC_kwDOFkylmc4B_6vB"
+  giscusTheme        = "light"
+  giscusReactions    = "1"
+  giscusEmitMetadata = "0"
+  giscusLanguage     = "zh-CN"
+  giscusCrossOrigin  = "anonymous"
+
     # Enable / Disable Utterances comments
-  utterances    = true
+  utterances    = false
   utterancesJsUrl     = "https://utteranc.es/client.js"
   utterancesRepository    = "ohmykreee/kreee-blog"
   utterancesIssueTerm   = "og:title"
@@ -165,12 +180,14 @@ DefaultContentLanguage = "zh-cn"
 
 [markup]
   defaultMarkdownHandler = "goldmark"
+    [markup.goldmark]
+    [markup.goldmark.renderer]
+      # Change to 'true' if you need to render raw HTML whithin your markdown content
+      hardWraps = false
+      unsafe = true
+      xhtml = false
+
   [markup.tableOfContents]
     endLevel = 5
     ordered = false
     startLevel = 2
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      hardWraps = false
-      unsafe = true
-      xhtml = false
