@@ -6,7 +6,7 @@ excludeFromTopNav: false
 weight: 2
 
 # set the link if you want to redirect the user.
-link: "/article/"
+link: "/archive/"
 # set the html target parameter if you want to change default behavior
-target: "_blank"
+# target: "_blank"
 ---
