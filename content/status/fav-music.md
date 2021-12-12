@@ -6,8 +6,8 @@ icon: "fas fa-music"
 showDate: false
 categories: ['Music']
 tags: ['Music', 'Life', 'Favorite']
-author: ""
+author: "Kreee"
 ---
 最近的单曲循环：   
 
-{{<aplayer server="netease" type="song" id="1397619674">}}
+{{<aplayer server="netease" type="song" id="1486506464">}}
