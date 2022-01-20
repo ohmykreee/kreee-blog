@@ -1,6 +1,8 @@
-<!-- <script>
-var meting_api='//api.iwz.me/meting/api.php?server=:server&type=:type&id=:id'
-</script>
--->
+<!-- require APlayer -->
+<link rel="stylesheet" href="https://unpkg.com/aplayer/dist/APlayer.min.css">
+<script src="https://unpkg.com/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://unpkg.com/meting/dist/Meting.min.js"></script>
+
 
 <meting-js server="{{ .Get "server" }}" type="{{ .Get "type" }}" id="{{ .Get "id" }}"></meting-js>
