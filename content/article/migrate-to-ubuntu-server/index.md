@@ -72,6 +72,17 @@ sudo dpkg-reconfigure --priority=low unattended-upgrades
 因为被网络桥接和 NAT 彻底整“破防”，一气之下决定：   
 在系统里[虚拟出一个 OpenWRT ！](https://github.com/ohmykreee/kreee-blog/blob/main/content/article/openwrt-under-qemu-arm/index.md)
 
+
+（2022/2/7 更新）
+找到了一个项目：[lakinduakash / linux-wifi-hotspot](https://github.com/lakinduakash/linux-wifi-hotspot)，可以一步部署一个简单的无线路由器。
+
+添加 ppa 包并安装：
+```bash
+sudo add-apt-repository ppa:lakinduakash/lwh
+sudo apt install linux-wifi-hotspot
+```
+编辑 `/etc/create_ap.conf` 后，使用 `systemctl start create_ap` 启动 AP, `systemctl enable create_ap` 开机启动。
+
 -----
 ## Set up serial login with getty
 ```bash
