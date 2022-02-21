@@ -12,4 +12,4 @@ author: "Kreee"
 
 <!-- {{<aplayer server="netease" type="song" id="434014812">}} -->
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=120 src="//music.163.com/outchain/player?type=2&id=434014812&auto=0&height=90"></iframe>
+<iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1082372614&color=%234c6474&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true"></iframe>
