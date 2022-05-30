@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+
+
+  
+<html itemscope itemtype="https://schema.org/WebPage" class="no-js" lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="siteBaseUrl" content="https://blog.ohmykreee.top">
+    <meta name="author" content="Kreee">
+    <meta name="description" content="A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta name="keywords" content="kreee,blog,personal,responsive,font awesome,pages,posts,highlight.js,syntax highlighting,hugo">
+    <meta name="generator" content="Hugo 0.99.1" />
+    <title>
+        
+           
+               Notes for Setting Up Back-end Server &vert; Kreee&#39;s Blog
+           
+        
+    </title>
+    <meta itemprop="name" content="Notes for Setting Up Back-end Server">
+    <meta itemprop="description" content="Notes for Setting Up Back-end Server - A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta property="og:title" content="Notes for Setting Up Back-end Server">
+    <meta property="og:description" content="Notes for Setting Up Back-end Server - A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta property="og:image" content="https://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?size=200">
+    <meta property="og:url" content="https://blog.ohmykreee.top/article/notes-for-setting-up-backend-server/">
+    <meta property="og:site_name" content="Kreee&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+    <script src="/modernizr-simple.js"></script>
+
+    
+    <link href="/article/notes-for-setting-up-backend-server/" rel="alternate" type="application/rss+xml" title="Kreee&#39;s Blog" />
+    <link href="/article/notes-for-setting-up-backend-server/" rel="feed" type="application/rss+xml" title="Kreee&#39;s Blog" />
+    
+
+    
+    <link rel="canonical" href="https://blog.ohmykreee.top/article/notes-for-setting-up-backend-server/">
+    
+
+    <link rel="stylesheet" href="https://blog.ohmykreee.top/theme.css">
+
+    
+
+    
+        
+            <link rel="stylesheet" href="https://unpkg.com/cookieconsent@3/build/cookieconsent.min.css">
+        
+    
+</head>
+
+<body class="bilberry-hugo-theme">
+
+    
+    <nav class="permanentTopNav">
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="https://blog.ohmykreee.top/page/about/">关于我</a></li>
+                
+            
+                
+                    <li><a href="/archive/" target="">文章列表</a></li>
+                
+            
+                
+                    <li><a href="https://blog.ohmykreee.top/page/donate/">❤❤❤</a></li>
+                
+            
+                
+                    
+                
+            
+        </ul>
+
+        
+            <div id="search-box" class="search">
+                <i class="fas fa-search"></i>
+                <input id="search" type="text" placeholder="搜索……">
+            </div>
+        
+    </div>
+</nav>
+
+
+    
+    <header>
+
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="https://avatars.githubusercontent.com/u/76862878" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title">
+                <a href="/">
+                    Kreee&#39;s Blog
+                </a>
+            </h3>
+
+            
+                <span class="subtitle">Woof!</span>
+            
+        </div>
+
+        
+
+        
+            <div class="toggler permanentTopNav">
+        
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+    </div>
+</header>
+
+
+    <div class="main container">
+        
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="https://blog.ohmykreee.top/article/notes-for-setting-up-backend-server/">
+    <i class="fas fa-fw fa-pencil-alt"></i>
+</a>
+
+<article class="default article">
+    
+
+    <div class="content">
+    <h1 class="article-title">
+        <a href="https://blog.ohmykreee.top/article/notes-for-setting-up-backend-server/">
+            Notes for Setting Up Back-end Server
+        </a>
+    </h1>
+
+    <div class="meta">
+        
+            
+                <span class="date moment">2021-01-13</span>
+            
+        
+
+        
+
+        
+            <span class="categories">
+                
+                    
+                    
+                        <a href="https://blog.ohmykreee.top/categories/learning/">Learning</a>
+                    
+                
+            </span>
+        
+
+        
+            <span class="author">
+                
+                
+                    <a href="https://blog.ohmykreee.top/author/kreee/">Kreee</a>
+                
+            </span>
+        
+    </div>
+
+    
+        
+
+        <h2 id="install-centos">Install CentOS</h2>
+<p>OS: CentOS 7 Minimal</p>
+<p>Summary:</p>
+<ol>
+<li>Date &amp; Time: Shanghai</li>
+<li>Network &amp; Hostname: hostname to <code>kserver.localdomain</code><br>
+If you want to change hostname later, use:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hostnamectl set-hostname AnythingYouLike.localdomain
+</span></span></code></pre></div><p>When installing:</p>
+<ol>
+<li>Set a root password</li>
+</ol>
+<hr>
+<h2 id="first-run--install-some-software">First run &amp; install some software</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yum -y update
+</span></span><span style="display:flex;"><span>yum -y install vim
+</span></span><span style="display:flex;"><span>yum -y install net-tools
+</span></span><span style="display:flex;"><span>yum -y install git
+</span></span><span style="display:flex;"><span>yum -y install unzip
+</span></span><span style="display:flex;"><span>yum -y install wget
+</span></span></code></pre></div><hr>
+<h2 id="enable-yum-cron">Enable yum-cron</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yum install -y yum-cron
+</span></span></code></pre></div><p>Make it receive security update automatically:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /etc/yum/yum-cron.conf
+</span></span></code></pre></div><p>Edit the file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>update_cmd <span style="color:#f92672">=</span> security
+</span></span><span style="display:flex;"><span>apply_updates <span style="color:#f92672">=</span> yes
+</span></span></code></pre></div><p>Start and auto-run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>systemctl start yum-cron
+</span></span><span style="display:flex;"><span>systemctl enable yum-cron
+</span></span></code></pre></div><hr>
+<h2 id="set-up-openssh">Set up OpenSSH</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /etc/ssh/sshd_config
+</span></span></code></pre></div><p>Remove <code>#</code> in the following line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Port <span style="color:#ae81ff">22</span>
+</span></span><span style="display:flex;"><span>ListenAddress 0.0.0.0
+</span></span><span style="display:flex;"><span>ListenAddress ::
+</span></span><span style="display:flex;"><span>PermitRootLogin yes
+</span></span></code></pre></div><p>Start and auto-run the SSH service.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>systemctl enable sshd
+</span></span><span style="display:flex;"><span>systemctl start sshd
+</span></span></code></pre></div><p>View the local address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ifconfig -a
+</span></span></code></pre></div><hr>
+<h2 id="set-up-serial-port">Set up Serial Port</h2>
+<p>Check if it is supported</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dmesg |grep tty
+</span></span></code></pre></div><p>Edit <code>/etc/default/grub</code> and add:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>GRUB_CMDLINE_LINUX_DEFAULT<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;console=tty0 console=ttyS0,9600&#34;</span>
+</span></span></code></pre></div><p>Update the grub file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>grub2-mkconfig -o /boot/grub2/grub.cfg
+</span></span></code></pre></div><p>Reboot the machine.</p>
+<p>Next, enable <code>serial-getty</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp /usr/lib/systemd/system/serial-getty@.service /etc/systemd/system/serial-getty@ttyS0.service
+</span></span><span style="display:flex;"><span>systemctl daemon-reload
+</span></span><span style="display:flex;"><span>systemctl start serial-getty@ttyS0.service
+</span></span><span style="display:flex;"><span>systemctl enable serial-getty@ttyS0.service
+</span></span></code></pre></div><hr>
+<h2 id="set-up-ap--soft-router">Set up AP &amp; soft router</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ref: https://www.osradar.com/building-your-own-wireless-access-point-on-top-of-centos7/
+</span></span></code></pre></div><p>Install the wireless-tools and hostapd.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yum -y install iw
+</span></span><span style="display:flex;"><span>yum -y install epel-release
+</span></span><span style="display:flex;"><span>yum -y install hostapd
+</span></span></code></pre></div><p>Config hostapd.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /etc/hostapd/hostapd.conf
+</span></span></code></pre></div><p>Edit the conf file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>interface<span style="color:#f92672">=</span>wlp7s0
+</span></span><span style="display:flex;"><span>hw_mode<span style="color:#f92672">=</span>g
+</span></span><span style="display:flex;"><span>channel<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>ssid<span style="color:#f92672">=</span>K_server
+</span></span><span style="display:flex;"><span>utf8_ssid<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>country_code<span style="color:#f92672">=</span>CN
+</span></span><span style="display:flex;"><span>bridge<span style="color:#f92672">=</span>br-AP
+</span></span></code></pre></div><p>Remove the <code>#</code> in the following lines:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wpa<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>wpa_key_mgmt<span style="color:#f92672">=</span>WPA-PSK
+</span></span><span style="display:flex;"><span>wpa_pairwise<span style="color:#f92672">=</span>TKIP
+</span></span><span style="display:flex;"><span>rsn_pairwise<span style="color:#f92672">=</span>CCMP
+</span></span><span style="display:flex;"><span>wpa_passphrase<span style="color:#f92672">=</span>YouPassHere
+</span></span></code></pre></div><p>Start and auto-run the hostapd</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>systemctl start hostapd
+</span></span><span style="display:flex;"><span>systemctl enable hostapd
+</span></span></code></pre></div><p>Change zones.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>firewall-cmd --permanent -zone<span style="color:#f92672">=</span>external --change-interface<span style="color:#f92672">=</span>enp1s0
+</span></span><span style="display:flex;"><span>firewall-cmd --permanent -zone<span style="color:#f92672">=</span>internal --change-interface<span style="color:#f92672">=</span>???
+</span></span><span style="display:flex;"><span>firewall-cmd --zone<span style="color:#f92672">=</span>external --add-masquerade --permanent
+</span></span><span style="display:flex;"><span>firewall-cmd --set-default-zone<span style="color:#f92672">=</span>internal
+</span></span><span style="display:flex;"><span>firewall-cmd --zone<span style="color:#f92672">=</span>internal --add-service<span style="color:#f92672">=</span>dns --permanent
+</span></span><span style="display:flex;"><span>firewall-cmd --complete-reload
+</span></span></code></pre></div><p>Set up bridge.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmcli con add con-name br-AP type bridge ifname br-AP autoconnect yes stp no ip4 192.168.6.1/24
+</span></span></code></pre></div><p>Set up dhcp.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yum install -y dhcp
+</span></span><span style="display:flex;"><span>vim /etc/dhcp/dhcpd.conf
+</span></span></code></pre></div><p>Edit the conf file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>subnet 192.168.6.0 netmask 255.255.255.0 <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	range dynamic-bootp 192.168.6.200 192.168.6.250;
+</span></span><span style="display:flex;"><span>	option broadcast-address 192.168.6.255;
+</span></span><span style="display:flex;"><span>	option domain-name-server 223.5.5.5, 223.6.6.6;
+</span></span><span style="display:flex;"><span>	option routers 192.168.6.1;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Start and auto-run the dhcp</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>systemctl start dhcpd
+</span></span><span style="display:flex;"><span>systemctl enable dhcpd
+</span></span></code></pre></div><p>Post-setup: make it more stable.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yum -y install haveged
+</span></span><span style="display:flex;"><span>systemctl start havaged
+</span></span><span style="display:flex;"><span>systemctl enable havaged
+</span></span></code></pre></div><hr>
+<h2 id="set-up-web-vmstats">Set up web-vmstats</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /usr/local/
+</span></span><span style="display:flex;"><span>mkdir websocketd
+</span></span><span style="display:flex;"><span>git clone https://github.com/joewalnes/web-vmstats
+</span></span></code></pre></div><p>Copy <code>websocketd.zip</code> to the folder <code>/usr/local/websocketd/</code> and unzip it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>unzip websocketd.zip
+</span></span></code></pre></div><p>Then create <code>webvmstats</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /etc/systemd/system/webvmstats.service
+</span></span></code></pre></div><p>Add the following content to the file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>Unit<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Description<span style="color:#f92672">=</span>Web-vmstats
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Service<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>ExecStart<span style="color:#f92672">=</span>/usr/local/websocketd/websocketd --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span> --staticdir<span style="color:#f92672">=</span>/usr/local/web-vmstats/web/ /usr/bin/vmstat -n <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Install<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>WantedBy<span style="color:#f92672">=</span>multi-user.target
+</span></span></code></pre></div><p>Reload, enable and start.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>systemctl daemon-reload
+</span></span><span style="display:flex;"><span>systemctl start webvmstats
+</span></span><span style="display:flex;"><span>systemctl enable webvmstats
+</span></span></code></pre></div><p>Add port <code>8000</code> to the firewall.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>firewall-cmd --add-port<span style="color:#f92672">=</span>8000/tcp --zone<span style="color:#f92672">=</span>external --permanent
+</span></span><span style="display:flex;"><span>firewall-cmd --add-port<span style="color:#f92672">=</span>8000/tcp --zone<span style="color:#f92672">=</span>internal --permanent
+</span></span></code></pre></div><p>View status:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>systemctl status webvmstats -l
+</span></span></code></pre></div><p>Or:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>journalctl -e -u webvmstats
+</span></span></code></pre></div><hr>
+<h2 id="set-up-zerotier">Set up Zerotier</h2>
+<p>Use the script to install Zerotier:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -s https://install.zerotier.com | sudo bash
+</span></span></code></pre></div><p>Join network:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>zerotier-cli join XXXXXXX
+</span></span></code></pre></div><p>Start and auto-run ZeroTier.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>systemctl start zerotier-one
+</span></span><span style="display:flex;"><span>systemctl enable zerotier-one
+</span></span></code></pre></div><hr>
+<h2 id="set-up-frp">Set up FRP</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir /usr/local/frp
+</span></span></code></pre></div><p>copy the frp.zip to the new folder. Then unzip it.</p>
+<p>Edit the <code>frpc.ini</code> in the client-side. (Stupid error in [ftp]?)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>common<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>server_addr <span style="color:#f92672">=</span> ?.?.?.?
+</span></span><span style="display:flex;"><span>server_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">7000</span>
+</span></span><span style="display:flex;"><span>pool_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>authenticate_new_work_conns <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>authentication_method <span style="color:#f92672">=</span> token
+</span></span><span style="display:flex;"><span>token <span style="color:#f92672">=</span> balabalabalabalabalabala
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>minecraft01<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>type <span style="color:#f92672">=</span> tcp
+</span></span><span style="display:flex;"><span>local_ip <span style="color:#f92672">=</span> 127.0.0.1
+</span></span><span style="display:flex;"><span>local_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">25565</span>
+</span></span><span style="display:flex;"><span>remote_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">25565</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>minecraft02<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>type <span style="color:#f92672">=</span> udp
+</span></span><span style="display:flex;"><span>local_ip <span style="color:#f92672">=</span> 127.0.0.1
+</span></span><span style="display:flex;"><span>local_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">25565</span>
+</span></span><span style="display:flex;"><span>remote_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">25565</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>murmur01<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>type <span style="color:#f92672">=</span> tcp
+</span></span><span style="display:flex;"><span>local_ip <span style="color:#f92672">=</span> 127.0.0.1
+</span></span><span style="display:flex;"><span>local_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">64738</span>
+</span></span><span style="display:flex;"><span>remote_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">64738</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>murmur02<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>type <span style="color:#f92672">=</span> udp
+</span></span><span style="display:flex;"><span>local_ip <span style="color:#f92672">=</span> 127.0.0.1
+</span></span><span style="display:flex;"><span>local_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">64738</span>
+</span></span><span style="display:flex;"><span>remote_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">64738</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>ftp01<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>type <span style="color:#f92672">=</span> tcp
+</span></span><span style="display:flex;"><span>local_ip <span style="color:#f92672">=</span> 127.0.0.1
+</span></span><span style="display:flex;"><span>local_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>remote_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>ftp02<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>type <span style="color:#f92672">=</span> tcp
+</span></span><span style="display:flex;"><span>local_ip <span style="color:#f92672">=</span> 127.0.0.1
+</span></span><span style="display:flex;"><span>local_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>
+</span></span><span style="display:flex;"><span>remote_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>ftppasv<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>type <span style="color:#f92672">=</span> udp
+</span></span><span style="display:flex;"><span>local_ip <span style="color:#f92672">=</span> 127.0.0.1
+</span></span><span style="display:flex;"><span>local_port <span style="color:#f92672">=</span> 20000-23333
+</span></span><span style="display:flex;"><span>remote_port <span style="color:#f92672">=</span> 20000-23333
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>webvmstat<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>type <span style="color:#f92672">=</span> tcp
+</span></span><span style="display:flex;"><span>local_ip <span style="color:#f92672">=</span> 127.0.0.1
+</span></span><span style="display:flex;"><span>local_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>remote_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">8000</span>
+</span></span></code></pre></div><p>Copy origin <code>.service</code> file and edit it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp /usr/local/frp/systemd/frpc.service /etc/systemd/system/
+</span></span><span style="display:flex;"><span>vim /etc/systemd/system/frpc.service
+</span></span></code></pre></div><p><del>User=nobody</del></p>
+<p>On the server-side, edit the <code>frps.ini</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>common<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>bind_addr <span style="color:#f92672">=</span> 0.0.0.0
+</span></span><span style="display:flex;"><span>bind_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">7000</span>
+</span></span><span style="display:flex;"><span>dashboard_addr <span style="color:#f92672">=</span> 0.0.0.0
+</span></span><span style="display:flex;"><span>dashboard_port <span style="color:#f92672">=</span> <span style="color:#ae81ff">7500</span>
+</span></span><span style="display:flex;"><span>authentication_method <span style="color:#f92672">=</span> token
+</span></span><span style="display:flex;"><span>authenticate_new_work_conns <span style="color:#f92672">=</span> true
+</span></span><span style="display:flex;"><span>token <span style="color:#f92672">=</span> balabalabalabalabalabala
+</span></span><span style="display:flex;"><span>dashboard_user <span style="color:#f92672">=</span> admin
+</span></span><span style="display:flex;"><span>dashboard_pwd <span style="color:#f92672">=</span> admin
+</span></span></code></pre></div><p>Give permission:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod -R <span style="color:#ae81ff">700</span> /usr/local/frp/
+</span></span></code></pre></div><hr>
+<h2 id="set-up-mumble-server">Set up mumble server</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ref: https://wiki.mumble.info/wiki/Install_CentOS7
+</span></span></code></pre></div><hr>
+<h2 id="set-up-minecraft-server">Set up Minecraft server</h2>
+<p>Install java:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yum install -y java-latest-openjdk.x86_64
+</span></span></code></pre></div><p>Upload the server.zip to the <code>/usr/local/mc_1_16_4</code> or <code>/opt/mc_1_16_4</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir /usr/local/mc_1_16_4/mc_1_16_4
+</span></span><span style="display:flex;"><span>unzip server.zip
+</span></span></code></pre></div><p>Create user:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>groupadd -r minecraft
+</span></span><span style="display:flex;"><span>useradd -r -g minecraft -m -d /var/lib/minecraft -s /sbin/nologin minecraft
+</span></span><span style="display:flex;"><span>chown -R minecraft:minecraft /usr/local/mc_1_16_4
+</span></span><span style="display:flex;"><span>chmod -R <span style="color:#ae81ff">0770</span> /usr/local/mc_1_16_4
+</span></span></code></pre></div><p>Create <code>mcserver.service</code> by <code>vim /etc/systemd/system/mcserver.service</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>Unit<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Description<span style="color:#f92672">=</span>Minecraft Server
+</span></span><span style="display:flex;"><span>After<span style="color:#f92672">=</span>network-online.target
+</span></span><span style="display:flex;"><span>Wants<span style="color:#f92672">=</span>network-online.target
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Service<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>User<span style="color:#f92672">=</span>minecraft
+</span></span><span style="display:flex;"><span>ExecStartPre<span style="color:#f92672">=</span>/bin/sleep <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>ExecStart<span style="color:#f92672">=</span>/usr/bin/java -jar /usr/local/mc_1_16_4/fabric-server-launch.jar nogui
+</span></span><span style="display:flex;"><span>WorkingDirectory<span style="color:#f92672">=</span>/usr/local/mc_1_16_4/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>Install<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>WantedBy<span style="color:#f92672">=</span>multi-user.target
+</span></span></code></pre></div><p>Add port:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /etc/firewalld/services/minecraft.xml
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>&lt;?xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>?&gt;
+</span></span><span style="display:flex;"><span>&lt;service&gt;
+</span></span><span style="display:flex;"><span>        &lt;short&gt;Minecraft&lt;/short&gt;
+</span></span><span style="display:flex;"><span>        &lt;description&gt;Minecraft Server&lt;/description&gt;
+</span></span><span style="display:flex;"><span>        &lt;port protocol<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tcp&#34;</span> port<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;25565&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>        &lt;port protocol<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;udp&#34;</span> port<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;25565&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>&lt;/service&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /etc/firewalld/services/rcon.xml
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>&lt;?xml version<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1.0&#34;</span> encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>?&gt;
+</span></span><span style="display:flex;"><span>&lt;service&gt;
+</span></span><span style="display:flex;"><span>        &lt;short&gt;RCON&lt;/short&gt;
+</span></span><span style="display:flex;"><span>        &lt;description&gt;Minecraft RCON&lt;/description&gt;
+</span></span><span style="display:flex;"><span>        &lt;port protocol<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tcp&#34;</span> port<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;25577&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>        &lt;port protocol<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;udp&#34;</span> port<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;25577&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>&lt;/service&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>firewall-cmd --permanent --add-service<span style="color:#f92672">=</span>minecraft --zone<span style="color:#f92672">=</span>internal
+</span></span><span style="display:flex;"><span>firewall-cmd --permanent --add-service<span style="color:#f92672">=</span>minecraft --zone<span style="color:#f92672">=</span>external
+</span></span><span style="display:flex;"><span>firewall-cmd --permanent --add-service<span style="color:#f92672">=</span>rcon --zone<span style="color:#f92672">=</span>internal
+</span></span><span style="display:flex;"><span>firewall-cmd --complete-reload
+</span></span></code></pre></div><hr>
+<h2 id="set-up-ftp">Set up FTP</h2>
+<p>Install the ftp-daemon</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yum -y install vsftpd
+</span></span></code></pre></div><p>Edit the conf file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /etc/vsftpd/vsftpd.conf
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>local_enable<span style="color:#f92672">=</span>NO
+</span></span><span style="display:flex;"><span>anonymous_enable<span style="color:#f92672">=</span>YES
+</span></span><span style="display:flex;"><span>write_enable<span style="color:#f92672">=</span>YES
+</span></span><span style="display:flex;"><span>anon_upload_enable<span style="color:#f92672">=</span>YES
+</span></span><span style="display:flex;"><span>listen<span style="color:#f92672">=</span>YES
+</span></span></code></pre></div><p>Create a folder for uploading and change the permission:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir /var/ftp/UploadArea
+</span></span><span style="display:flex;"><span>chown -R ftp:ftp /var/ftp/UploadArea
+</span></span><span style="display:flex;"><span>chmod -R <span style="color:#ae81ff">777</span> /var/ftp/UploadArea
+</span></span></code></pre></div><p>Can ban users from logging in by adding name in <code>/etc/vsftpd/user_list</code></p>
+<p>Change Selinux settings:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>getsebool -a | grep ftp
+</span></span><span style="display:flex;"><span>setsebool -P ftpd_anon_write on
+</span></span><span style="display:flex;"><span>setsebool -P ftpd_full_access on
+</span></span></code></pre></div><p>Specify the Pasv-port by adding in <code>/etc/vsftpd/vsftpd.conf</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pasv_min_port<span style="color:#f92672">=</span><span style="color:#ae81ff">20000</span>
+</span></span><span style="display:flex;"><span>pasv_max_port<span style="color:#f92672">=</span><span style="color:#ae81ff">23333</span>
+</span></span></code></pre></div><p>Open port.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>firewall-cmd --permanent --add-service<span style="color:#f92672">=</span>ftp --zone<span style="color:#f92672">=</span>internal
+</span></span><span style="display:flex;"><span>firewall-cmd --permanent --add-service<span style="color:#f92672">=</span>ftp --zone<span style="color:#f92672">=</span>external
+</span></span></code></pre></div><p>Start and auto-run the service.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>systemctl start vsftpd
+</span></span><span style="display:flex;"><span>systemctl enable vsftpd
+</span></span></code></pre></div><hr>
+<h2 id="ntp-enable">NTP enable</h2>
+<p>Install the ntp-daemon.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yum install -y ntp
+</span></span></code></pre></div><p>Edit the conf file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>vim /etc/ntp.conf
+</span></span></code></pre></div><p>Add the following line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>server ntp.ntsc.ac.cn
+</span></span><span style="display:flex;"><span>server cn.ntp.org.cn
+</span></span><span style="display:flex;"><span>SYNC_HWCLOCK<span style="color:#f92672">=</span>yes
+</span></span></code></pre></div><p>Start and auto-run the servie.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>systemctl start ntpd
+</span></span><span style="display:flex;"><span>systemctl enable ntpd
+</span></span></code></pre></div><p>View stats:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ntpstat
+</span></span><span style="display:flex;"><span>ntpq -p
+</span></span></code></pre></div>
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/selfhosted/">Selfhosted</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/learning/">Learning</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/2021/">2021</a>
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        <div id="comments-container">
+            
+            
+
+            
+    <script src="https://giscus.app/client.js"
+        data-repo="ohmykreee/kreee-blog"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkzNzQxMjE4ODE="
+        data-category="Comments"
+        data-category-id="DIC_kwDOFkylmc4B_6vB"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-emit-metadata=""
+        data-theme="light"
+        
+            data-lang="zh-CN"
+        
+        crossorigin="anonymous"
+        async>
+    </script>
+    <div id="giscus"></div>
+
+
+            
+
+        </div>
+    
+
+    </div>
+
+    
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>最新帖子</strong>
+            <ul>
+                
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/frontend-dev-with-android-pad/">使用 Android Pad 进行（前端）开发</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/deploy-nextjs-static-page-to-github-pages/">关于部署 Next.js 静态网页到 GitHub Pages 有关注意事项</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/">wolf-bites-tweets 2.0.0 开发小记</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/">wolf-bites-tweets 和 wolf-chews-tweets 开发小记</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/">将后端服务器系统迁移至 Ubuntu server</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/code/sim-keyboard-stroke/">模拟键盘输入</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/music-player-in-hugo-page/">在 Hugo 里内嵌音乐播放器（APlayer）</a>
+                    </li>
+                
+            </ul>
+        </div>
+        
+
+        
+        <div class="categories">
+            <a href="/categories/"><strong>分类</strong></a>
+            <ul>
+                
+                <li>
+                    <a href="/categories/learning">Learning
+                        (10)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/code">Code
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/music">Music
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/study">Study
+                        (1)</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>社交媒体</strong>
+
+                
+                <a href="https://github.com/ohmykreee" target="_blank"><i class="fab fa-github"></i></a>
+                
+                <a href="https://twitter.com/kreeejiang" target="_blank"><i class="fab fa-twitter"></i></a>
+                
+                <a href="https://steamcommunity.com/id/kreeejiang/" target="_blank"><i class="fab fa-steam"></i></a>
+                
+                <a href="https://space.bilibili.com/361507684" target="_blank"><i class="fas fa-photo-video"></i></a>
+                
+                <a href="https://www.ohmykreee.top" target="_blank"><i class="fas fa-id-card-alt"></i></a>
+                
+            </div>
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/ohmykreee" target="_blank">
+                &copy;
+                
+                CC BY-NC 4.0
+                
+                by Kreee
+            </a>
+            
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme"
+                target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+    
+
+    
+
+
+    <script src="https://blog.ohmykreee.top/theme.js"></script>
+
+    
+    
+    <script src="https://unpkg.com/cookieconsent@3/build/cookieconsent.min.js" type="application/javascript"></script>
+    
+    <script src="https://blog.ohmykreee.top/js/init-cookieconsent.js" type="application/javascript"></script>
+    
+    <script src="https://blog.ohmykreee.top/js/clarity-tracker.js" type="application/javascript"></script>
+    
+    
+
+    
+    <div id="activate-algolia-search" class="hidden">
+  <input type="hidden" id="algolia-search-appId" value="BYCFQKEA4W">
+  <input type="hidden" id="algolia-search-apiKey" value="5b8f1a1d7557fc3b1bc0d99efbaa22ce">
+  <input type="hidden" id="algolia-search-indexName" value="kreee-blog">
+  <input type="hidden" id="algolia-search-noSearchResults" value="什么都没找到。">
+
+  
+</div>
+
+    
+</body>
+
+</html>

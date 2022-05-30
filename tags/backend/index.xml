@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Backend on Kreee&#39;s Blog</title>
+    <link>https://blog.ohmykreee.top/tags/backend/</link>
+    <description>Recent content in Backend on Kreee&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 27 Oct 2021 22:59:38 +0800</lastBuildDate><atom:link href="https://blog.ohmykreee.top/tags/backend/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>wolf-bites-tweets 2.0.0 开发小记</title>
+      <link>https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/</link>
+      <pubDate>Wed, 27 Oct 2021 22:59:38 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/</guid>
+      <description>&lt;h2 id=&#34;万恶之源&#34;&gt;万恶之源&lt;/h2&gt;
+&lt;p&gt;接上文： &lt;a href=&#34;https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/&#34;&gt;wolf-bites-tweets 和 wolf-chews-tweets 开发小记&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;项目地址： &lt;a href=&#34;https://github.com/ohmykreee/wolf-bites-tweets&#34;&gt;https://github.com/ohmykreee/wolf-bites-tweets&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;为啥在已经有 wolf-bites-tweets v1 的情况下，还要重写并开发 v2.0.0 呢？原因有俩：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;想要节省下 build docker image 花掉的十几秒，以及那种直接运行的安全感。（？）&lt;/li&gt;
+&lt;li&gt;JavaScript 初上手，想要体验一下用 Node.js 开发后端的流程。&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

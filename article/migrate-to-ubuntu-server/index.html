@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+
+
+    
+
+    
+        
+    
+
+    
+
+<html itemscope itemtype="https://schema.org/WebPage" class="no-js" lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="siteBaseUrl" content="https://blog.ohmykreee.top">
+    <meta name="author" content="Kreee">
+    <meta name="description" content="A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta name="keywords" content="kreee,blog,personal,responsive,font awesome,pages,posts,highlight.js,syntax highlighting,hugo">
+    <meta name="generator" content="Hugo 0.99.1" />
+    <title>
+        
+           
+               将后端服务器系统迁移至 Ubuntu server &vert; Kreee&#39;s Blog
+           
+        
+    </title>
+    <meta itemprop="name" content="将后端服务器系统迁移至 Ubuntu server">
+    <meta itemprop="description" content="将后端服务器系统迁移至 Ubuntu server - A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta property="og:title" content="将后端服务器系统迁移至 Ubuntu server">
+    <meta property="og:description" content="将后端服务器系统迁移至 Ubuntu server - A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta property="og:image" content="https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/featuredImage.jpg">
+    <meta property="og:url" content="https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/">
+    <meta property="og:site_name" content="Kreee&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+    <script src="/modernizr-simple.js"></script>
+
+    
+    <link href="/article/migrate-to-ubuntu-server/" rel="alternate" type="application/rss+xml" title="Kreee&#39;s Blog" />
+    <link href="/article/migrate-to-ubuntu-server/" rel="feed" type="application/rss+xml" title="Kreee&#39;s Blog" />
+    
+
+    
+    <link rel="canonical" href="https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/">
+    
+
+    <link rel="stylesheet" href="https://blog.ohmykreee.top/theme.css">
+
+    
+
+    
+        
+            <link rel="stylesheet" href="https://unpkg.com/cookieconsent@3/build/cookieconsent.min.css">
+        
+    
+</head>
+
+<body class="bilberry-hugo-theme">
+
+    
+    <nav class="permanentTopNav">
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="https://blog.ohmykreee.top/page/about/">关于我</a></li>
+                
+            
+                
+                    <li><a href="/archive/" target="">文章列表</a></li>
+                
+            
+                
+                    <li><a href="https://blog.ohmykreee.top/page/donate/">❤❤❤</a></li>
+                
+            
+                
+                    
+                
+            
+        </ul>
+
+        
+            <div id="search-box" class="search">
+                <i class="fas fa-search"></i>
+                <input id="search" type="text" placeholder="搜索……">
+            </div>
+        
+    </div>
+</nav>
+
+
+    
+    <header>
+
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="https://avatars.githubusercontent.com/u/76862878" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title">
+                <a href="/">
+                    Kreee&#39;s Blog
+                </a>
+            </h3>
+
+            
+                <span class="subtitle">Woof!</span>
+            
+        </div>
+
+        
+
+        
+            <div class="toggler permanentTopNav">
+        
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+    </div>
+</header>
+
+
+    <div class="main container">
+        
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/">
+    <i class="fas fa-fw fa-pencil-alt"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/">
+            
+                <img src="/article/migrate-to-ubuntu-server/featuredImage.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h1 class="article-title">
+        <a href="https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/">
+            将后端服务器系统迁移至 Ubuntu server
+        </a>
+    </h1>
+
+    <div class="meta">
+        
+            
+                <span class="date moment">2021-07-16</span>
+            
+        
+
+        
+
+        
+            <span class="categories">
+                
+                    
+                    
+                        <a href="https://blog.ohmykreee.top/categories/learning/">Learning</a>
+                    
+                
+            </span>
+        
+
+        
+            <span class="author">
+                
+                
+                    <a href="https://blog.ohmykreee.top/author/kreee/">Kreee</a>
+                
+            </span>
+        
+    </div>
+
+    
+        
+
+        <h2 id="what-happend">What happend?</h2>
+<p>本来用 CentOS 7 用得开开心心的，结果了解到 Redhat 公司要整治一下我们这群白嫖怪（感觉被强行喂了一口💩）。<br>
+So, 为了服务器的可持续发展（其实是放假闲得无聊），顺便重装一下机器的系统，以及更新一下远古的备忘指南，Let&rsquo;s begin!</p>
+<hr>
+<p><strong>目录：</strong>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-happend">What happend?</a></li>
+    <li><a href="#install-os">Install OS</a></li>
+    <li><a href="#config-openssh">Config OpenSSH</a></li>
+    <li><a href="#swap-mirror">Swap mirror</a></li>
+    <li><a href="#first-update">First update</a></li>
+    <li><a href="#set-up-auto-update">Set up auto-update</a></li>
+    <li><a href="#set-up-router">Set up Router</a></li>
+    <li><a href="#set-up-serial-login-with-getty">Set up serial login with getty</a></li>
+    <li><a href="#usage-of-ufw">Usage of ufw</a></li>
+    <li><a href="#set-up-certbot">Set up Certbot</a></li>
+    <li><a href="#set-up-mumble">Set up mumble</a></li>
+    <li><a href="#set-up-netdata">Set up Netdata</a></li>
+    <li><a href="#set-up-np-client">Set up NP-Client</a></li>
+    <li><a href="#set-up-java-and-minecraft">Set up Java and Minecraft</a></li>
+    <li><a href="#set-up-zerotier">Set up Zerotier</a></li>
+    <li><a href="#set-up-pppoe">Set up PPPOE</a></li>
+  </ul>
+</nav></p>
+<hr>
+<h2 id="install-os">Install OS</h2>
+<p>安装版本: Ubuntu server 20.04 LTS<br>
+跟着指示走就行。
+安装中要求输入的用户名与密码为之后需要登陆用的普通账号，如果需要提权操作需要 <code>sudo</code> 命令，且密码为自己账号的密码。</p>
+<hr>
+<h2 id="config-openssh">Config OpenSSH</h2>
+<p>在安装阶段的时候就提示是否安装 OpenSSH。<br>
+同时，需要启用防火墙并设置端口：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw enable
+</span></span><span style="display:flex;"><span>sudo allow ssh
+</span></span><span style="display:flex;"><span>sudo ufw reload
+</span></span></code></pre></div><p>查看当前状态：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw status
+</span></span></code></pre></div><hr>
+<h2 id="swap-mirror">Swap mirror</h2>
+<blockquote>
+<p>参考： <a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/</a></p>
+</blockquote>
+<p>更改包安装管理器设置文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo vim /etc/apt/sources.list
+</span></span></code></pre></div><p>然后根据提示添加 Tuna 源。</p>
+<hr>
+<h2 id="first-update">First update</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 更新软件列表</span>
+</span></span><span style="display:flex;"><span>sudo apt dist-upgrade
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 更新软件，单运行 upgrade 可能会导致更新系统</span>
+</span></span></code></pre></div><hr>
+<h2 id="set-up-auto-update">Set up auto-update</h2>
+<blockquote>
+<p>参考： <a href="https://help.ubuntu.com/community/AutomaticSecurityUpdates">https://help.ubuntu.com/community/AutomaticSecurityUpdates</a></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo dpkg-reconfigure --priority<span style="color:#f92672">=</span>low unattended-upgrades
+</span></span></code></pre></div><p>使用默认设置（一天检查一次）即可。</p>
+<hr>
+<h2 id="set-up-router">Set up Router</h2>
+<p>因为被网络桥接和 NAT 彻底整“破防”，一气之下决定：<br>
+在系统里<a href="https://github.com/ohmykreee/kreee-blog/blob/main/content/article/openwrt-under-qemu-arm/index.md">虚拟出一个 OpenWRT ！</a></p>
+<p>（2022/2/7 更新）<br>
+找到了一个项目：<a href="https://github.com/lakinduakash/linux-wifi-hotspot">lakinduakash / linux-wifi-hotspot</a>，可以一步部署一个简单的无线路由器。</p>
+<p>添加 ppa 包并安装：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo add-apt-repository ppa:lakinduakash/lwh
+</span></span><span style="display:flex;"><span>sudo apt install linux-wifi-hotspot
+</span></span></code></pre></div><p>手动安装 <code>dnsmasq</code> （如果使用 NAT 方式）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>apt install dnsmasq
+</span></span></code></pre></div><p>编辑 <code>/etc/create_ap.conf</code> （<a href="https://github.com/lakinduakash/linux-wifi-hotspot/blob/master/src/scripts/create_ap.conf">示例文件</a>）</p>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">GATEWAY=192.168.6.1
+SHARE_METHOD=nat
+COUNTRY=CN
+WIFI_IFACE=wlp7s0
+INTERNET_IFACE=enp1s0
+SSID=MyAccessPoint
+PASSPHRASE=MyPassword
+</code></pre><p>使用 <code>systemctl start create_ap</code> 启动 AP, <code>systemctl enable create_ap</code> 开机启动。</p>
+<hr>
+<h2 id="set-up-serial-login-with-getty">Set up serial login with getty</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo cp /usr/lib/systemd/system/serial-getty@.service /etc/systemd/system/serial-getty@ttyS0.service
+</span></span><span style="display:flex;"><span>sudo systemctl daemon-reload
+</span></span><span style="display:flex;"><span>sudo systemctl start serial-getty@ttyS0.service
+</span></span><span style="display:flex;"><span>sudo systemctl enable serial-getty@ttyS0.service
+</span></span></code></pre></div><hr>
+<h2 id="usage-of-ufw">Usage of ufw</h2>
+<p>查看当前状态和开放端口：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw status
+</span></span></code></pre></div><p>开放端口：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw allow 8000/tcp
+</span></span><span style="display:flex;"><span>sudo ufw allow <span style="color:#ae81ff">7000</span>
+</span></span><span style="display:flex;"><span>sudo ufw allow from 192.168.6.0/24 to any port <span style="color:#ae81ff">25577</span>
+</span></span></code></pre></div><p>删除已经添加的规则：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 列出已有规则的编号</span>
+</span></span><span style="display:flex;"><span>sudo ufw status numbered
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 根据编号删除规则</span>
+</span></span><span style="display:flex;"><span>sudo ufw delete <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>sudo ufw reload
+</span></span></code></pre></div><hr>
+<h2 id="set-up-certbot">Set up Certbot</h2>
+<blockquote>
+<p>参考： <a href="https://certbot.eff.org/lets-encrypt/ubuntufocal-other">https://certbot.eff.org/lets-encrypt/ubuntufocal-other</a></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo snap install core; sudo snap refresh core
+</span></span><span style="display:flex;"><span>sudo snap install --classic certbot
+</span></span><span style="display:flex;"><span>sudo ln -s /snap/bin/certbot /usr/bin/certbot
+</span></span></code></pre></div><hr>
+<h2 id="set-up-mumble">Set up mumble</h2>
+<blockquote>
+<p>参考： <a href="https://wiki.mumble.info/">https://wiki.mumble.info/</a></p>
+</blockquote>
+<p>安装：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo add-apt-repository ppa:mumble/release
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install mumble-server
+</span></span><span style="display:flex;"><span>sudo dpkg-reconfigure mumble-server
+</span></span></code></pre></div><p>开放端口<code>64738</code>。<br>
+配置 <code>/etc/mumble-server.ini</code> 文件。<br>
+服务名为<code>mumble-server</code>。</p>
+<hr>
+<h2 id="set-up-netdata">Set up Netdata</h2>
+<blockquote>
+<p>参考： <a href="https://learn.netdata.cloud/docs/">https://learn.netdata.cloud/docs/</a></p>
+</blockquote>
+<p>因为奇奇怪怪的连接问题（指墙 Github），所以使用离线安装模式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -s https://my-netdata.io/kickstart.sh &gt; kickstart.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Netdata tarball</span>
+</span></span><span style="display:flex;"><span>curl -s https://api.github.com/repos/netdata/netdata/releases/latest | grep <span style="color:#e6db74">&#34;browser_download_url.*tar.gz&#34;</span> | cut -d <span style="color:#e6db74">&#39;&#34;&#39;</span> -f <span style="color:#ae81ff">4</span> | wget -qi -
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Netdata checksums</span>
+</span></span><span style="display:flex;"><span>curl -s https://api.github.com/repos/netdata/netdata/releases/latest | grep <span style="color:#e6db74">&#34;browser_download_url.*txt&#34;</span> | cut -d <span style="color:#e6db74">&#39;&#34;&#39;</span> -f <span style="color:#ae81ff">4</span> | wget -qi -
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Netdata dependency handling script</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 奇奇怪怪的是经常失败，需要手动创建</span>
+</span></span><span style="display:flex;"><span>wget -q - https://raw.githubusercontent.com/netdata/netdata/master/packaging/installer/install-required-packages.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># go.d plugin </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># For binaries for OS types and architectures not listed on [go.d releases](https://github.com/netdata/go.d.plugin/releases/latest), kindly open a github issue and we will do our best to serve your request</span>
+</span></span><span style="display:flex;"><span>export OS<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>uname -s | tr <span style="color:#e6db74">&#39;[:upper:]&#39;</span> <span style="color:#e6db74">&#39;[:lower:]&#39;</span><span style="color:#66d9ef">)</span> ARCH<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>uname -m | sed -e <span style="color:#e6db74">&#39;s/i386/386/g&#39;</span> -e <span style="color:#e6db74">&#39;s/i686/386/g&#39;</span> -e <span style="color:#e6db74">&#39;s/x86_64/amd64/g&#39;</span> -e <span style="color:#e6db74">&#39;s/aarch64/arm64/g&#39;</span> -e <span style="color:#e6db74">&#39;s/armv64/arm64/g&#39;</span> -e <span style="color:#e6db74">&#39;s/armv6l/arm/g&#39;</span> -e <span style="color:#e6db74">&#39;s/armv7l/arm/g&#39;</span> -e <span style="color:#e6db74">&#39;s/armv5tel/arm/g&#39;</span><span style="color:#66d9ef">)</span> <span style="color:#f92672">&amp;&amp;</span> curl -s https://api.github.com/repos/netdata/go.d.plugin/releases/latest | grep <span style="color:#e6db74">&#34;browser_download_url.*</span><span style="color:#e6db74">${</span>OS<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">${</span>ARCH<span style="color:#e6db74">}</span><span style="color:#e6db74">.tar.gz&#34;</span> | cut -d <span style="color:#e6db74">&#39;&#34;&#39;</span> -f <span style="color:#ae81ff">4</span> | wget -qi -
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># go.d configuration </span>
+</span></span><span style="display:flex;"><span>curl -s https://api.github.com/repos/netdata/go.d.plugin/releases/latest | grep <span style="color:#e6db74">&#34;browser_download_url.*config.tar.gz&#34;</span> | cut -d <span style="color:#e6db74">&#39;&#34;&#39;</span> -f <span style="color:#ae81ff">4</span> | wget -qi -
+</span></span></code></pre></div><p>复制文件到服务器并给予运行权限：</p>
+<pre tabindex="0"><code># 不安全，本不应该使用0777权限
+sudo chmod -R 0777 /tmp/netdata
+</code></pre><p>运行：</p>
+<pre tabindex="0"><code>cd /tmp/netdata
+sudo bash ./kickstart.sh --local-files /tmp/netdata/netdata-(version-number-here).tar.gz /tmp/netdata/sha256sums.txt /tmp/netdata/go.d.plugin-(version-number-here).(OS)-(architecture).tar.gz /tmp/netdata/config.tar.gz /tmp/netdata/install-required-packages.sh --disable-telemetry
+</code></pre><p><strong>提示</strong>：安装时经常出问题的是 <code>install-required-packages.sh</code> ，需要特别关照。<br>
+然后就是修改配置文件 <code>/etc/netdata/netdata.conf</code> 。<br>
+在配置 SSL 的时候几率发生无法读取证书文件的问题（主要是 privkey.pem ）需要参考 <a href="https://certbot.eff.org/docs/using.html#where-are-my-certificates">https://certbot.eff.org/docs/using.html#where-are-my-certificates</a> 来配置文件的权限。</p>
+<hr>
+<h2 id="set-up-np-client">Set up NP-Client</h2>
+<blockquote>
+<p>参考：https://ehang-io.github.io/</p>
+</blockquote>
+<p>先将提前下好的 npc 文件复制到 <code>/tmp/npc</code> 下，并创建配置文件 <code>/etc/np-client.conf</code> ：</p>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">[common]
+server_addr=cloud.ip:8024
+conn_type=kcp
+vkey=you_vkey_here
+auto_reconnection=true
+crypt=false
+compress=false
+</code></pre><p>使用命令安装：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /tmp/npc
+</span></span><span style="display:flex;"><span>sudo ./npc install -config<span style="color:#f92672">=</span>/etc/np-client.conf
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo npc start
+</span></span></code></pre></div><hr>
+<h2 id="set-up-java-and-minecraft">Set up Java and Minecraft</h2>
+<p>安装 openjdk（最新）：</p>
+<pre tabindex="0"><code>sudo apt install default-jdk
+</code></pre><p>老版本的 Minecraft 需要 Java 8 ，需要自己去甲骨文官网下载二进制文件。<br>
+参考用的 <code>/etc/systemd/system/*.service</code> 文件：<br>
+Java 8 ：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[Unit]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Description</span><span style="color:#f92672">=</span><span style="color:#e6db74">Minecraft Server with Java 8</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">After</span><span style="color:#f92672">=</span><span style="color:#e6db74">network-online.target</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Wants</span><span style="color:#f92672">=</span><span style="color:#e6db74">network-online.target</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Service]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">User</span><span style="color:#f92672">=</span><span style="color:#e6db74">minecraft</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">WorkingDirectory</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/local/mc_1_7_10/</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ExecStart</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/local/jre1.8.0_271/bin/java -jar /usr/local/mc_1_7_10/forge-1.7.10-10.13.4.1558-1.7.10-universal.jar nogui</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Install]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">WantedBy</span><span style="color:#f92672">=</span><span style="color:#e6db74">multi-user.target</span>
+</span></span></code></pre></div><p>OpenJDK ：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[Unit]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Description</span><span style="color:#f92672">=</span><span style="color:#e6db74">Minecraft Server</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">After</span><span style="color:#f92672">=</span><span style="color:#e6db74">network-online.target</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Wants</span><span style="color:#f92672">=</span><span style="color:#e6db74">network-online.target</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Service]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">User</span><span style="color:#f92672">=</span><span style="color:#e6db74">minecraft</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">WorkingDirectory</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/local/mc_1_17/</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ExecStart</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/bin/java -jar /usr/local/mc_1_17/server.jar nogui</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Install]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">WantedBy</span><span style="color:#f92672">=</span><span style="color:#e6db74">multi-user.target</span>
+</span></span></code></pre></div><p>记得开放端口：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Minecraft 主端口</span>
+</span></span><span style="display:flex;"><span>sudo ufw allow <span style="color:#ae81ff">25565</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Minecraft Rcon 控制端口</span>
+</span></span><span style="display:flex;"><span>sudo ufw allow <span style="color:#ae81ff">25577</span>
+</span></span></code></pre></div><hr>
+<h2 id="set-up-zerotier">Set up Zerotier</h2>
+<p>懒，没人用，先不整。</p>
+<blockquote>
+<p>参考： <a href="https://www.zerotier.com/download/">https://www.zerotier.com/download/</a></p>
+</blockquote>
+<hr>
+<h2 id="set-up-pppoe">Set up PPPOE</h2>
+<p>安装配置程序：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install pppoeconf
+</span></span></code></pre></div><p>进行配置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo pppoeconf
+</span></span></code></pre></div><p>启动与断连：</p>
+<pre tabindex="0"><code># 连接
+pon dsl-provider
+# 断开
+poff dsl-provider
+</code></pre>
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/selfhosted/">Selfhosted</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/learning/">Learning</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/2021/">2021</a>
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        <div id="comments-container">
+            
+            
+
+            
+    <script src="https://giscus.app/client.js"
+        data-repo="ohmykreee/kreee-blog"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkzNzQxMjE4ODE="
+        data-category="Comments"
+        data-category-id="DIC_kwDOFkylmc4B_6vB"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-emit-metadata=""
+        data-theme="light"
+        
+            data-lang="zh-CN"
+        
+        crossorigin="anonymous"
+        async>
+    </script>
+    <div id="giscus"></div>
+
+
+            
+
+        </div>
+    
+
+    </div>
+
+    
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>最新帖子</strong>
+            <ul>
+                
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/frontend-dev-with-android-pad/">使用 Android Pad 进行（前端）开发</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/deploy-nextjs-static-page-to-github-pages/">关于部署 Next.js 静态网页到 GitHub Pages 有关注意事项</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/">wolf-bites-tweets 2.0.0 开发小记</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/">wolf-bites-tweets 和 wolf-chews-tweets 开发小记</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/">将后端服务器系统迁移至 Ubuntu server</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/code/sim-keyboard-stroke/">模拟键盘输入</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/music-player-in-hugo-page/">在 Hugo 里内嵌音乐播放器（APlayer）</a>
+                    </li>
+                
+            </ul>
+        </div>
+        
+
+        
+        <div class="categories">
+            <a href="/categories/"><strong>分类</strong></a>
+            <ul>
+                
+                <li>
+                    <a href="/categories/learning">Learning
+                        (10)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/code">Code
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/music">Music
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/study">Study
+                        (1)</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>社交媒体</strong>
+
+                
+                <a href="https://github.com/ohmykreee" target="_blank"><i class="fab fa-github"></i></a>
+                
+                <a href="https://twitter.com/kreeejiang" target="_blank"><i class="fab fa-twitter"></i></a>
+                
+                <a href="https://steamcommunity.com/id/kreeejiang/" target="_blank"><i class="fab fa-steam"></i></a>
+                
+                <a href="https://space.bilibili.com/361507684" target="_blank"><i class="fas fa-photo-video"></i></a>
+                
+                <a href="https://www.ohmykreee.top" target="_blank"><i class="fas fa-id-card-alt"></i></a>
+                
+            </div>
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/ohmykreee" target="_blank">
+                &copy;
+                
+                CC BY-NC 4.0
+                
+                by Kreee
+            </a>
+            
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme"
+                target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+    
+
+    
+
+
+    <script src="https://blog.ohmykreee.top/theme.js"></script>
+
+    
+    
+    <script src="https://unpkg.com/cookieconsent@3/build/cookieconsent.min.js" type="application/javascript"></script>
+    
+    <script src="https://blog.ohmykreee.top/js/init-cookieconsent.js" type="application/javascript"></script>
+    
+    <script src="https://blog.ohmykreee.top/js/clarity-tracker.js" type="application/javascript"></script>
+    
+    
+
+    
+    <div id="activate-algolia-search" class="hidden">
+  <input type="hidden" id="algolia-search-appId" value="BYCFQKEA4W">
+  <input type="hidden" id="algolia-search-apiKey" value="5b8f1a1d7557fc3b1bc0d99efbaa22ce">
+  <input type="hidden" id="algolia-search-indexName" value="kreee-blog">
+  <input type="hidden" id="algolia-search-noSearchResults" value="什么都没找到。">
+
+  
+</div>
+
+    
+</body>
+
+</html>

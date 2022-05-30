@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>React on Kreee&#39;s Blog</title>
+    <link>https://blog.ohmykreee.top/tags/react/</link>
+    <description>Recent content in React on Kreee&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 18 Nov 2021 16:17:41 +0800</lastBuildDate><atom:link href="https://blog.ohmykreee.top/tags/react/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于部署 Next.js 静态网页到 GitHub Pages 有关注意事项</title>
+      <link>https://blog.ohmykreee.top/article/deploy-nextjs-static-page-to-github-pages/</link>
+      <pubDate>Thu, 18 Nov 2021 16:17:41 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/deploy-nextjs-static-page-to-github-pages/</guid>
+      <description>&lt;p&gt;个人主页 &lt;a href=&#34;https://www.ohmykreee.top&#34;&gt;www.ohmykreee.top&lt;/a&gt; &lt;del&gt;涅槃重生啦&lt;/del&gt; ，快去围观吧！&lt;/p&gt;
+&lt;p&gt;（怎么这文案一股营销号的味道）&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

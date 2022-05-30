@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Kreee&#39;s Blog</title>
+    <link>https://blog.ohmykreee.top/page/</link>
+    <description>Recent content in Pages on Kreee&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 06 Jun 2021 17:20:33 +0800</lastBuildDate><atom:link href="https://blog.ohmykreee.top/page/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于我</title>
+      <link>https://blog.ohmykreee.top/page/about/</link>
+      <pubDate>Sat, 05 Jun 2021 23:05:37 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/page/about/</guid>
+      <description>我是 Kreee （说些什么呢，也没想好，就先放一个个人主页吧：www.ohmykreee.top）
+干饭人，干饭魂，干饭人都是仌！</description>
+    </item>
+    
+    <item>
+      <title>文章列表</title>
+      <link>https://blog.ohmykreee.top/page/more-articles/</link>
+      <pubDate>Sun, 06 Jun 2021 11:10:41 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/page/more-articles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>❤❤❤</title>
+      <link>https://blog.ohmykreee.top/page/donate/</link>
+      <pubDate>Sun, 06 Jun 2021 17:20:33 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/page/donate/</guid>
+      <description>富婆，饿饿，饭饭.jpg  （非实时）捐赠名单    var baseurl = document.querySelector(&#39;meta[name=&#34;siteBaseUrl&#34;]&#39;).content; var jsonfile = baseurl.concat(&#34;/res/page/donate/donate.json&#34;); new gridjs.Grid({ columns: [&#34;时间&#34;, &#34;打赏留言&#34;, &#34;备注&#34;], search: true, language: { &#34;search&#34;: { &#34;placeholder&#34;: &#34;搜索...&#34; }, &#34;pagination&#34;: { &#34;previous&#34;: &#34;上一页&#34;, &#34;next&#34;: &#34;下一页&#34; }, loading: &#34;加载中...&#34;, noRecordsFound: &#34;该关键词未找到&#34; }, pagination: { enabled: true, limit: 10, summary: false }, style: { td: { &#34;align&#34;: &#34;center&#34;, &#34;color&#34;: &#34;#222&#34; }, th: { &#34;color&#34;: &#34;#222&#34;, &#34;align&#34;: &#34;center&#34;, } }, server: { url: jsonfile, then: data = data.</description>
+    </item>
+    
+    <item>
+      <title>福瑞控？</title>
+      <link>https://blog.ohmykreee.top/page/is-furry/</link>
+      <pubDate>Sat, 05 Jun 2021 23:15:12 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/page/is-furry/</guid>
+      <description>是，咋了？
+（兽设在做了在做了，或者永远都： ）</description>
+    </item>
+    
+  </channel>
+</rss>

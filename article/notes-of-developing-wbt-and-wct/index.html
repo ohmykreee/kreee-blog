@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+
+
+    
+
+    
+         
+    
+
+    
+
+<html itemscope itemtype="https://schema.org/WebPage" class="no-js" lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="siteBaseUrl" content="https://blog.ohmykreee.top">
+    <meta name="author" content="Kreee">
+    <meta name="description" content="A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta name="keywords" content="kreee,blog,personal,responsive,font awesome,pages,posts,highlight.js,syntax highlighting,hugo">
+    <meta name="generator" content="Hugo 0.99.1" />
+    <title>
+        
+           
+               wolf-bites-tweets 和 wolf-chews-tweets 开发小记 &vert; Kreee&#39;s Blog
+           
+        
+    </title>
+    <meta itemprop="name" content="wolf-bites-tweets 和 wolf-chews-tweets 开发小记">
+    <meta itemprop="description" content="wolf-bites-tweets 和 wolf-chews-tweets 开发小记 - A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta property="og:title" content="wolf-bites-tweets 和 wolf-chews-tweets 开发小记">
+    <meta property="og:description" content="wolf-bites-tweets 和 wolf-chews-tweets 开发小记 - A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta property="og:image" content="https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/featuredImage_hu964199fd6dd3ba11c85ddad4c388d7a6_1905551_700x350_fill_q95_box_smart1.jpg">
+    <meta property="og:url" content="https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/">
+    <meta property="og:site_name" content="Kreee&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+    <script src="/modernizr-simple.js"></script>
+
+    
+    <link href="/article/notes-of-developing-wbt-and-wct/" rel="alternate" type="application/rss+xml" title="Kreee&#39;s Blog" />
+    <link href="/article/notes-of-developing-wbt-and-wct/" rel="feed" type="application/rss+xml" title="Kreee&#39;s Blog" />
+    
+
+    
+    <link rel="canonical" href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/">
+    
+
+    <link rel="stylesheet" href="https://blog.ohmykreee.top/theme.css">
+
+    
+
+    
+        
+            <link rel="stylesheet" href="https://unpkg.com/cookieconsent@3/build/cookieconsent.min.css">
+        
+    
+</head>
+
+<body class="bilberry-hugo-theme">
+
+    
+    <nav class="permanentTopNav">
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="https://blog.ohmykreee.top/page/about/">关于我</a></li>
+                
+            
+                
+                    <li><a href="/archive/" target="">文章列表</a></li>
+                
+            
+                
+                    <li><a href="https://blog.ohmykreee.top/page/donate/">❤❤❤</a></li>
+                
+            
+                
+                    
+                
+            
+        </ul>
+
+        
+            <div id="search-box" class="search">
+                <i class="fas fa-search"></i>
+                <input id="search" type="text" placeholder="搜索……">
+            </div>
+        
+    </div>
+</nav>
+
+
+    
+    <header>
+
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="https://avatars.githubusercontent.com/u/76862878" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title">
+                <a href="/">
+                    Kreee&#39;s Blog
+                </a>
+            </h3>
+
+            
+                <span class="subtitle">Woof!</span>
+            
+        </div>
+
+        
+
+        
+            <div class="toggler permanentTopNav">
+        
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+    </div>
+</header>
+
+
+    <div class="main container">
+        
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/">
+    <i class="fas fa-fw fa-pencil-alt"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/">
+            
+                <img src="/article/notes-of-developing-wbt-and-wct/featuredImage_hu964199fd6dd3ba11c85ddad4c388d7a6_1905551_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h1 class="article-title">
+        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/">
+            wolf-bites-tweets 和 wolf-chews-tweets 开发小记
+        </a>
+    </h1>
+
+    <div class="meta">
+        
+            
+                <span class="date moment">2021-10-19</span>
+            
+        
+
+        
+
+        
+            <span class="categories">
+                
+                    
+                    
+                        <a href="https://blog.ohmykreee.top/categories/learning/">Learning</a>
+                    
+                
+            </span>
+        
+
+        
+            <span class="author">
+                
+                
+                    <a href="https://blog.ohmykreee.top/author/kreee/">Kreee</a>
+                
+            </span>
+        
+    </div>
+
+    
+        
+
+        <p><del>又为：论如何嫖秃 GitHub 服务器</del></p>
+<h2 id="万恶之源">万恶之源</h2>
+<p>一切都应该从那时说起：<del>在一个月黑风高的夜晚</del>，我翻译博客的 404 页面时，望着空荡荡的页面，心里突发奇想：如果这里能有一个随机展示我喜欢过的推特的一个小组件，是不是很 nice（顺便展示一下我奇怪的 xp ）。</p>
+<p>说挖坑就挖坑。要实现这个小功能，我打算做两个项目： wolf-bites-tweets 和 wolf-chews-tweets（别问我这个名字咋想出来的）。前者是利用 <del>白嫖</del> 一下 GitHub action 的服务器，每周通过推特官方 API 获取我的推特喜欢列表（顺便也把获取发推列表这个功能也做了，万一我以后也产粮了呢），准备用我最熟悉的 Python 实现；后者就是利用前者获取的数据，把随机抽到的推特展示在网页上。</p>
+<p>由于这是我第一次涉及前端的开发，JavaScript 之前也没有涉及过，所以这次填坑之旅最主要也是最难的是 wolf-chews-tweets 这个项目，这篇博文主要的也是这个前端项目。咋说呢，自己开的坑哭着也要自己填完，不是吗😂？</p>
+<hr>
+<h2 id="写在前面">写在前面</h2>
+<blockquote>
+<p>声明变量时没有类型标注是个坏习俗。<br>
+—— 某位不知名暴论者</p>
+</blockquote>
+<blockquote>
+<p>遭了，写习惯了咋办？ <br>
+—— 某位痛苦的初学者</p>
+</blockquote>
+<h3 id="1-开-pr-前请再三检查">1. 开 PR 前请再三检查！！</h3>
+<p>是的，很痛苦的教训，非常非常痛苦的教训。</p>
+<p>在 wolf-bites-tweets 项目来到 1.0.5 的时候，我顺手就开了一个从 main &lt;&ndash; dev-1.0.5 的 PR，很快啊，开完了马上就 merge 了。等一切都完成后，突然发现：我 ** README 忘记更新了，就把 PR 给 merge 了。回想起来，其实只要在 main 那里再加一个更新 README 的 commit 就行了，结果我一顿窒息操作，直接把 main 整到了一个很奇怪的状态。</p>
+<p>最后，<strong>无奈之下</strong>，采取了“核弹级”操作（好孩子不要学）：Hard reset 加 Force push：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git reset --hard commit_id
+</span></span><span style="display:flex;"><span>git push origin HEAD --force
+</span></span></code></pre></div><p>后果就是后面想要撤销的 commit 的记录都会被丢失。</p>
+<p>但是正确操作也是要学会的是吧，事后还是去谷歌上找了这篇讨论：<a href="https://stackoverflow.com/questions/1463340/how-to-revert-multiple-git-commits">How to revert multiple git commits? - Stack overflow</a></p>
+<p>如果有一个 branch 长这样，其中想要撤销 commits 直到 A 的状态：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span> Z &lt;-- A &lt;-- B &lt;-- C &lt;--D     &lt;-- main &lt;-- HEAD
+</span></span></code></pre></div><p>如果这些 commits 中没有 merge 操作时，可以使用 <code>git revert</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git revert --no-commit A..HEAD
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者使用：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># git revert --no-commit B^..HEAD</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者怕出错也可以一步一步 revert：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># git revert --no-commit D</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># git revert --no-commit C</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># git revert --no-commit B</span>
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;the commit message for all of them&#34;</span>
+</span></span></code></pre></div><p>最后会变成：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>Z &lt;-- A &lt;-- B  &lt;-- C &lt;-- D &lt;-- [(BCD)^-1]     &lt;-- main &lt;-- HEAD
+</span></span></code></pre></div><p>另外一种就是使用 <code>git checkout</code> 来恢复，适用于含有 merge 操作的 commits：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git stash <span style="color:#75715e">#暂存本地修改，如果有的话</span>
+</span></span><span style="display:flex;"><span>git checkout -f A -- . <span style="color:#75715e"># 在本地文件上 checkout 到指定 commit 上</span>
+</span></span><span style="display:flex;"><span>git commit -a
+</span></span></code></pre></div><p>最后会变成：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>Z &lt;-- A &lt;-- B &lt;-- C &lt;-- D &lt;-- A&#39;     &lt;-- main &lt;-- HEAD
+</span></span></code></pre></div><hr>
+<h2 id="wolf-bites-tweets-v1">Wolf-Bites-Tweets v1</h2>
+<p>项目仓库：<a href="https://github.com/ohmykreee/wolf-bites-tweets">https://github.com/ohmykreee/wolf-bites-tweets</a></p>
+<p>其实就是个比较简单的 Python 程序，写的也很快，花了两个晚上左右就把第一个版本 1.0.0 给写了出来，又花了几天肝 <del>水</del> 了两个版本。</p>
+<p>也没啥技术含量（指很多东西都是对着其他项目照葫芦画瓢），其中一个坑就是在 1.0.0 版本中涉及到了一个关于 list/dict 变量复制的问题：</p>
+<p>在 Python 中，如果想要把一个 list 的内容给另外一个变量，<del>想整一些花活时</del>，比如这样：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>this_is_a_list <span style="color:#f92672">=</span> another_list
+</span></span></code></pre></div><p>其实这样操作完后在 Python 那里只有一个 list 有着两个不同的名字 <code>this_is_a_list</code>、<code>another_list</code>。<strong>如果你对其中一个变量进行一些更改时，另外一个变量也会相应发生更改。</strong><del>就很傻逼，不是吗？</del></p>
+<p>正确操作应该是使用 Deep copy：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> copy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>this_is_a_list <span style="color:#f92672">=</span> copy<span style="color:#f92672">.</span>deepcopy(another_list)
+</span></span></code></pre></div><p>这样就会有两个独立互不干扰的 list。</p>
+<p>这个操作在版本 1.0.5 以及之后已经弃用了，因为 <code>get_tweets.py</code> 从 <code>pop</code> 删除元素的操作（而且回想起来那种方法好像还存在 bug，有兴趣的可以回看那个版本）改成了 <code>append</code> 添加元素的操作。</p>
+<hr>
+<h2 id="wolf-chews-tweets">Wolf-Chews-Tweets</h2>
+<p>项目仓库：<a href="https://github.com/ohmykreee/wolf-chews-tweets">https://github.com/ohmykreee/wolf-chews-tweets</a></p>
+<p>准备写两个实现方式：一个是插入推特官方的小部件，一个是用别人造好的轮子 <a href="https://github.com/nolimits4web/swiper">nolimits4web
+/
+swiper</a> 来写一个直接展示图片的组件。</p>
+<h3 id="配置开发环境">配置开发环境</h3>
+<p>对，很痛苦，也绕了一点弯路。</p>
+<blockquote>
+<p>谁叫你用 Windows 做开发呢？<br>
+—— 不知名暴论者</p>
+</blockquote>
+<p>mvn 用的是 <a href="https://github.com/coreybutler/nvm-windows">nvm-windows</a> 这个项目，注意点有这几个：</p>
+<ol>
+<li>安装目录不能包含空格，也就是说不能安装在 <code>Program Files</code> 文件夹下，推荐放在 <code>C:\nvm\</code> 或者 <code>D:\nvm\</code> ，不然会得到蜜汁乱码报错（估计是软件不适配中文环境的原因）。Node 的链接文件目录最好也放在这种盘根目录文件夹里。</li>
+<li>可以使用 <code>nvm node_mirror &lt;node_mirror_url&gt;</code> 和 <code>nvm npm_mirror &lt;npm_mirror_url&gt;</code> 命令来添加镜像，加速下载。</li>
+<li>在执行 <code>nvm use &lt;node_version&gt;</code> 时，会遭遇报错 <code>exit code 1 一堆乱码</code> ，解决方法就是用管理员权限开一个终端，再执行命令。</li>
+<li>Node 首次安装完后 VS Code 内置终端可能会无法使用 <code>node</code> 和 <code>npm</code> 命令，暂时没有搞明白原因（可能是系统环境变量没有同步？）。重启解。</li>
+</ol>
+<p>VS Code 那里又有一个大坑：<br>
+如果想在 VS Code 用微软亲儿子 Edge 浏览器调试 Javascript 代码时，里面其实是已经内置了 debugger for Microsoft Edge 的。我<strong>本以为</strong>这个 debugger 是直接“开箱即用”的：开始调试时，它会启动一个内置本地服务器，然后再打开浏览器开始调试。但事实是它并没有本地服务器这个功能，还得自己整一个本地服务器，不然你就会得到一个第一眼看上去不知所以然的报错：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>crbug/1173575, non-JS module files deprecated.
+</span></span></code></pre></div><p>还好 VS Code 插件里就有现成的 <a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server</a> 插件。启动了之后在 <code>.vscode/launch.json</code> 里把 <code>url</code> 后面的端口改为开放的端口就行。</p>
+<p>只能说这波啊，这波微软欺骗了我单纯的感情（雾）。</p>
+<h3 id="使用-custom-elements">使用 Custom Elements</h3>
+<p>准备使用自定义元素来调用生成我想要的内容。</p>
+<blockquote>
+<p>参考：<a href="https://developer.mozilla.org/zh-CN/docs/Web/Web_Components/Using_custom_elements">使用 custom elements - MDN Web Docs</a></p>
+</blockquote>
+<p>用法大致是用 <code>window.customElements.define</code> 命令来声明一个自定义元素，然后定义一个类来定义这个自定义元素的行为。</p>
+<p>不过想说一下，在参考文章里示例代码用的是 <code>constructor()</code> 方法，我认为在某些情况下并不是个好方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WolfChewsElement</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">HTMLElement</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 必须首先调用 super 方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">super</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 元素的功能代码写在这里
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ...
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>在此之前，我想提醒一下：浏览器渲染 HTML 文件时也是按照从头到尾的顺序读取文件；也就是说，HTML 文件内代码的读取和执行是是受位置先后顺序影响的。</p>
+<p>回到这个问题上，<code>constructor()</code> 这个方法是用方法来定义一个类没错，并且是在这个类被创建的时候 <strong>立即</strong> 执行，也就是说当浏览器读取到这一行的代码时，会立即执行 <code>constructor()</code> 内的代码。于是问题来了：如果你的 <code>constructor()</code> 方法里有读取你自定义元素内属性的代码，并且这个代码执行的时候 DOM 还没有建立，<strong>就会无法读取到属性内容并且返回 undifined</strong>。</p>
+<p>于此同时，在Chrome版本76.0.3809.132（正式版本）（64 位）中，如果你在 <code>constructor()</code> 方法内有读取自定义元素内属性的行为，并且在 HTML 引用 js 文件时在 <code>script</code> 标签上没有添加 <code>defer</code> 属性，浏览器会直接返回 undifined。那这个 <code>defer</code> 又是什么东西呢？这个属性是告诉浏览器这个代码要等整个页面加载完成后再执行。（参考文章： <a href="https://stackoverflow.com/questions/52176168/why-do-i-have-to-defer-customelement-definitions">Why do I have to defer customElement definitions? - Stack Overflow</a>）</p>
+<p>较好的方法应该是使用 <code>connectedCallback()</code> ,即在自定义元素首次被插入到文档 DOM 节点上时被调用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WolfChewsElement</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">HTMLElement</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">connectedCallback</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 代码写在这里
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    ...
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">this_is_a_function</span>() {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>关于其他方法可以参考这里：<a href="https://developer.mozilla.org/zh-CN/docs/Web/Web_Components">Web Components - MDN Web Docs</a></p>
+<blockquote>
+<p>生命周期回调<br>
+定义在自定义元素的类定义中的特殊回调函数，影响其行为：</p>
+<ul>
+<li>connectedCallback: 当自定义元素第一次被连接到文档DOM时被调用。</li>
+<li>disconnectedCallback: 当自定义元素与文档DOM断开连接时被调用。</li>
+<li>adoptedCallback: 当自定义元素被移动到新文档时被调用。</li>
+<li>attributeChangedCallback: 当自定义元素的一个属性被增加、移除或更改时被调用。</li>
+</ul>
+</blockquote>
+<p>（在这里顺便附上我读取自定义元素的属性的方法，虽然方法不是我自己原创的，但是这个方法可以说是非常好，对于可选参数传递也能很好的读取：）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// fetch value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">keys</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;url&#39;</span>, <span style="color:#e6db74">&#39;method&#39;</span>, <span style="color:#e6db74">&#39;index&#39;</span>, <span style="color:#e6db74">&#39;container_id&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">attributes</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">keys</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">attributes</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">name</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">config</span>[<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">attributes</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">name</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">attributes</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">value</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="跨域问题">跨域问题</h3>
+<p>本来说是想直接用推特的 API ：<code>statuses/oembed</code> 来直接获取 embeded twitter 的 HTML 代码，结果遇到了跨域错误。</p>
+<p>简单来说，跨域（跨域资源共享）就是在一个域名下想要用 <code>XMLHttpRequest</code> 访问另外一个域名下的资源时，出现的情况。</p>
+<p>默认情况下，浏览器是默认拒绝跨域的，因为会有跨域攻击的可能存在（除非在发出请求的时候加上请求头： <code>Access-Control-Allow-Origin: *</code> 允许所有来源）。<strong>于此同时</strong>，对方服务器也需要允许跨域，否则这个跨域访问就无法完成。</p>
+<p>但现状是，所有的推特 API 都不支持跨域访问，官方的说法是建议推特 API 只用于后端中。无可奈何，只能使用推特的 <code>widgets.js</code> 来渲染推特，缺点就是加入推特自己的分析框架，而且好像关不掉的样子。</p>
+<p>更多信息可以去读读这篇文章：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CORS">跨源资源共享（CORS） - MDN Web Docs</a></p>
+<h3 id="随机整数生成">随机整数生成</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* Returns a random integer between min and max
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* Using Math.round() will give you a non-uniform distribution!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">* Both min and max can be randomed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">_getRandomInt</span> (<span style="color:#a6e22e">min</span>, <span style="color:#a6e22e">max</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> (<span style="color:#a6e22e">max</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">min</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">+</span> <span style="color:#a6e22e">min</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>直接从 Stack Overflow 上抄的：<a href="https://stackoverflow.com/questions/10134237/javascript-random-integer-between-two-numbers">Javascript Random Integer Between two Numbers -Stack Overflow</a>，至于原理我还没弄懂（谁叫我数学那么拉呢）。</p>
+<blockquote>
+<p>Ctrl + C, Ctrl + V, work done!<br>
+—— 某人的暴言</p>
+</blockquote>
+<h3 id="http_get-方法">http_get 方法</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">_httpGet</span> (<span style="color:#a6e22e">theUrl</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">xmlHttp</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">XMLHttpRequest</span>()
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">xmlHttp</span>.<span style="color:#a6e22e">open</span>( <span style="color:#e6db74">&#34;GET&#34;</span>, <span style="color:#a6e22e">theUrl</span>, <span style="color:#66d9ef">false</span> ) <span style="color:#75715e">// false for synchronous request
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">xmlHttp</span>.<span style="color:#a6e22e">send</span>( <span style="color:#66d9ef">null</span> )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">xmlHttp</span>.<span style="color:#a6e22e">responseText</span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_throwException</span>(<span style="color:#e6db74">&#39;http request&#39;</span>, <span style="color:#a6e22e">e</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>也是直接从 Stack Overflow 上抄的：<a href="https://stackoverflow.com/questions/247483/http-get-request-in-javascript">HTTP GET request in JavaScript? - Stack Overflow</a>，自己加了个 try{} 和 <del>脱裤子放屁行为（指 catch 了一个错误又顺手丢出去）</del> 。</p>
+<h3 id="清空一个父-node-里的所有子-node">清空一个父 node 里的所有子 node</h3>
+<p>三个方法，我都觉得不是很优雅。（参考文章： <a href="https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript">Remove all child elements of a DOM node in JavaScript - Stack Overflow</a>）</p>
+<ol>
+<li>
+<p><code>parent.textContent = ''</code><br>
+项目中使用的是这个方法。因为原来的父 node 里只有一个 text node，我估计这个方法能行，还没试过父 node 里套了一些奇奇怪怪的东西的情况。</p>
+</li>
+<li>
+<p><code>parent.innerHTML = ''</code><br>
+杀伤力极大，直接父 node 里啥都没有了，就是执行速度上要比上面一个要慢一点。在某些情况下不是很好用。</p>
+</li>
+<li>
+<p>循环执行 <code>parentNode.removeChild()</code><br>
+虽然这个看上去最优雅，但是总觉得这种 <del>暴力</del> 循环哪里看着怪怪的。</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">firstChild</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">removeChild</span>(<span style="color:#a6e22e">parentNode</span>).<span style="color:#a6e22e">lastChild</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="让整个-div-可以被超链接">让整个 div 可以被超链接</h3>
+<p>可以说是一个很不错的一个 trick ，具体的话也不好说，直接放链接：<a href="https://stackoverflow.com/questions/796087/make-a-div-into-a-link">Make a div into a link - Stack Overflow</a></p>
+<h3 id="使用-grunt-完成一些自动化">使用 Grunt 完成一些自动化</h3>
+<blockquote>
+<p>参考：<a href="https://gruntjs.com/getting-started">Getting started - GruntJS</a></p>
+</blockquote>
+<p>目前只想到自动化来缩小项目文件，所以整个配置都会变得很简单。</p>
+<p>在此之前要安装全局的 <code>grunt-cli</code> ，作用是调起项目中的 grunt 并运行，这样运行相应任务只要运行 <code>grunt &lt;任务名&gt;</code> 就行了：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install -g grunt-cli
+</span></span></code></pre></div><p>然后在项目中安装 <code>grunt</code> 、 <code>grunt-contrib-uglify</code> 和 <code>grunt-contrib-cssmin</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install grunt --save-dev
+</span></span><span style="display:flex;"><span>npm install grunt-contrib-uglify --save-dev
+</span></span><span style="display:flex;"><span>npm install grunt-contrib-cssmin --save-dev
+</span></span></code></pre></div><p>安装完后可以考虑把 <code>node_modules</code> 添加到 <code>.gitignore</code> 里，如果不对包作直接的修改的话。</p>
+<p>直接上官方的示例 <code>Gruntfile.js</code> ，然后自己改改：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">grunt</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Project configuration.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">grunt</span>.<span style="color:#a6e22e">initConfig</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">pkg</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">grunt</span>.<span style="color:#a6e22e">file</span>.<span style="color:#a6e22e">readJSON</span>(<span style="color:#e6db74">&#39;package.json&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">uglify</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">options</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">banner</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/*! &lt;%= pkg.name %&gt; &lt;%= grunt.template.today(&#34;yyyy-mm-dd&#34;) %&gt; */\n&#39;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">build</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;wolf-chews.js&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">dest</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;wolf-chews.min.js&#39;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">cssmin</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">build</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;wolf-chews.css&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">dest</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;wolf-chews.min.css&#39;</span>,
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Load the plugins.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">grunt</span>.<span style="color:#a6e22e">loadNpmTasks</span>(<span style="color:#e6db74">&#39;grunt-contrib-uglify&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">grunt</span>.<span style="color:#a6e22e">loadNpmTasks</span>(<span style="color:#e6db74">&#39;grunt-contrib-cssmin&#39;</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Default task(s).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">grunt</span>.<span style="color:#a6e22e">registerTask</span>(<span style="color:#e6db74">&#39;build&#39;</span>, [<span style="color:#e6db74">&#39;uglify&#39;</span>, <span style="color:#e6db74">&#39;cssmin&#39;</span>]);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  };
+</span></span></code></pre></div><p>如果之后想要用 GitHub Action 自动执行 <code>grunt</code> 命令，可以在 <code>package.json</code> 里设置测试用命令：</p>
+<pre tabindex="0"><code>&#34;scripts&#34;: {
+    &#34;test&#34;: &#34;node -e \&#34;var g = require(&#39;grunt&#39;); g.cli.tasks = [&#39;build&#39;]; g.cli()\&#34;&#34;
+},
+</code></pre><p>这样就不用在 Action 流程里安装 <code>grunt-cli</code> 而直接执行 <code>npm test</code> 就行。</p>
+<p>编写 <code>publish-to-npm.yml</code> 用 GitHub Action 帮我完成这些任务并发布在 npm 上：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Publish to NPM</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">publish</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v1</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-node@v1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">node-version</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm install</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm test</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">run</span>: <span style="color:#ae81ff">rm -rf .vscode .github</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">JS-DevTools/npm-publish@v1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">token</span>: <span style="color:#ae81ff">${{ secrets.NPM_TOKEN }}</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">dry-run</span>: <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><hr>
+<p>于是，这个大坑就这样先告一段落了。</p>
+<p>各位看官可以在 <a href="/404.html">404页面</a> 看到这个功能的实装了！</p>
+<hr>
+<p>你以为这就结束了吗？</p>
+<p><del>在另外一个夜黑风高的夜晚</del>，当我躺在床上时，脑海里突然涌现一个想法：既然你都会 Javasript 了，要不你把 Wolf-bites-tweets 用 Javascript 重写一遍吧。</p>
+<p>于是，下期预告：Wolf-Bites-Tweets v2.0 的开发（Node.js）</p>
+<blockquote>
+<p>开坑不止，填坑不息。<br>
+—— Kreee</p>
+</blockquote>
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/python/">Python</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/javascript/">JavaScript</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/frontend/">Frontend</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/github/">GitHub</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/learning/">Learning</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/2021/">2021</a>
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        <div id="comments-container">
+            
+            
+
+            
+    <script src="https://giscus.app/client.js"
+        data-repo="ohmykreee/kreee-blog"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkzNzQxMjE4ODE="
+        data-category="Comments"
+        data-category-id="DIC_kwDOFkylmc4B_6vB"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-emit-metadata=""
+        data-theme="light"
+        
+            data-lang="zh-CN"
+        
+        crossorigin="anonymous"
+        async>
+    </script>
+    <div id="giscus"></div>
+
+
+            
+
+        </div>
+    
+
+    </div>
+
+    
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>最新帖子</strong>
+            <ul>
+                
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/frontend-dev-with-android-pad/">使用 Android Pad 进行（前端）开发</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/deploy-nextjs-static-page-to-github-pages/">关于部署 Next.js 静态网页到 GitHub Pages 有关注意事项</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/">wolf-bites-tweets 2.0.0 开发小记</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/">wolf-bites-tweets 和 wolf-chews-tweets 开发小记</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/">将后端服务器系统迁移至 Ubuntu server</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/code/sim-keyboard-stroke/">模拟键盘输入</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/music-player-in-hugo-page/">在 Hugo 里内嵌音乐播放器（APlayer）</a>
+                    </li>
+                
+            </ul>
+        </div>
+        
+
+        
+        <div class="categories">
+            <a href="/categories/"><strong>分类</strong></a>
+            <ul>
+                
+                <li>
+                    <a href="/categories/learning">Learning
+                        (10)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/code">Code
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/music">Music
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/study">Study
+                        (1)</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>社交媒体</strong>
+
+                
+                <a href="https://github.com/ohmykreee" target="_blank"><i class="fab fa-github"></i></a>
+                
+                <a href="https://twitter.com/kreeejiang" target="_blank"><i class="fab fa-twitter"></i></a>
+                
+                <a href="https://steamcommunity.com/id/kreeejiang/" target="_blank"><i class="fab fa-steam"></i></a>
+                
+                <a href="https://space.bilibili.com/361507684" target="_blank"><i class="fas fa-photo-video"></i></a>
+                
+                <a href="https://www.ohmykreee.top" target="_blank"><i class="fas fa-id-card-alt"></i></a>
+                
+            </div>
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/ohmykreee" target="_blank">
+                &copy;
+                
+                CC BY-NC 4.0
+                
+                by Kreee
+            </a>
+            
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme"
+                target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+    
+
+    
+
+
+    <script src="https://blog.ohmykreee.top/theme.js"></script>
+
+    
+    
+    <script src="https://unpkg.com/cookieconsent@3/build/cookieconsent.min.js" type="application/javascript"></script>
+    
+    <script src="https://blog.ohmykreee.top/js/init-cookieconsent.js" type="application/javascript"></script>
+    
+    <script src="https://blog.ohmykreee.top/js/clarity-tracker.js" type="application/javascript"></script>
+    
+    
+
+    
+    <div id="activate-algolia-search" class="hidden">
+  <input type="hidden" id="algolia-search-appId" value="BYCFQKEA4W">
+  <input type="hidden" id="algolia-search-apiKey" value="5b8f1a1d7557fc3b1bc0d99efbaa22ce">
+  <input type="hidden" id="algolia-search-indexName" value="kreee-blog">
+  <input type="hidden" id="algolia-search-noSearchResults" value="什么都没找到。">
+
+  
+</div>
+
+    
+</body>
+
+</html>

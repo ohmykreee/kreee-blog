@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GitHub on Kreee&#39;s Blog</title>
+    <link>https://blog.ohmykreee.top/tags/github/</link>
+    <description>Recent content in GitHub on Kreee&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 18 Nov 2021 16:17:41 +0800</lastBuildDate><atom:link href="https://blog.ohmykreee.top/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于部署 Next.js 静态网页到 GitHub Pages 有关注意事项</title>
+      <link>https://blog.ohmykreee.top/article/deploy-nextjs-static-page-to-github-pages/</link>
+      <pubDate>Thu, 18 Nov 2021 16:17:41 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/deploy-nextjs-static-page-to-github-pages/</guid>
+      <description>&lt;p&gt;个人主页 &lt;a href=&#34;https://www.ohmykreee.top&#34;&gt;www.ohmykreee.top&lt;/a&gt; &lt;del&gt;涅槃重生啦&lt;/del&gt; ，快去围观吧！&lt;/p&gt;
+&lt;p&gt;（怎么这文案一股营销号的味道）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>wolf-bites-tweets 2.0.0 开发小记</title>
+      <link>https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/</link>
+      <pubDate>Wed, 27 Oct 2021 22:59:38 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/</guid>
+      <description>&lt;h2 id=&#34;万恶之源&#34;&gt;万恶之源&lt;/h2&gt;
+&lt;p&gt;接上文： &lt;a href=&#34;https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/&#34;&gt;wolf-bites-tweets 和 wolf-chews-tweets 开发小记&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;项目地址： &lt;a href=&#34;https://github.com/ohmykreee/wolf-bites-tweets&#34;&gt;https://github.com/ohmykreee/wolf-bites-tweets&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;为啥在已经有 wolf-bites-tweets v1 的情况下，还要重写并开发 v2.0.0 呢？原因有俩：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;想要节省下 build docker image 花掉的十几秒，以及那种直接运行的安全感。（？）&lt;/li&gt;
+&lt;li&gt;JavaScript 初上手，想要体验一下用 Node.js 开发后端的流程。&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>wolf-bites-tweets 和 wolf-chews-tweets 开发小记</title>
+      <link>https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/</link>
+      <pubDate>Tue, 19 Oct 2021 12:29:53 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/</guid>
+      <description>&lt;p&gt;&lt;del&gt;又为：论如何嫖秃 GitHub 服务器&lt;/del&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 GitHub Action 自动渲染和发布网页</title>
+      <link>https://blog.ohmykreee.top/article/github-action-auto-pub-site/</link>
+      <pubDate>Mon, 07 Jun 2021 10:21:29 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/github-action-auto-pub-site/</guid>
+      <description>&lt;h2 id=&#34;why&#34;&gt;Why?&lt;/h2&gt;
+&lt;p&gt;根据 GitHub Pages 的政策，一个 GitHub 账号只能拥有一个个人主页和多个项目主页。我的个人主页名额给了服务器的 Landing Page，所以这个博客只能以项目主页的名义发布了。&lt;br&gt;
+然鹅有一个问题是，不同于个人主页，项目主页的网页是要托管在 &lt;code&gt;gh-pages&lt;/code&gt; 分支的，所以如果完全手动的话需要我自己在本地渲染好网页后，手动 push 到 &lt;code&gt;gh-pages&lt;/code&gt; 分支上。&lt;br&gt;
+所以秉承着人类科技进步的本质是&lt;del&gt;懒&lt;/del&gt;这一原则，顺便学学 GitHub Action 做到网页渲染和发布一条龙吧。&lt;br&gt;
+So, let&amp;rsquo;s begin!&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

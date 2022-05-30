@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+
+    
+
+    
+         
+    
+
+    
+
+<html itemscope itemtype="https://schema.org/WebPage" class="no-js" lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="siteBaseUrl" content="https://blog.ohmykreee.top">
+    <meta name="author" content="Kreee">
+    <meta name="description" content="A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta name="keywords" content="kreee,blog,personal,responsive,font awesome,pages,posts,highlight.js,syntax highlighting,hugo">
+    <meta name="generator" content="Hugo 0.99.1" />
+    <title>
+        
+           
+               在 Hugo 里内嵌音乐播放器（APlayer） &vert; Kreee&#39;s Blog
+           
+        
+    </title>
+    <meta itemprop="name" content="在 Hugo 里内嵌音乐播放器（APlayer）">
+    <meta itemprop="description" content="在 Hugo 里内嵌音乐播放器（APlayer） - A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta property="og:title" content="在 Hugo 里内嵌音乐播放器（APlayer）">
+    <meta property="og:description" content="在 Hugo 里内嵌音乐播放器（APlayer） - A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta property="og:image" content="https://blog.ohmykreee.top/article/music-player-in-hugo-page/featuredImage_hu92a118604ae76c6bdb9425eabcba13d7_407695_700x350_fill_q95_box_smart1.jpg">
+    <meta property="og:url" content="https://blog.ohmykreee.top/article/music-player-in-hugo-page/">
+    <meta property="og:site_name" content="Kreee&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+    <script src="/modernizr-simple.js"></script>
+
+    
+    <link href="/article/music-player-in-hugo-page/" rel="alternate" type="application/rss+xml" title="Kreee&#39;s Blog" />
+    <link href="/article/music-player-in-hugo-page/" rel="feed" type="application/rss+xml" title="Kreee&#39;s Blog" />
+    
+
+    
+    <link rel="canonical" href="https://blog.ohmykreee.top/article/music-player-in-hugo-page/">
+    
+
+    <link rel="stylesheet" href="https://blog.ohmykreee.top/theme.css">
+
+    
+
+    
+        
+            <link rel="stylesheet" href="https://unpkg.com/cookieconsent@3/build/cookieconsent.min.css">
+        
+    
+</head>
+
+<body class="bilberry-hugo-theme">
+
+    
+    <nav class="permanentTopNav">
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="https://blog.ohmykreee.top/page/about/">关于我</a></li>
+                
+            
+                
+                    <li><a href="/archive/" target="">文章列表</a></li>
+                
+            
+                
+                    <li><a href="https://blog.ohmykreee.top/page/donate/">❤❤❤</a></li>
+                
+            
+                
+                    
+                
+            
+        </ul>
+
+        
+            <div id="search-box" class="search">
+                <i class="fas fa-search"></i>
+                <input id="search" type="text" placeholder="搜索……">
+            </div>
+        
+    </div>
+</nav>
+
+
+    
+    <header>
+
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="https://avatars.githubusercontent.com/u/76862878" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title">
+                <a href="/">
+                    Kreee&#39;s Blog
+                </a>
+            </h3>
+
+            
+                <span class="subtitle">Woof!</span>
+            
+        </div>
+
+        
+
+        
+            <div class="toggler permanentTopNav">
+        
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+    </div>
+</header>
+
+
+    <div class="main container">
+        
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="https://blog.ohmykreee.top/article/music-player-in-hugo-page/">
+    <i class="fas fa-fw fa-pencil-alt"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="https://blog.ohmykreee.top/article/music-player-in-hugo-page/">
+            
+                <img src="/article/music-player-in-hugo-page/featuredImage_hu92a118604ae76c6bdb9425eabcba13d7_407695_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h1 class="article-title">
+        <a href="https://blog.ohmykreee.top/article/music-player-in-hugo-page/">
+            在 Hugo 里内嵌音乐播放器（APlayer）
+        </a>
+    </h1>
+
+    <div class="meta">
+        
+            
+                <span class="date moment">2021-06-07</span>
+            
+        
+
+        
+
+        
+            <span class="categories">
+                
+                    
+                    
+                        <a href="https://blog.ohmykreee.top/categories/learning/">Learning</a>
+                    
+                
+            </span>
+        
+
+        
+            <span class="author">
+                
+                
+                    <a href="https://blog.ohmykreee.top/author/kreee/">Kreee</a>
+                
+            </span>
+        
+    </div>
+
+    
+        
+
+        <p>就是置顶状态的那个音乐播放器。<br>
+想要吗？只需要短短三步哦！</p>
+<h2 id="零工作开始前">零、工作开始前</h2>
+<ul>
+<li>使用的 Hugo 版本：0.83.1 ，更高版本的应该也行。</li>
+<li>使用的播放器： <a href="https://github.com/DIYgod/APlayer">APlayer</a> ，一个大家都在用我不用不行的看上去还行的播放器小组件。</li>
+<li>使用的解析器： <a href="https://github.com/metowolf/MetingJS">MetingJS</a> ，很强大，支持许多音乐平台。本人常用网易云音乐平台。</li>
+</ul>
+<h2 id="一添加依赖">一、添加依赖</h2>
+<p>虽然只有短短四个字，但是对于许多萌新（包括我）来说这一步就是个噩梦（误）。</p>
+<p>首先，这个东西是因所使用的模板而异。有的模板做的比较好（比如我这个，不得不说德国人是真的严谨），会在配置文件中预留可追加 <code>.css</code> 和 <code>.js</code> 的设置项；而有的模板只会提供 <code>.css</code> ，或者甚至没有。<br>
+所以这问题就大了，对于某些人来说添加依赖就是在设置文件里添加三句话的功夫，对于某些人来说就是遥不可及的彼岸（误）。</p>
+<p>对于那些模板的配置文件里有位置预留追加 <code>.css</code> 和 <code>.js</code> 的，只需要追加 css 依赖 <code>https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css</code> 和 js 依赖 <code>https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js</code> <code>https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js</code> 即可。</p>
+<p>而对于<strong>无法在配置文件中直接添加依赖的</strong>，就需要 Overwrite 模板文件了：<br>
+找到文件 <code>/themes/&lt;你的主题名&gt;/layouts/_default/baseof.html</code> ，并将该文件复制到 <code>/layouts/_default/baseof.html</code> ,并对后者进行修改：<br>
+在 <code>&lt;head&gt;</code> 和 <code>&lt;/head&gt;</code> 区域间复制粘贴以下代码：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- require APlayer --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- require MetingJS --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p><strong>注意</strong>，如果你的模板是通过 submodule 方式导入的，并且在非本地环境进行渲染和发布（如 GitHub Action），在每次模板更新后，最好重复以上步骤确保不会出啥奇奇怪怪的问题。</p>
+<p>完事后，如何检测依赖成功被加载呢？<br>
+只需要启动 Hugo 内置服务器，打开网页，按下<del>高贵的</del><code>F12</code>按钮打开开发者工具。如果一切顺利，可以在控制台里看到两个 outputs ：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>   APlayer v1.10.1 af84efb  http://aplayer.js.org 
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>   MetingJS v2.0.1  https://github.com/metowolf/MetingJS 
+</span></span></code></pre></div><p>如果没有呢？那就是轮到你头痛的时候了😏<br>
+也不需要太着急，我也是头痛了一下午才搞定的。毕竟整这东西玩的这就是折腾，不是吗？</p>
+<h2 id="二-可选-定义-shortcodes">二、 <strong>（可选）</strong> 定义 shortcodes</h2>
+<p>当然你这步不想做完全可以，只需要在想添加音乐播放器的地方插入这一行就行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">meting-js</span> <span style="color:#a6e22e">server</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;netease&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;playlist&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;769332917&#34;</span>&gt;&lt;/<span style="color:#f92672">meting-js</span>&gt;
+</span></span></code></pre></div><p>相关参数的意义可以在 <a href="https://github.com/metowolf/MetingJS">官方文档</a> 查看详细介绍，这里我就不赘述。</p>
+<p>然后我们来讲讲我们的 shortcodes 。为啥要有 shortcodes 呢？其实就是方便我们写文章的时候以最快的速度插入音乐。<br>
+老样子，我也是强烈推荐各位能够直接去 <a href="https://gohugo.io/content-management/shortcodes/">官方文档：Shortcodes</a> 学习如何写 shortcodes 。下面就来说说我的 shortcodes 是怎么写的。</p>
+<p>首先，新建文件 <code>/layouts/shrotcodes/aplayer.html</code>，文件名就是你的 shortcodes 的名字。<br>
+然后，文件里写：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>&lt;meting-js server=&#34;{{ .Get &#34;server&#34; }}&#34; type=&#34;{{ .Get &#34;type&#34; }}&#34; id=&#34;{{ .Get &#34;id&#34; }}&#34;&gt;&lt;/meting-js&gt;
+</span></span></code></pre></div><p>很简单，不是吗？其中 <code>.Get</code> 就是一个能够得到被传递参数的一个方法，这个想必大家一眼就能看出来。其实大家还可以通过一个判断语句来完成即使不声明参数名也能完成参数传递的 shortcodes ，对着官方的示例代码写就能写出来。我由于没这个需求就简单写了这么一行。<br>
+完事了之后，只需要在文章想要插入的地方使用刚刚定义的 shortcodes ：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span># 前面记得补上两个 {{ ，放代码块里也会触发 shortcodes 我也是没想到
+</span></span><span style="display:flex;"><span>&lt;aplayer server=&#34;netease&#34; type=&#34;playlist&#34; id=&#34;769332917&#34;&gt;}}
+</span></span></code></pre></div><p>就能达到之前那行 HTML 语句一样的效果。</p>
+<h2 id="三更改-goldmark-设置">三、更改 Goldmark 设置</h2>
+<p>你以为到这里就完事了？但是我有说需要三步啊。最后一步，也是 Hugo 版本更新遗留问题。 <br>
+如果你头铁，直接去部署网页；等你部署完了，你就会发现，本来应该出现音乐播放器的地方，竟然一片空白。<br>
+不要慌张，和我一起，按下<del>高贵的</del><code>F12</code>按钮打开开发者工具，使用元素检查选中本应该出现播放器的地方。然后，你就会在代码查看器里看到一行字：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- raw HTML omitted --&gt;</span>
+</span></span></code></pre></div><p>好了不卖关子了，问题就在于新的渲染器 Goldmark 不默认渲染 HTML 代码，甚至用 shortcodes 也不行。</p>
+<p><strong>所以</strong>，解决方法有两个：</p>
+<ol>
+<li>更改 Goldmark 渲染器的设置，使其能够渲染 HTML 代码。只需要在配置文件的 <code>[markup]</code> 部分添加以下内容（以 <code>config.toml</code> 为例，其他格式请参考对应文件的语法）：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>  [<span style="color:#a6e22e">markup</span>.<span style="color:#a6e22e">goldmark</span>]
+</span></span><span style="display:flex;"><span>    [<span style="color:#a6e22e">markup</span>.<span style="color:#a6e22e">goldmark</span>.<span style="color:#a6e22e">renderer</span>]
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">unsafe</span> = <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><ol start="2">
+<li>如果你是那种 Old school style 的人，你可以直接更换到老的渲染器。在配置文件的 <code>[markup]</code> 部分添加以下内容（以 <code>config.toml</code> 为例，其他格式请参考对应文件的语法）：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>  <span style="color:#a6e22e">defaultMarkdownHandler</span> = <span style="color:#e6db74">&#34;blackfriday&#34;</span>
+</span></span></code></pre></div><h2 id="四总结">四、总结</h2>
+<p>So，导致播放器组件不起作用的可能原因分这三种：</p>
+<ol>
+<li>css 和 js 依赖没有被成功添加 <strong>（最有可能）</strong>；</li>
+<li>Goldmark 设置没有更改；</li>
+<li>其他傻X错误比如代码写错了或者传递参数不正确啥的。</li>
+</ol>
+<p>如果一切顺利的话，你也可以让自己的博客里充满音乐了！Enjoy！
+
+<link rel="stylesheet" href="https://unpkg.com/aplayer/dist/APlayer.min.css">
+<script src="https://unpkg.com/aplayer/dist/APlayer.min.js"></script>
+
+<script src="https://unpkg.com/meting/dist/Meting.min.js"></script>
+
+
+<meting-js server="netease" type="song" id="29550185"></meting-js></p>
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/hugo/">Hugo</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/selfhosted/">Selfhosted</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/learning/">Learning</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/2021/">2021</a>
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        <div id="comments-container">
+            
+            
+
+            
+    <script src="https://giscus.app/client.js"
+        data-repo="ohmykreee/kreee-blog"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkzNzQxMjE4ODE="
+        data-category="Comments"
+        data-category-id="DIC_kwDOFkylmc4B_6vB"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-emit-metadata=""
+        data-theme="light"
+        
+            data-lang="zh-CN"
+        
+        crossorigin="anonymous"
+        async>
+    </script>
+    <div id="giscus"></div>
+
+
+            
+
+        </div>
+    
+
+    </div>
+
+    
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>最新帖子</strong>
+            <ul>
+                
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/frontend-dev-with-android-pad/">使用 Android Pad 进行（前端）开发</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/deploy-nextjs-static-page-to-github-pages/">关于部署 Next.js 静态网页到 GitHub Pages 有关注意事项</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/">wolf-bites-tweets 2.0.0 开发小记</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/">wolf-bites-tweets 和 wolf-chews-tweets 开发小记</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/">将后端服务器系统迁移至 Ubuntu server</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/code/sim-keyboard-stroke/">模拟键盘输入</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/music-player-in-hugo-page/">在 Hugo 里内嵌音乐播放器（APlayer）</a>
+                    </li>
+                
+            </ul>
+        </div>
+        
+
+        
+        <div class="categories">
+            <a href="/categories/"><strong>分类</strong></a>
+            <ul>
+                
+                <li>
+                    <a href="/categories/learning">Learning
+                        (10)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/code">Code
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/music">Music
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/study">Study
+                        (1)</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>社交媒体</strong>
+
+                
+                <a href="https://github.com/ohmykreee" target="_blank"><i class="fab fa-github"></i></a>
+                
+                <a href="https://twitter.com/kreeejiang" target="_blank"><i class="fab fa-twitter"></i></a>
+                
+                <a href="https://steamcommunity.com/id/kreeejiang/" target="_blank"><i class="fab fa-steam"></i></a>
+                
+                <a href="https://space.bilibili.com/361507684" target="_blank"><i class="fas fa-photo-video"></i></a>
+                
+                <a href="https://www.ohmykreee.top" target="_blank"><i class="fas fa-id-card-alt"></i></a>
+                
+            </div>
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/ohmykreee" target="_blank">
+                &copy;
+                
+                CC BY-NC 4.0
+                
+                by Kreee
+            </a>
+            
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme"
+                target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+    
+
+    
+
+
+    <script src="https://blog.ohmykreee.top/theme.js"></script>
+
+    
+    
+    <script src="https://unpkg.com/cookieconsent@3/build/cookieconsent.min.js" type="application/javascript"></script>
+    
+    <script src="https://blog.ohmykreee.top/js/init-cookieconsent.js" type="application/javascript"></script>
+    
+    <script src="https://blog.ohmykreee.top/js/clarity-tracker.js" type="application/javascript"></script>
+    
+    
+
+    
+    <div id="activate-algolia-search" class="hidden">
+  <input type="hidden" id="algolia-search-appId" value="BYCFQKEA4W">
+  <input type="hidden" id="algolia-search-apiKey" value="5b8f1a1d7557fc3b1bc0d99efbaa22ce">
+  <input type="hidden" id="algolia-search-indexName" value="kreee-blog">
+  <input type="hidden" id="algolia-search-noSearchResults" value="什么都没找到。">
+
+  
+</div>
+
+    
+</body>
+
+</html>

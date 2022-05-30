@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Frontend on Kreee&#39;s Blog</title>
+    <link>https://blog.ohmykreee.top/tags/frontend/</link>
+    <description>Recent content in Frontend on Kreee&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 05 Dec 2021 09:48:10 +0800</lastBuildDate><atom:link href="https://blog.ohmykreee.top/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Android Pad 进行（前端）开发</title>
+      <link>https://blog.ohmykreee.top/article/frontend-dev-with-android-pad/</link>
+      <pubDate>Sun, 05 Dec 2021 09:48:10 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/frontend-dev-with-android-pad/</guid>
+      <description>&lt;p&gt;四舍五入安卓系统是 Linux，四舍五入可以在安卓系统上直接进行开发。&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;四舍五入又水了一篇&lt;/del&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于部署 Next.js 静态网页到 GitHub Pages 有关注意事项</title>
+      <link>https://blog.ohmykreee.top/article/deploy-nextjs-static-page-to-github-pages/</link>
+      <pubDate>Thu, 18 Nov 2021 16:17:41 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/deploy-nextjs-static-page-to-github-pages/</guid>
+      <description>&lt;p&gt;个人主页 &lt;a href=&#34;https://www.ohmykreee.top&#34;&gt;www.ohmykreee.top&lt;/a&gt; &lt;del&gt;涅槃重生啦&lt;/del&gt; ，快去围观吧！&lt;/p&gt;
+&lt;p&gt;（怎么这文案一股营销号的味道）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>wolf-bites-tweets 和 wolf-chews-tweets 开发小记</title>
+      <link>https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/</link>
+      <pubDate>Tue, 19 Oct 2021 12:29:53 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/</guid>
+      <description>&lt;p&gt;&lt;del&gt;又为：论如何嫖秃 GitHub 服务器&lt;/del&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

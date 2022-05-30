@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>code-server on Kreee&#39;s Blog</title>
+    <link>https://blog.ohmykreee.top/tags/code-server/</link>
+    <description>Recent content in code-server on Kreee&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 05 Dec 2021 09:48:10 +0800</lastBuildDate><atom:link href="https://blog.ohmykreee.top/tags/code-server/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Android Pad 进行（前端）开发</title>
+      <link>https://blog.ohmykreee.top/article/frontend-dev-with-android-pad/</link>
+      <pubDate>Sun, 05 Dec 2021 09:48:10 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/frontend-dev-with-android-pad/</guid>
+      <description>&lt;p&gt;四舍五入安卓系统是 Linux，四舍五入可以在安卓系统上直接进行开发。&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;四舍五入又水了一篇&lt;/del&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

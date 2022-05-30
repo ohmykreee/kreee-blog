@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Study on Kreee&#39;s Blog</title>
+    <link>https://blog.ohmykreee.top/categories/study/</link>
+    <description>Recent content in Study on Kreee&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 04 Jun 2021 14:24:37 +0800</lastBuildDate><atom:link href="https://blog.ohmykreee.top/categories/study/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python 期末编程题题库</title>
+      <link>https://blog.ohmykreee.top/article/python-final-exam-questions/</link>
+      <pubDate>Fri, 04 Jun 2021 14:24:37 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/python-final-exam-questions/</guid>
+      <description>&lt;p&gt;（据说）Python 期末考的编程题会从这里面抽。&lt;br&gt;
+有些没有答案的题目是临时写的，如果写的很烂欢迎反馈。&lt;br&gt;
+愿人间没有挂科人。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

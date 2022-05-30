@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Selfhosted on Kreee&#39;s Blog</title>
+    <link>https://blog.ohmykreee.top/tags/selfhosted/</link>
+    <description>Recent content in Selfhosted on Kreee&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 16 Jul 2021 14:31:14 +0800</lastBuildDate><atom:link href="https://blog.ohmykreee.top/tags/selfhosted/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>将后端服务器系统迁移至 Ubuntu server</title>
+      <link>https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/</link>
+      <pubDate>Fri, 16 Jul 2021 14:31:14 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/</guid>
+      <description>&lt;h2 id=&#34;what-happend&#34;&gt;What happend?&lt;/h2&gt;
+&lt;p&gt;本来用 CentOS 7 用得开开心心的，结果了解到 Redhat 公司要整治一下我们这群白嫖怪（感觉被强行喂了一口💩）。&lt;br&gt;
+So, 为了服务器的可持续发展（其实是放假闲得无聊），顺便重装一下机器的系统，以及更新一下远古的备忘指南，Let&amp;rsquo;s begin!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在 Hugo 里内嵌音乐播放器（APlayer）</title>
+      <link>https://blog.ohmykreee.top/article/music-player-in-hugo-page/</link>
+      <pubDate>Mon, 07 Jun 2021 11:10:33 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/music-player-in-hugo-page/</guid>
+      <description>&lt;p&gt;就是置顶状态的那个音乐播放器。&lt;br&gt;
+想要吗？只需要短短三步哦！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>自用备忘录表</title>
+      <link>https://blog.ohmykreee.top/article/self-use-cheatsheet/</link>
+      <pubDate>Sun, 06 Jun 2021 19:53:42 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/self-use-cheatsheet/</guid>
+      <description>&lt;p&gt;一个自用的备忘录表，记录一下要用但是又容易忘记的命令。&lt;br&gt;
+不断更新中&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker 学习小记</title>
+      <link>https://blog.ohmykreee.top/article/docker-notes/</link>
+      <pubDate>Mon, 01 Mar 2021 15:44:08 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/docker-notes/</guid>
+      <description>&lt;p&gt;本来一开始不打算使用 Docker 来配置服务：虽然的确 Docker 能省下配置环境的麻烦，但是总觉得哪里不舒服（误）。&lt;br&gt;
+其实是因为服务器不是长时间运行的，会时不时关机/重启，还要重新到 Docker 里启动。&lt;br&gt;
+以及据说有安全隐患（其实其他软件配置不当也会有安全隐患233）&lt;br&gt;
+但是现在是真的闲的无聊 + 还是有很多软件是基于 Docker 的（还是只提供了 Docker 的安装教程，吐了），故打算核心服务直接部署在服务器里，整一些不重要的东西放在 Docker 里。&lt;br&gt;
+Now, let&amp;rsquo;s begin!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Notes for Setting Up Back-end Server</title>
+      <link>https://blog.ohmykreee.top/article/notes-for-setting-up-backend-server/</link>
+      <pubDate>Wed, 13 Jan 2021 22:58:38 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/article/notes-for-setting-up-backend-server/</guid>
+      <description>&lt;h2 id=&#34;install-centos&#34;&gt;Install CentOS&lt;/h2&gt;
+&lt;p&gt;OS: CentOS 7 Minimal&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

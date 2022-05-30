@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+
+    
+
+    
+         
+    
+
+    
+
+<html itemscope itemtype="https://schema.org/WebPage" class="no-js" lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="siteBaseUrl" content="https://blog.ohmykreee.top">
+    <meta name="author" content="Kreee">
+    <meta name="description" content="A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta name="keywords" content="kreee,blog,personal,responsive,font awesome,pages,posts,highlight.js,syntax highlighting,hugo">
+    <meta name="generator" content="Hugo 0.99.1" />
+    <title>
+        
+           
+               wolf-bites-tweets 2.0.0 开发小记 &vert; Kreee&#39;s Blog
+           
+        
+    </title>
+    <meta itemprop="name" content="wolf-bites-tweets 2.0.0 开发小记">
+    <meta itemprop="description" content="wolf-bites-tweets 2.0.0 开发小记 - A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta property="og:title" content="wolf-bites-tweets 2.0.0 开发小记">
+    <meta property="og:description" content="wolf-bites-tweets 2.0.0 开发小记 - A Kreee&#39;s Blog, powered by GitHub Pages, Hugo and Bilberry Premium Theme for Hugo.">
+    <meta property="og:image" content="https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/featuredImage_hu3a8a394eb69f675c896dc5f0c47038c0_435393_700x350_fill_q95_box_smart1.jpg">
+    <meta property="og:url" content="https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/">
+    <meta property="og:site_name" content="Kreee&#39;s Blog">
+    <meta property="og:type" content="article">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+    <script src="/modernizr-simple.js"></script>
+
+    
+    <link href="/article/notes-of-developing-wbt-2.0.0/" rel="alternate" type="application/rss+xml" title="Kreee&#39;s Blog" />
+    <link href="/article/notes-of-developing-wbt-2.0.0/" rel="feed" type="application/rss+xml" title="Kreee&#39;s Blog" />
+    
+
+    
+    <link rel="canonical" href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/">
+    
+
+    <link rel="stylesheet" href="https://blog.ohmykreee.top/theme.css">
+
+    
+
+    
+        
+            <link rel="stylesheet" href="https://unpkg.com/cookieconsent@3/build/cookieconsent.min.css">
+        
+    
+</head>
+
+<body class="bilberry-hugo-theme">
+
+    
+    <nav class="permanentTopNav">
+
+    <div class="container">
+        <ul class="topnav">
+            
+                
+                    <li><a href="https://blog.ohmykreee.top/page/about/">关于我</a></li>
+                
+            
+                
+                    <li><a href="/archive/" target="">文章列表</a></li>
+                
+            
+                
+                    <li><a href="https://blog.ohmykreee.top/page/donate/">❤❤❤</a></li>
+                
+            
+                
+                    
+                
+            
+        </ul>
+
+        
+            <div id="search-box" class="search">
+                <i class="fas fa-search"></i>
+                <input id="search" type="text" placeholder="搜索……">
+            </div>
+        
+    </div>
+</nav>
+
+
+    
+    <header>
+
+    <div class="container">
+        <div class="logo">
+            <a href="/" class="logo">
+                
+                    <img src="https://avatars.githubusercontent.com/u/76862878" alt="">
+                
+
+                <span class="overlay"><i class="fa fa-home"></i></span>
+            </a>
+        </div>
+        <div class="titles">
+            <h3 class="title">
+                <a href="/">
+                    Kreee&#39;s Blog
+                </a>
+            </h3>
+
+            
+                <span class="subtitle">Woof!</span>
+            
+        </div>
+
+        
+
+        
+            <div class="toggler permanentTopNav">
+        
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+    </div>
+</header>
+
+
+    <div class="main container">
+        
+    <div class="article-wrapper u-cf single">
+        
+            <a class="bubble" href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/">
+    <i class="fas fa-fw fa-pencil-alt"></i>
+</a>
+
+<article class="default article">
+    
+    <div class="featured-image">
+        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/">
+            
+                <img src="/article/notes-of-developing-wbt-2.0.0/featuredImage_hu3a8a394eb69f675c896dc5f0c47038c0_435393_700x350_fill_q95_box_smart1.jpg" alt="">
+            
+        </a>
+    </div>
+
+
+    <div class="content">
+    <h1 class="article-title">
+        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/">
+            wolf-bites-tweets 2.0.0 开发小记
+        </a>
+    </h1>
+
+    <div class="meta">
+        
+            
+                <span class="date moment">2021-10-27</span>
+            
+        
+
+        
+
+        
+            <span class="categories">
+                
+                    
+                    
+                        <a href="https://blog.ohmykreee.top/categories/learning/">Learning</a>
+                    
+                
+            </span>
+        
+
+        
+            <span class="author">
+                
+                
+                    <a href="https://blog.ohmykreee.top/author/kreee/">Kreee</a>
+                
+            </span>
+        
+    </div>
+
+    
+        
+
+        <h2 id="万恶之源">万恶之源</h2>
+<p>接上文： <a href="/article/notes-of-developing-wbt-and-wct/">wolf-bites-tweets 和 wolf-chews-tweets 开发小记</a></p>
+<p>项目地址： <a href="https://github.com/ohmykreee/wolf-bites-tweets">https://github.com/ohmykreee/wolf-bites-tweets</a></p>
+<p>为啥在已经有 wolf-bites-tweets v1 的情况下，还要重写并开发 v2.0.0 呢？原因有俩：</p>
+<ol>
+<li>想要节省下 build docker image 花掉的十几秒，以及那种直接运行的安全感。（？）</li>
+<li>JavaScript 初上手，想要体验一下用 Node.js 开发后端的流程。</li>
+</ol>
+<hr>
+<h2 id="设置代理">设置代理</h2>
+<p>因为某些大家都懂的原因，整个开发都需要在代理环境下进行。</p>
+<p>但是问题来了：原先用 Python 写的时候执行 GET 命令用的是第三方库，只需要传递环境变量就能完成代理的设置。然鹅在开发 JavaScript actions 包时，有一个原则就是尽量不要引入第三方包（原因之后会提及），所以 GET 方法只能使用内置库完成。结果写的时候死活都无法从代码层面上让程序走本地建立的代理：要么就是 <code>hostname not resolved</code> 或是 <code>connect reject from 127.0.0.1:443</code> ;也尝试过引入第三方库来解决，结果也是无功而返。</p>
+<p>最后忍无可忍，还是使用了 Clash 的 TAP 模式：
+<a href="https://ednovas.xyz/2021/02/15/clashtun/">Clash TUN 和 TAP 模式 - EdNovas 的小站</a> 讲的挺详细的，再搭配上 <a href="https://docs.cfw.lbyczf.com/contents/tap.html">官方文档</a>，就能轻松搭建全局的代理。大致流程在这里也提一提：</p>
+<ol>
+<li>在 <code>General</code> 页面的 <code>TAP Device</code> 旁边的 <code>Manage</code>, 点击 <code>Install</code>；</li>
+<li>在 <code>Settings</code> 页面 <code>Profile Mixin</code> 部分的 <code>YAML</code> 旁边的 <code>Edit</code>，把官方文档里的配置文件复制进去；</li>
+<li>回到 <code>General</code>，关掉 <code>System Proxy</code>，打开 <code>Mixin</code>。<br>
+如果一切顺利，网络应该是显示连接到 clash-tap。</li>
+</ol>
+<hr>
+<h2 id="actionscore-包"><code>@actions/core</code> 包</h2>
+<p>说是说官方推荐的工具包，但是整个项目开发完后我只想说一句话：<strong>对它是真的无语</strong>。</p>
+<p>首先， <code>core.setFailed()</code> 方法看名字应该是那种抛出错误同时结束程序的功能对吧？结果本地测试的时候发现程序并没有按预期结束。去翻了翻源码，<strong>大无语事件发生了</strong>：整个 <code>core.setFailed()</code> 方法就是一行 <code>core.error()</code> 再加上一行设置退出码为 1 ，没了。根本不涉及退出程序的操作。那意思是说我用完 <code>core.setFailed()</code> 之后还要手动 <code>exit()</code> ？那为啥我不直接用 <code>core.error()</code> 加 <code>exit(1)</code> 呢，还能自定义退出码？</p>
+<p>其次，所有 <code>core.notice()</code> ，<code>core.warning()</code>，<code>core.error()</code> 方法在本地测试的时候都不会输出内容到调试工作台，就导致本地测试的时候贼痛苦。最后还是开发了 local-run 功能给本地测试用，顺便也给程序添加一个新功能。</p>
+<p>最后，<strong>最令人无语的事件发生了</strong>。你作为官方推荐的工具包，你就应该提前在环境里安装好对吧？结果呢，并没有。再加上 actions 包在运行前是不会执行 <code>npm install --production</code> ，也就导致了要么不要引入第三方包，要么就提前在 node_modules 文件夹里准备好第三方包。最终的解决方法是在 <code>.gitignore</code> 里加了两行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-plaintext" data-lang="plaintext"><span style="display:flex;"><span>/node_modules/*/
+</span></span><span style="display:flex;"><span>!/node_modules/@actions/
+</span></span></code></pre></div><p>提醒一下，第一行不能换成 <code>node_modules/</code>，不然整个 node_modules 文件夹都不会被跟踪，第二行排除规则自然也不会生效。使用原文这行就会跟踪 node_modules 文件夹的同时不跟踪其下所有文件（夹），第二行规则才会生效。</p>
+<p>（更加无语的是，因为最后一个大无语事件，我的 main 分支多了一串 dirty commits。而且如果要真正测试 actions 包的话一定需要创建 Release 而不能直接在当前项目仓库里测试，所以这些 dirty commits 又是不可避免的，就非常的气）</p>
+<hr>
+<h2 id="http-get">http GET</h2>
+<p>直接用的是这里的实现方法：<a href="https://stackoverflow.com/questions/9577611/http-get-request-in-node-js-express">HTTP GET Request in Node.js Express - Stack Overflow</a></p>
+<p>其实本来复制粘贴就没事了，但是在 JavaScript 中，涉及网络和 I/O 等长时间占用操作默认是异步的。而对于从来没有接触过异步的新手来说，是一个比较麻烦的问题。</p>
+<p>（据说 Axios 库挺好的，下次一定试试）</p>
+<hr>
+<h2 id="异步异步异步">异步！异步！异步！</h2>
+<p>久仰异步大名，听说异步是萌新杀手，今天可是真正见到其真面目。</p>
+<p>异步是写 JavaScript 程序必须要过的一个坎，因为很多方法都是异步进行的。而异步问题最关键的一点就是<strong>如何判断一个异步方法结束运行了</strong>，并得到返回值。主流的话是两种处理方法：Old-style 的 callbacks 方法和最近才被引入的 async/await 方法：</p>
+<h3 id="callbacks-方法">callbacks 方法</h3>
+<p>参考文档：<a href="https://nodejs.org/en/knowledge/getting-started/control-flow/what-are-callbacks/">What are callbacks? - Node.js</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">processData</span> (<span style="color:#a6e22e">callback</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fetchData</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">data</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;An error has occurred. Abort everything!&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">err</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">callback</span>(<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>在这段示例代码中，<code>callback</code> 变量以及传递给 <code>fetchData()</code> 方法的那个函数都是使用了 callbacks 方法。而理解 callbacks 的精髓在于<strong>把一个方法作为变量传递给异步的方法</strong>，而在异步的方法结束并得到数据后传递回原先传递给它的方法。听起来很绕，不是吗？但是如果你真正理解了你就会感觉这个解决方法绝妙极了：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">data</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">processData</span>(<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">beCalled</span> (<span style="color:#a6e22e">result</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">result</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>)
+</span></span></code></pre></div><p>首先，上面的代码中调用了 <code>processData()</code> 方法，并且把名字为 <code>beCalled()</code>（实际应用中可以不用命名，直接省略） 并写有 <code>data = result</code> 的方法传递给 <code>processData()</code>；<code>beCalled()</code> 在 <code>processData()</code> 里有了一个新名字： <code>callback()</code>。在 <code>processData()</code> 中运行完成后并调用 <code>callback()</code> 方法，会把变量 <code>data</code> 中的数据重新传回到 <code>beCalled()</code> 并传递给 <code>beCalled()</code> 方法的 <code>result</code> 变量中。这样就完成了一次 callbacks。</p>
+<h3 id="asyncawait-方法">async/await 方法</h3>
+<p>async/await 功能是最近才被引入的，目的就是让你写异步的时候有一种“回到家的感觉”。</p>
+<p>首先，在你想使用这个功能的方法前声明 <code>async</code>。<strong>没有声明 async 的方法是无法使用 await 功能的</strong>。</p>
+<p>然后你就可以快乐地使用 <code>await</code> 啦！<code>await</code> 的功能其实非常简单：在 <code>await</code> 后跟的 Promise 只有运行完成并返回值后，整个程序才会进行下去，否则就会停在那一行代码上：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fun_with_async</span> () {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">this_is_a_promise</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>而 Promise 则是一种特殊的方法，会返回方法得到的值以及运行结果，有三种运行状态：pending、fulfilled、rejected。关于怎么写 Promise 可以 <del>直接对着文档抄就行了</del> ：<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise - MDN Web Docs</a></p>
+<p>以及关于 async/await 的高阶用法以及如何更高效地让程序跑得更快也可以在这里学到：<a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await">Making asynchronous programming easier with async and await - MDN Web Docs</a></p>
+<p>综上，可以看出真正在 JavaScript 编程中写一些复杂的方法是很少用 <code>return</code> 的，更多的是使用 callbacks（毕竟异步这种东西好是好，就是处理起来有点麻烦）。在实际运用中，也可以考虑 callbacks 方法和 async/await 方法同时使用（比如我，我愿称之为把毕生所学都给整上（误））。</p>
+<hr>
+<h2 id="设置环境变量">设置环境变量</h2>
+<p>主要是用来 debug 用，如果用在 local-run 功能上相比直接传递参数还是麻烦了一点。</p>
+<p>GitHub actions 转换输入为环境变量的方法（直接从源代码里截的）：<code>INPUT_${name.replace(/ /g, '_').toUpperCase()}</code></p>
+<p>比如 <code>bearer-token</code> 就会被转换为 <code>INPUT_BEARER-TOKEN</code>。</p>
+<hr>
+<h2 id="获取传递的参数">获取传递的参数</h2>
+<p><a href="https://nodejs.org/en/knowledge/command-line/how-to-parse-command-line-arguments/">How to parse command line arguments - Node.js</a></p>
+<p>原文档我觉得已经讲得很清楚了，我这里就简单提一下：</p>
+<ol>
+<li><code>process.argv</code> 会直接返回由跟在后面的参数组成的 array；</li>
+<li>第三方包 yargs 可以大大简化这一步骤。</li>
+</ol>
+<hr>
+<h2 id="字符拼接小妙招">字符拼接小妙招</h2>
+<p>用反单引号框起来后，用 <code>${变量名}</code> 来代替变量值，空格都会被保留。</p>
+<p>用起来很像 Python 里的 <code>format()</code> 方法。麻麻再也不用担心我用加号痛苦地连接字符串啦。</p>
+<hr>
+<h2 id="for-in-和-for-of">for in 和 for of</h2>
+<p><code>for in</code> 是给 object 用的；<br>
+<code>for of</code> 是给 array 用的。</p>
+<p>用错了会直接不执行哦。</p>
+<hr>
+<h2 id="写入文件">写入文件</h2>
+<p><a href="https://nodejs.org/en/knowledge/file-system/how-to-write-files-in-nodejs/">How do I write files in Node.js? - Node.js</a></p>
+<p>原文档也已经讲得很详细了。就是异步要稍微注意一下。如果之前异步整明白的话，读这个文档也没啥太大压力。</p>
+<hr>
+<h2 id="当事人-发言"><del>当事人</del> 发言</h2>
+<p>从10月13日开坑，到11月2日 wolf-bites-tweets v2.0.0 推出标志着填坑正式告一段落，这之间长达20多天。20天说长也不长说短也不短，虽然这些天来自学业的压力和部门安排的任务让我并没有大把的时间去做这个项目，在写这个项目的时候也遇到了很多困难和烦心事，但是经历下来我还是挺享受整个过程的。</p>
+<p>不知道为啥，我还是挺喜欢解决问题这一过程：从运用搜索引擎寻找资料，到查找一个 bug 背后产生的原因，再到根据已有的资料和别人的解决方法来想出一个适合自己的解决方法。这个过程的确很累，在外人也许看来我在整一些“没用的东西”，但是谁知道呢？或是说，这是因为我在为了实现自己一个小小的需求而“费劲”，是在真正为我自己做一些东西，而不是为了他人或是生计。这何尝不是一种乐趣呢？</p>
+<p>20天从入门 JavaScript 到写一个简单的项目，的确有一定的挑战。我也承认我写的项目也有很多不完善的地方，我也有很多东西需要去学习。学习之旅还很长，与君共勉。</p>
+<blockquote>
+<p>到头来，还是 Python 爱我。<br>
+—— Kreee</p>
+</blockquote>
+    
+</div>
+
+    
+<div class="footer">
+
+
+    
+        <div class="tags">
+            <i class="fa fa-tags"></i>
+            <div class="links">
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/javascript/">JavaScript</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/backend/">Backend</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/github/">GitHub</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/learning/">Learning</a>
+                    
+                
+                    
+                    
+                    <a href="https://blog.ohmykreee.top/tags/2021/">2021</a>
+                    
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+</article>
+
+        
+    </div>
+
+    
+        <div id="comments-container">
+            
+            
+
+            
+    <script src="https://giscus.app/client.js"
+        data-repo="ohmykreee/kreee-blog"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkzNzQxMjE4ODE="
+        data-category="Comments"
+        data-category-id="DIC_kwDOFkylmc4B_6vB"
+        data-mapping="og:title"
+        data-reactions-enabled="1"
+        data-emit-metadata=""
+        data-theme="light"
+        
+            data-lang="zh-CN"
+        
+        crossorigin="anonymous"
+        async>
+    </script>
+    <div id="giscus"></div>
+
+
+            
+
+        </div>
+    
+
+    </div>
+
+    
+<footer>
+    <div class="container">
+
+        
+        <div class="recent-posts">
+            <strong>最新帖子</strong>
+            <ul>
+                
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/frontend-dev-with-android-pad/">使用 Android Pad 进行（前端）开发</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/deploy-nextjs-static-page-to-github-pages/">关于部署 Next.js 静态网页到 GitHub Pages 有关注意事项</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-2.0.0/">wolf-bites-tweets 2.0.0 开发小记</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/notes-of-developing-wbt-and-wct/">wolf-bites-tweets 和 wolf-chews-tweets 开发小记</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/migrate-to-ubuntu-server/">将后端服务器系统迁移至 Ubuntu server</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/code/sim-keyboard-stroke/">模拟键盘输入</a>
+                    </li>
+                
+                    <li>
+                        <a href="https://blog.ohmykreee.top/article/music-player-in-hugo-page/">在 Hugo 里内嵌音乐播放器（APlayer）</a>
+                    </li>
+                
+            </ul>
+        </div>
+        
+
+        
+        <div class="categories">
+            <a href="/categories/"><strong>分类</strong></a>
+            <ul>
+                
+                <li>
+                    <a href="/categories/learning">Learning
+                        (10)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/code">Code
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/music">Music
+                        (1)</a>
+                </li>
+                
+                <li>
+                    <a href="/categories/study">Study
+                        (1)</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+
+        <div class="right">
+            
+            <div class="external-profiles">
+                <strong>社交媒体</strong>
+
+                
+                <a href="https://github.com/ohmykreee" target="_blank"><i class="fab fa-github"></i></a>
+                
+                <a href="https://twitter.com/kreeejiang" target="_blank"><i class="fab fa-twitter"></i></a>
+                
+                <a href="https://steamcommunity.com/id/kreeejiang/" target="_blank"><i class="fab fa-steam"></i></a>
+                
+                <a href="https://space.bilibili.com/361507684" target="_blank"><i class="fas fa-photo-video"></i></a>
+                
+                <a href="https://www.ohmykreee.top" target="_blank"><i class="fas fa-id-card-alt"></i></a>
+                
+            </div>
+            
+
+            
+
+            
+        </div>
+    </div>
+</footer>
+
+
+<div class="credits">
+    <div class="container">
+        <div class="copyright">
+            <a href="https://github.com/ohmykreee" target="_blank">
+                &copy;
+                
+                CC BY-NC 4.0
+                
+                by Kreee
+            </a>
+            
+        </div>
+        <div class="author">
+            <a href="https://github.com/Lednerb/bilberry-hugo-theme"
+                target="_blank">Bilberry Hugo Theme</a>
+        </div>
+    </div>
+</div>
+
+
+    
+
+    
+
+
+    <script src="https://blog.ohmykreee.top/theme.js"></script>
+
+    
+    
+    <script src="https://unpkg.com/cookieconsent@3/build/cookieconsent.min.js" type="application/javascript"></script>
+    
+    <script src="https://blog.ohmykreee.top/js/init-cookieconsent.js" type="application/javascript"></script>
+    
+    <script src="https://blog.ohmykreee.top/js/clarity-tracker.js" type="application/javascript"></script>
+    
+    
+
+    
+    <div id="activate-algolia-search" class="hidden">
+  <input type="hidden" id="algolia-search-appId" value="BYCFQKEA4W">
+  <input type="hidden" id="algolia-search-apiKey" value="5b8f1a1d7557fc3b1bc0d99efbaa22ce">
+  <input type="hidden" id="algolia-search-indexName" value="kreee-blog">
+  <input type="hidden" id="algolia-search-noSearchResults" value="什么都没找到。">
+
+  
+</div>
+
+    
+</body>
+
+</html>

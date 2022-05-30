@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statuses on Kreee&#39;s Blog</title>
+    <link>https://blog.ohmykreee.top/status/</link>
+    <description>Recent content in Statuses on Kreee&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 06 Jun 2021 16:58:19 +0800</lastBuildDate><atom:link href="https://blog.ohmykreee.top/status/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://blog.ohmykreee.top/status/fav-music/</link>
+      <pubDate>Sun, 06 Jun 2021 16:58:19 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/status/fav-music/</guid>
+      <description>最近的单曲循环：
+   -- </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://blog.ohmykreee.top/status/ready-to-go/</link>
+      <pubDate>Sat, 05 Jun 2021 22:36:46 +0800</pubDate>
+      
+      <guid>https://blog.ohmykreee.top/status/ready-to-go/</guid>
+      <description>决定建立一个独立的个人博客，撒花🎉🎉</description>
+    </item>
+    
+  </channel>
+</rss>
