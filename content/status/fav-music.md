@@ -15,4 +15,4 @@ author: "Kreee"
 <!-- <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/657139058&color=%230d0c09&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true"></iframe> -->
 
 -----
-<div id="ifLoadSakna"></div>
+<div id="ifLoadSakana"></div>

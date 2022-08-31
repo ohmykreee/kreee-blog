@@ -1,10 +1,10 @@
 var loadSakanaWidget = () => {
   import('/js/sakana-widget/sakana.min.js')
     .then(() => {
-      const saknaDiv = document.createElement('div')
-      saknaDiv.setAttribute('id', 'sakana-widget')
-      saknaDiv.style.cssText = 'position:fixed;bottom:5px;left:0;z-index:10;'
-      document.body.insertBefore(saknaDiv, document.body.firstChild)
+      const sakanaDiv = document.createElement('div')
+      sakanaDiv.setAttribute('id', 'sakana-widget')
+      sakanaDiv.style.cssText = 'position:fixed;bottom:5px;left:0;z-index:10;'
+      document.body.insertBefore(sakanaDiv, document.body.firstChild)
       new SakanaWidget().mount('#sakana-widget')
     })
 }
