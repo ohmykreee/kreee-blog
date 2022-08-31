@@ -24,7 +24,7 @@ DefaultContentLanguage = "zh-cn"
   # Files are imported in the order they appear here, after
   # theme.css and theme.js, respectively.
   css_modules = ['https://unpkg.com/cookieconsent@3/build/cookieconsent.min.css']
-  js_modules = ['https://unpkg.com/cookieconsent@3/build/cookieconsent.min.js', '/js/init-cookieconsent.js', '/js/clarity-tracker.js']
+  js_modules = ['https://unpkg.com/cookieconsent@3/build/cookieconsent.min.js', '/js/init-cookieconsent.js', '/js/clarity-tracker.js', '/js/init-sakana.js']
 
   # Description and meta data for the search engines
   author = "Kreee"
@@ -79,7 +79,7 @@ DefaultContentLanguage = "zh-cn"
 
   # Header configuration
     # your subtitle if you want to use any
-    subtitle = "Woof!"
+    subtitle = "Code with love ❤ and paws 🐾!"
 
     # if you want to use libravatar or gravatar for the header image
     # avatarEmail = "code@lednerb.de"
