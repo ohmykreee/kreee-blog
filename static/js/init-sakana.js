@@ -1,5 +1,5 @@
 var loadSakanaWidget = () => {
-  import('/js/sakna-widget/sakana.min.js')
+  import('/js/sakana-widget/sakana.min.js')
     .then(() => {
       const saknaDiv = document.createElement('div')
       saknaDiv.setAttribute('id', 'sakana-widget')
