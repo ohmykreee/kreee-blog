@@ -5,7 +5,11 @@ var loadSakanaWidget = () => {
       sakanaDiv.setAttribute('id', 'sakana-widget')
       sakanaDiv.style.cssText = 'position:fixed;bottom:5px;left:0;z-index:10;'
       document.body.insertBefore(sakanaDiv, document.body.firstChild)
-      new SakanaWidget().mount('#sakana-widget')
+      const SakanaWidgetClass = new SakanaWidget()
+      SakanaWidgetClass.mount('#sakana-widget')
+      addEventListener('unload', () => {
+        SakanaWidgetClass.unmount()
+      })
     })
 }
 
