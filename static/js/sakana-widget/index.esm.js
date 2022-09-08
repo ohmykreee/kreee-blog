@@ -15,7 +15,7 @@
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".sakana-widget *,.sakana-widget *::before,.sakana-widget *::after{box-sizing:border-box}.sakana-widget-wrapper{pointer-events:none;position:relative;width:100%;height:100%}.sakana-widget-app{pointer-events:none;position:relative}.sakana-widget-canvas{z-index:10;pointer-events:none;position:absolute}.sakana-widget-main{z-index:20;pointer-events:none;position:absolute;display:flex;flex-direction:column;justify-content:space-between;align-items:center}.sakana-widget-img{z-index:40;cursor:move;pointer-events:auto;position:relative;background:no-repeat 50% 50%;background-size:cover}.sakana-widget-ctrl{z-index:30;cursor:pointer;pointer-events:auto;position:relative;height:24px;width:112px;display:flex;border-radius:4px;background-color:#ddd;box-shadow:0 8px 24px rgba(0,0,0,.1)}.sakana-widget-ctrl-item{height:24px;width:28px;display:flex;justify-content:center;align-items:center;color:#555;background-color:rgba(0,0,0,0)}.sakana-widget-ctrl-item:hover{color:#555;background-color:rgba(255,255,255,.25)}.sakana-widget-icon{height:18px;width:18px}.sakana-widget-icon--rotate{animation:sakana-widget-spin 2s linear infinite}@keyframes sakana-widget-spin{100%{transform:rotate(360deg)}}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".sakana-widget *,.sakana-widget *::before,.sakana-widget *::after{box-sizing:border-box}.sakana-widget-wrapper{pointer-events:none;position:relative;width:100%;height:100%}.sakana-widget-app{pointer-events:none;position:relative}.sakana-widget-canvas{z-index:10;pointer-events:none;position:absolute;top:50%;left:50%;transform:translate(-50%, -50%)}.sakana-widget-main{z-index:20;pointer-events:none;position:absolute;display:flex;flex-direction:column;justify-content:space-between;align-items:center}.sakana-widget-img{z-index:40;cursor:move;pointer-events:auto;position:relative;background:no-repeat 50% 50%;background-size:cover}.sakana-widget-ctrl{z-index:30;cursor:pointer;pointer-events:auto;position:relative;height:24px;width:112px;display:flex;border-radius:4px;background-color:#ddd;box-shadow:0 8px 24px rgba(0,0,0,.1)}.sakana-widget-ctrl-item{height:24px;width:28px;display:flex;justify-content:center;align-items:center;color:#555;background-color:rgba(0,0,0,0)}.sakana-widget-ctrl-item:hover{color:#555;background-color:rgba(255,255,255,.25)}.sakana-widget-icon{height:18px;width:18px}.sakana-widget-icon--rotate{animation:sakana-widget-spin 2s linear infinite}@keyframes sakana-widget-spin{100%{transform:rotate(360deg)}}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1275,15 +1275,349 @@ Object.keys(characters).forEach((key) => {
   const _char = characters[key];
   _characters[key] = cloneDeep(_char);
 });
-class SakanaWidget {
+const _SakanaWidget = class {
   constructor(options = {}) {
     this._lastRunUnix = Date.now();
     this._frameUnix = 1e3 / 60;
     this._running = true;
     this._magicForceTimeout = 0;
     this._magicForceEnabled = false;
-    this._domEl = null;
     this._resizeObserver = null;
+    this._updateLimit = (size) => {
+      let maxR = size / 5;
+      if (maxR < 30) {
+        maxR = 30;
+      } else if (maxR > 60) {
+        maxR = 60;
+      }
+      const maxY = size / 4;
+      const minY = -maxY;
+      this._limit = { maxR, maxY, minY };
+    };
+    this._updateSize = (size) => {
+      this._options.size = size;
+      this._imageSize = this._options.size / 1.25;
+      this._canvasSize = this._options.size * 1.5;
+      this._domApp.style.width = `${size}px`;
+      this._domApp.style.height = `${size}px`;
+      this._domCanvas.style.width = `${this._canvasSize}px`;
+      this._domCanvas.style.height = `${this._canvasSize}px`;
+      const ctx = getCanvasCtx(this._domCanvas, this._canvasSize);
+      if (!ctx) {
+        throw new Error("Invalid canvas context");
+      }
+      this._domCanvasCtx = ctx;
+      this._draw();
+      this._domMain.style.width = `${size}px`;
+      this._domMain.style.height = `${size}px`;
+      this._domImage.style.width = `${this._imageSize}px`;
+      this._domImage.style.height = `${this._imageSize}px`;
+      this._domImage.style.transformOrigin = `50% ${size}px`;
+    };
+    this._updateDom = () => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "sakana-widget-wrapper";
+      this._domWrapper = wrapper;
+      const app = document.createElement("div");
+      app.className = "sakana-widget-app";
+      this._domApp = app;
+      wrapper.appendChild(app);
+      const canvas = document.createElement("canvas");
+      canvas.className = "sakana-widget-canvas";
+      this._domCanvas = canvas;
+      app.appendChild(canvas);
+      const main = document.createElement("div");
+      main.className = "sakana-widget-main";
+      this._domMain = main;
+      app.appendChild(main);
+      const img = document.createElement("div");
+      img.className = "sakana-widget-img";
+      img.style.backgroundImage = `url('${this._image}')`;
+      this._domImage = img;
+      main.appendChild(img);
+      const ctrl = document.createElement("div");
+      ctrl.className = "sakana-widget-ctrl";
+      if (this._options.controls) {
+        main.appendChild(ctrl);
+      }
+      const itemClass = "sakana-widget-ctrl-item";
+      const person = document.createElement("div");
+      person.className = itemClass;
+      person.innerHTML = person_namespaceObject;
+      this._domCtrlPerson = person;
+      ctrl.appendChild(person);
+      const magic = document.createElement("div");
+      magic.className = itemClass;
+      magic.innerHTML = sync_namespaceObject;
+      this._domCtrlMagic = magic;
+      ctrl.appendChild(magic);
+      const github = document.createElement("a");
+      github.className = itemClass;
+      github.href = "//github.com/dsrkafuu/sakana-widget";
+      github.target = "_blank";
+      github.innerHTML = github_namespaceObject;
+      ctrl.appendChild(github);
+      const close = document.createElement("div");
+      close.className = itemClass;
+      close.innerHTML = close_namespaceObject;
+      this._domCtrlClose = close;
+      ctrl.appendChild(close);
+    };
+    this._calcCenterPoint = (degree, radius, x, y) => {
+      const radian = Math.PI / 180 * degree;
+      const cos = Math.cos(radian);
+      const sin = Math.sin(radian);
+      const nx = sin * radius + cos * x - sin * y;
+      const ny = cos * radius - cos * y - sin * x;
+      return { nx, ny };
+    };
+    this._draw = () => {
+      const { r, y } = this._state;
+      const { size, controls, stroke } = this._options;
+      const img = this._domImage;
+      const imgSize = this._imageSize;
+      const ctx = this._domCanvasCtx;
+      const x = r * 1;
+      img.style.transform = `rotate(${r}deg) translateX(${x}px) translateY(${y}px)`;
+      ctx.clearRect(0, 0, this._canvasSize, this._canvasSize);
+      ctx.save();
+      ctx.translate(this._canvasSize / 2, size + (this._canvasSize - size) / 2);
+      ctx.strokeStyle = stroke.color;
+      ctx.lineWidth = stroke.width;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      if (controls) {
+        ctx.moveTo(0, -10);
+      } else {
+        ctx.moveTo(0, 10);
+      }
+      const radius = size - imgSize / 2;
+      const { nx, ny } = this._calcCenterPoint(r, radius, x, y);
+      ctx.lineTo(nx, -ny);
+      ctx.stroke();
+      ctx.restore();
+    };
+    this._run = () => {
+      let originRotate = this._options.rotate;
+      originRotate = Math.min(120, Math.max(0, originRotate));
+      const cut = this._options.threshold;
+      if (!this._running) {
+        return;
+      }
+      let { r, y, t, w } = this._state;
+      const { d, i } = this._state;
+      const thisRunUnix = Date.now();
+      let _inertia = i;
+      const lastRunUnixDiff = thisRunUnix - this._lastRunUnix;
+      if (lastRunUnixDiff < 16) {
+        _inertia = i / this._frameUnix * lastRunUnixDiff;
+      }
+      this._lastRunUnix = thisRunUnix;
+      w = w - r * 2 - originRotate;
+      r = r + w * _inertia * 1.2;
+      this._state.w = w * d;
+      this._state.r = r;
+      t = t - y * 2;
+      y = y + t * _inertia * 2;
+      this._state.t = t * d;
+      this._state.y = y;
+      if (Math.max(
+        Math.abs(this._state.w),
+        Math.abs(this._state.r),
+        Math.abs(this._state.t),
+        Math.abs(this._state.y)
+      ) < cut) {
+        this._running = false;
+        return;
+      }
+      this._draw();
+      requestAnimationFrame(this._run);
+    };
+    this._move = (x, y) => {
+      const { maxR, maxY, minY } = this._limit;
+      let r = x * this._state.s;
+      r = Math.max(-maxR, r);
+      r = Math.min(maxR, r);
+      y = y * this._state.s * 2;
+      y = Math.max(minY, y);
+      y = Math.min(maxY, y);
+      this._state.r = r;
+      this._state.y = y;
+      this._state.w = 0;
+      this._state.t = 0;
+      this._draw();
+    };
+    this._onMouseDown = (e) => {
+      e.preventDefault();
+      this._running = false;
+      const { pageY } = e;
+      const _downPageY = pageY;
+      this._state.w = 0;
+      this._state.t = 0;
+      const onMouseMove = (e2) => {
+        const rect = this._domMain.getBoundingClientRect();
+        const leftCenter = rect.left + rect.width / 2;
+        const { pageX, pageY: pageY2 } = e2;
+        const x = pageX - leftCenter;
+        const y = pageY2 - _downPageY;
+        this._move(x, y);
+      };
+      const onMouseUp = () => {
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
+        this._running = true;
+        requestAnimationFrame(this._run);
+      };
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
+    };
+    this._onTouchStart = (e) => {
+      e.preventDefault();
+      this._running = false;
+      if (!e.touches[0]) {
+        return;
+      }
+      const { pageY } = e.touches[0];
+      const _downPageY = pageY;
+      this._state.w = 0;
+      this._state.t = 0;
+      const onTouchMove = (e2) => {
+        if (!e2.touches[0]) {
+          return;
+        }
+        const rect = this._domMain.getBoundingClientRect();
+        const leftCenter = rect.left + rect.width / 2;
+        const { pageX, pageY: pageY2 } = e2.touches[0];
+        const x = pageX - leftCenter;
+        const y = pageY2 - _downPageY;
+        this._move(x, y);
+      };
+      const onTouchEnd = () => {
+        document.removeEventListener("touchmove", onTouchMove);
+        document.removeEventListener("touchend", onTouchEnd);
+        this._running = true;
+        requestAnimationFrame(this._run);
+      };
+      document.addEventListener("touchmove", onTouchMove);
+      document.addEventListener("touchend", onTouchEnd);
+    };
+    this._magicForce = () => {
+      if (Math.random() < 0.1) {
+        const available = Object.keys(_characters);
+        const index = Math.floor(Math.random() * available.length);
+        const _char = available[index];
+        this.setCharacter(_char);
+      } else {
+        this._state.t = this._state.t + (Math.random() - 0.5) * 150;
+        this._state.w = this._state.w + (Math.random() - 0.5) * 200;
+      }
+      if (!this._running) {
+        this._running = true;
+        requestAnimationFrame(this._run);
+      }
+      this._magicForceTimeout = window.setTimeout(
+        this._magicForce,
+        Math.random() * 3e3 + 2e3
+      );
+    };
+    this.triggetAutoMode = () => {
+      this._magicForceEnabled = !this._magicForceEnabled;
+      const icon = this._domCtrlMagic.querySelector("svg");
+      if (this._magicForceEnabled) {
+        icon.classList.add("sakana-widget-icon--rotate");
+      } else {
+        icon.classList.remove("sakana-widget-icon--rotate");
+      }
+      clearTimeout(this._magicForceTimeout);
+      if (this._magicForceEnabled) {
+        this._magicForceTimeout = window.setTimeout(
+          this._magicForce,
+          Math.random() * 1e3 + 500
+        );
+      }
+    };
+    this.setState = (state) => {
+      if (!this._state) {
+        this._state = {};
+      }
+      this._state = mergeDeep(this._state, cloneDeep(state));
+      return this;
+    };
+    this.setCharacter = (name) => {
+      const targetChar = _characters[name];
+      if (!targetChar) {
+        throw new Error(`invalid character ${name}`);
+      }
+      this._char = name;
+      this._image = targetChar.image;
+      this.setState(targetChar.initialState);
+      if (this._domImage) {
+        this._domImage.style.backgroundImage = `url('${this._image}')`;
+      }
+      return this;
+    };
+    this.nextCharacter = () => {
+      const _chars = Object.keys(_SakanaWidget.getCharacters()).sort();
+      const curCharIdx = _chars.indexOf(this._char);
+      const nextCharIdx = (curCharIdx + 1) % _chars.length;
+      const nextChar = _chars[nextCharIdx];
+      this.setCharacter(nextChar);
+      return this;
+    };
+    this._onResize = (rect) => {
+      let newSize = Math.min(rect.width, rect.height);
+      newSize = Math.max(120, newSize);
+      this._updateSize(newSize);
+      this._updateLimit(newSize);
+    };
+    this.mount = (el) => {
+      let _el = null;
+      if (typeof el === "string") {
+        _el = document.querySelector(el);
+      }
+      if (!_el) {
+        throw new Error("Invalid mounting element");
+      }
+      const parent = _el.parentNode;
+      if (!parent) {
+        throw new Error("Invalid mounting element parent");
+      }
+      this._domImage.addEventListener("mousedown", this._onMouseDown);
+      this._domImage.addEventListener("touchstart", this._onTouchStart);
+      this._domCtrlPerson.addEventListener("click", this.nextCharacter);
+      this._domCtrlMagic.addEventListener("click", this.triggetAutoMode);
+      this._domCtrlClose.addEventListener("click", this.unmount);
+      if (this._options.autoFit) {
+        this._onResize(this._domWrapper.getBoundingClientRect());
+        this._resizeObserver = new ResizeObserver(
+          throttle((entries) => {
+            if (!entries || !entries[0])
+              return;
+            this._onResize(entries[0].contentRect);
+          })
+        );
+        this._resizeObserver.observe(this._domWrapper);
+      }
+      const _newEl = _el.cloneNode(false);
+      _newEl.appendChild(this._domWrapper);
+      parent.replaceChild(_newEl, _el);
+      requestAnimationFrame(this._run);
+      return this;
+    };
+    this.unmount = () => {
+      this._domImage.removeEventListener("mousedown", this._onMouseDown);
+      this._domImage.removeEventListener("touchstart", this._onTouchStart);
+      this._domCtrlPerson.removeEventListener("click", this.nextCharacter);
+      this._domCtrlMagic.removeEventListener("click", this.triggetAutoMode);
+      this._domCtrlClose.removeEventListener("click", this.unmount);
+      this._resizeObserver && this._resizeObserver.disconnect();
+      const _el = this._domWrapper.parentNode;
+      if (!_el) {
+        throw new Error("Invalid mounting element");
+      }
+      _el.removeChild(this._domWrapper);
+      return this;
+    };
     this._options = cloneDeep(
       defaultOptions
     );
@@ -1292,375 +1626,23 @@ class SakanaWidget {
     this._updateDom();
     this._updateSize(this._options.size);
     this._updateLimit(this._options.size);
-    this._updateLimit = this._updateLimit.bind(this);
-    this._updateSize = this._updateSize.bind(this);
-    this._updateDom = this._updateDom.bind(this);
-    this._calcCenterPoint = this._calcCenterPoint.bind(this);
-    this._draw = this._draw.bind(this);
-    this._run = this._run.bind(this);
-    this._move = this._move.bind(this);
-    this._onMouseDown = this._onMouseDown.bind(this);
-    this._onTouchStart = this._onTouchStart.bind(this);
-    this._magicForce = this._magicForce.bind(this);
-    this.triggetAutoMode = this.triggetAutoMode.bind(this);
-    this.setState = this.setState.bind(this);
-    this.setCharacter = this.setCharacter.bind(this);
-    this.nextCharacter = this.nextCharacter.bind(this);
-    this._onResize = this._onResize.bind(this);
-    this.mount = this.mount.bind(this);
-    this.unmount = this.unmount.bind(this);
   }
-  static getCharacter(name) {
-    return _characters[name] || null;
-  }
-  static getCharacters() {
-    return _characters;
-  }
-  static registerCharacter(name, character) {
-    const _char = cloneDeep(character);
-    let inertia = _char.initialState.i;
-    inertia = Math.min(0.5, Math.max(0, inertia));
-    _char.initialState.i = inertia;
-    _characters[name] = _char;
-  }
-  _updateLimit(size) {
-    let maxR = size / 5;
-    if (maxR < 30) {
-      maxR = 30;
-    } else if (maxR > 60) {
-      maxR = 60;
-    }
-    const maxY = size / 4;
-    const minY = -maxY;
-    this._limit = { maxR, maxY, minY };
-  }
-  _updateSize(size) {
-    this._options.size = size;
-    this._imageSize = this._options.size / 1.25;
-    this._domApp.style.width = `${size}px`;
-    this._domApp.style.height = `${size}px`;
-    this._domCanvas.style.width = `${size}px`;
-    this._domCanvas.style.height = `${size}px`;
-    const ctx = getCanvasCtx(this._domCanvas, size);
-    if (!ctx) {
-      throw new Error("Invalid canvas context");
-    }
-    this._domCanvasCtx = ctx;
-    this._draw();
-    this._domMain.style.width = `${size}px`;
-    this._domMain.style.height = `${size}px`;
-    this._domImage.style.width = `${this._imageSize}px`;
-    this._domImage.style.height = `${this._imageSize}px`;
-    this._domImage.style.transformOrigin = `50% ${size}px`;
-  }
-  _updateDom() {
-    const wrapper = document.createElement("div");
-    wrapper.className = "sakana-widget-wrapper";
-    this._domWrapper = wrapper;
-    const app = document.createElement("div");
-    app.className = "sakana-widget-app";
-    this._domApp = app;
-    wrapper.appendChild(app);
-    const canvas = document.createElement("canvas");
-    canvas.className = "sakana-widget-canvas";
-    this._domCanvas = canvas;
-    app.appendChild(canvas);
-    const main = document.createElement("div");
-    main.className = "sakana-widget-main";
-    this._domMain = main;
-    app.appendChild(main);
-    const img = document.createElement("div");
-    img.className = "sakana-widget-img";
-    img.style.backgroundImage = `url('${this._image}')`;
-    this._domImage = img;
-    main.appendChild(img);
-    const ctrl = document.createElement("div");
-    ctrl.className = "sakana-widget-ctrl";
-    this._domCtrl = ctrl;
-    if (this._options.controls) {
-      main.appendChild(ctrl);
-    }
-    const itemClass = "sakana-widget-ctrl-item";
-    const person = document.createElement("div");
-    person.className = itemClass;
-    person.innerHTML = person_namespaceObject;
-    this._domCtrlPerson = person;
-    ctrl.appendChild(person);
-    const magic = document.createElement("div");
-    magic.className = itemClass;
-    magic.innerHTML = sync_namespaceObject;
-    this._domCtrlMagic = magic;
-    ctrl.appendChild(magic);
-    const github = document.createElement("a");
-    github.className = itemClass;
-    github.href = "//github.com/dsrkafuu/sakana-widget";
-    github.target = "_blank";
-    github.innerHTML = github_namespaceObject;
-    this._domCtrlGitHub = github;
-    ctrl.appendChild(github);
-    const close = document.createElement("div");
-    close.className = itemClass;
-    close.innerHTML = close_namespaceObject;
-    this._domCtrlClose = close;
-    ctrl.appendChild(close);
-  }
-  _calcCenterPoint(degree, radius, x, y) {
-    const radian = Math.PI / 180 * degree;
-    const cos = Math.cos(radian);
-    const sin = Math.sin(radian);
-    const nx = sin * radius + cos * x - sin * y;
-    const ny = cos * radius - cos * y - sin * x;
-    return { nx, ny };
-  }
-  _draw() {
-    const { r, y } = this._state;
-    const { size, controls, stroke } = this._options;
-    const img = this._domImage;
-    const imgSize = this._imageSize;
-    const ctx = this._domCanvasCtx;
-    const x = r * 1;
-    img.style.transform = `rotate(${r}deg) translateX(${x}px) translateY(${y}px)`;
-    ctx.clearRect(0, 0, size, size);
-    ctx.save();
-    ctx.translate(size / 2, size);
-    ctx.strokeStyle = stroke.color;
-    ctx.lineWidth = stroke.width;
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    if (controls) {
-      ctx.moveTo(0, -10);
-    } else {
-      ctx.moveTo(0, 10);
-    }
-    const radius = size - imgSize / 2;
-    const { nx, ny } = this._calcCenterPoint(r, radius, x, y);
-    ctx.lineTo(nx, -ny);
-    ctx.stroke();
-    ctx.restore();
-  }
-  _run() {
-    let originRotate = this._options.rotate;
-    originRotate = Math.min(120, Math.max(0, originRotate));
-    const cut = this._options.threshold;
-    if (!this._running) {
-      return;
-    }
-    let { r, y, t, w } = this._state;
-    const { d, i } = this._state;
-    const thisRunUnix = Date.now();
-    let _inertia = i;
-    const lastRunUnixDiff = thisRunUnix - this._lastRunUnix;
-    if (lastRunUnixDiff < 16) {
-      _inertia = i / this._frameUnix * lastRunUnixDiff;
-    }
-    this._lastRunUnix = thisRunUnix;
-    w = w - r * 2 - originRotate;
-    r = r + w * _inertia * 1.2;
-    this._state.w = w * d;
-    this._state.r = r;
-    t = t - y * 2;
-    y = y + t * _inertia * 2;
-    this._state.t = t * d;
-    this._state.y = y;
-    if (Math.max(
-      Math.abs(this._state.w),
-      Math.abs(this._state.r),
-      Math.abs(this._state.t),
-      Math.abs(this._state.y)
-    ) < cut) {
-      this._running = false;
-      return;
-    }
-    this._draw();
-    requestAnimationFrame(this._run);
-  }
-  _move(x, y) {
-    const { maxR, maxY, minY } = this._limit;
-    let r = x * this._state.s;
-    r = Math.max(-maxR, r);
-    r = Math.min(maxR, r);
-    y = y * this._state.s * 2;
-    y = Math.max(minY, y);
-    y = Math.min(maxY, y);
-    this._state.r = r;
-    this._state.y = y;
-    this._state.w = 0;
-    this._state.t = 0;
-    this._draw();
-  }
-  _onMouseDown(e) {
-    e.preventDefault();
-    this._running = false;
-    const { pageY } = e;
-    const _downPageY = pageY;
-    this._state.w = 0;
-    this._state.t = 0;
-    const onMouseMove = (e2) => {
-      const rect = this._domMain.getBoundingClientRect();
-      const leftCenter = rect.left + rect.width / 2;
-      const { pageX, pageY: pageY2 } = e2;
-      const x = pageX - leftCenter;
-      const y = pageY2 - _downPageY;
-      this._move(x, y);
-    };
-    const onMouseUp = () => {
-      document.removeEventListener("mousemove", onMouseMove);
-      document.removeEventListener("mouseup", onMouseUp);
-      this._running = true;
-      requestAnimationFrame(this._run);
-    };
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-  }
-  _onTouchStart(e) {
-    e.preventDefault();
-    this._running = false;
-    if (!e.touches[0]) {
-      return;
-    }
-    const { pageY } = e.touches[0];
-    const _downPageY = pageY;
-    this._state.w = 0;
-    this._state.t = 0;
-    const onTouchMove = (e2) => {
-      if (!e2.touches[0]) {
-        return;
-      }
-      const rect = this._domMain.getBoundingClientRect();
-      const leftCenter = rect.left + rect.width / 2;
-      const { pageX, pageY: pageY2 } = e2.touches[0];
-      const x = pageX - leftCenter;
-      const y = pageY2 - _downPageY;
-      this._move(x, y);
-    };
-    const onTouchEnd = () => {
-      document.removeEventListener("touchmove", onTouchMove);
-      document.removeEventListener("touchend", onTouchEnd);
-      this._running = true;
-      requestAnimationFrame(this._run);
-    };
-    document.addEventListener("touchmove", onTouchMove);
-    document.addEventListener("touchend", onTouchEnd);
-  }
-  _magicForce() {
-    if (Math.random() < 0.1) {
-      const available = Object.keys(_characters);
-      const index = Math.floor(Math.random() * available.length);
-      const _char = available[index];
-      this.setCharacter(_char);
-    } else {
-      this._state.t = this._state.t + (Math.random() - 0.5) * 150;
-      this._state.w = this._state.w + (Math.random() - 0.5) * 200;
-    }
-    if (!this._running) {
-      this._running = true;
-      requestAnimationFrame(this._run);
-    }
-    this._magicForceTimeout = window.setTimeout(
-      this._magicForce,
-      Math.random() * 3e3 + 2e3
-    );
-  }
-  triggetAutoMode() {
-    this._magicForceEnabled = !this._magicForceEnabled;
-    const icon = this._domCtrlMagic.querySelector("svg");
-    if (this._magicForceEnabled) {
-      icon.classList.add("sakana-widget-icon--rotate");
-    } else {
-      icon.classList.remove("sakana-widget-icon--rotate");
-    }
-    clearTimeout(this._magicForceTimeout);
-    if (this._magicForceEnabled) {
-      this._magicForceTimeout = window.setTimeout(
-        this._magicForce,
-        Math.random() * 1e3 + 500
-      );
-    }
-  }
-  setState(state) {
-    if (!this._state) {
-      this._state = {};
-    }
-    this._state = mergeDeep(this._state, cloneDeep(state));
-    return this;
-  }
-  setCharacter(name) {
-    const targetChar = _characters[name];
-    if (!targetChar) {
-      throw new Error(`invalid character ${name}`);
-    }
-    this._char = name;
-    this._image = targetChar.image;
-    this.setState(targetChar.initialState);
-    if (this._domImage) {
-      this._domImage.style.backgroundImage = `url('${this._image}')`;
-    }
-    return this;
-  }
-  nextCharacter() {
-    const _chars = Object.keys(SakanaWidget.getCharacters()).sort();
-    const curCharIdx = _chars.indexOf(this._char);
-    const nextCharIdx = (curCharIdx + 1) % _chars.length;
-    const nextChar = _chars[nextCharIdx];
-    this.setCharacter(nextChar);
-    return this;
-  }
-  _onResize(rect) {
-    let newSize = Math.min(rect.width, rect.height);
-    newSize = Math.max(120, newSize);
-    this._updateSize(newSize);
-    this._updateLimit(newSize);
-  }
-  mount(el) {
-    let _el = null;
-    if (typeof el === "string") {
-      _el = document.querySelector(el);
-    }
-    if (!_el) {
-      throw new Error("Invalid mounting element");
-    }
-    this._domEl = _el;
-    const parent = _el.parentNode;
-    if (!parent) {
-      throw new Error("Invalid mounting element parent");
-    }
-    this._domImage.addEventListener("mousedown", this._onMouseDown);
-    this._domImage.addEventListener("touchstart", this._onTouchStart);
-    this._domCtrlPerson.addEventListener("click", this.nextCharacter);
-    this._domCtrlMagic.addEventListener("click", this.triggetAutoMode);
-    this._domCtrlClose.addEventListener("click", this.unmount);
-    if (this._options.autoFit) {
-      this._onResize(this._domWrapper.getBoundingClientRect());
-      this._resizeObserver = new ResizeObserver(
-        throttle((entries) => {
-          if (!entries || !entries[0])
-            return;
-          this._onResize(entries[0].contentRect);
-        })
-      );
-      this._resizeObserver.observe(this._domWrapper);
-    }
-    const _newEl = _el.cloneNode(false);
-    _newEl.appendChild(this._domWrapper);
-    parent.replaceChild(_newEl, _el);
-    requestAnimationFrame(this._run);
-    return this;
-  }
-  unmount() {
-    this._domImage.removeEventListener("mousedown", this._onMouseDown);
-    this._domImage.removeEventListener("touchstart", this._onTouchStart);
-    this._domCtrlPerson.removeEventListener("click", this.nextCharacter);
-    this._domCtrlMagic.removeEventListener("click", this.triggetAutoMode);
-    this._domCtrlClose.removeEventListener("click", this.unmount);
-    this._resizeObserver && this._resizeObserver.disconnect();
-    const _el = this._domWrapper.parentNode;
-    if (!_el) {
-      throw new Error("Invalid mounting element");
-    }
-    _el.removeChild(this._domWrapper);
-    return this;
-  }
-}
+};
+let SakanaWidget = _SakanaWidget;
+SakanaWidget.getCharacter = (name) => {
+  const _char = _characters[name];
+  return _char ? cloneDeep(_char) : null;
+};
+SakanaWidget.getCharacters = () => {
+  return cloneDeep(_characters);
+};
+SakanaWidget.registerCharacter = (name, character) => {
+  const _char = cloneDeep(character);
+  let inertia = _char.initialState.i;
+  inertia = Math.min(0.5, Math.max(0, inertia));
+  _char.initialState.i = inertia;
+  _characters[name] = _char;
+};
 /* harmony default export */ const src_0 = (SakanaWidget);
 
 })();

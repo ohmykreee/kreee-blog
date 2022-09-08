@@ -1,7 +1,5 @@
 /*! sakana-widget | DSRKafuU (https://dsrkafuu.net) | Copyright (c) MIT License */
 import './index.scss';
-import { ResizeObserver } from '@juggle/resize-observer';
-import type { RequiredDeep } from './utils';
 import type { SakanaWidgetCharacter, SakanaWidgetState } from './characters';
 interface SakanaWidgetOptions {
     /**
@@ -15,7 +13,7 @@ interface SakanaWidgetOptions {
     /**
      * default character, default to `chisato`
      */
-    character?: 'chisato' | 'takina';
+    character?: 'chisato' | 'takina' | string;
     /**
      * controls bar, default to `true`
      */
@@ -40,46 +38,40 @@ interface SakanaWidgetOptions {
  * widget instance class
  */
 declare class SakanaWidget {
-    _options: RequiredDeep<SakanaWidgetOptions>;
-    _imageSize: number;
-    _limit: {
-        maxR: number;
-        maxY: number;
-        minY: number;
-    };
-    _lastRunUnix: number;
-    _frameUnix: number;
-    _running: boolean;
-    _magicForceTimeout: number;
-    _magicForceEnabled: boolean;
-    _char: string;
-    _image: string;
-    _state: SakanaWidgetState;
-    _domEl: HTMLElement | null;
-    _domWrapper: HTMLDivElement;
-    _domApp: HTMLDivElement;
-    _domCanvas: HTMLCanvasElement;
-    _domCanvasCtx: CanvasRenderingContext2D;
-    _domMain: HTMLDivElement;
-    _domImage: HTMLDivElement;
-    _domCtrl: HTMLDivElement;
-    _domCtrlPerson: HTMLDivElement;
-    _domCtrlMagic: HTMLDivElement;
-    _domCtrlGitHub: HTMLAnchorElement;
-    _domCtrlClose: HTMLDivElement;
-    _resizeObserver: ResizeObserver | null;
+    private _options;
+    private _imageSize;
+    private _canvasSize;
+    private _limit;
+    private _lastRunUnix;
+    private _frameUnix;
+    private _running;
+    private _magicForceTimeout;
+    private _magicForceEnabled;
+    private _char;
+    private _image;
+    private _state;
+    private _domWrapper;
+    private _domApp;
+    private _domCanvas;
+    private _domCanvasCtx;
+    private _domMain;
+    private _domImage;
+    private _domCtrlPerson;
+    private _domCtrlMagic;
+    private _domCtrlClose;
+    private _resizeObserver;
     /**
      * @public
      * @static
      * get data of a registered character
      */
-    static getCharacter(name: string): SakanaWidgetCharacter | null;
+    static getCharacter: (name: string) => SakanaWidgetCharacter | null;
     /**
      * @public
      * @static
      * get all registered character
      */
-    static getCharacters(): {
+    static getCharacters: () => {
         [key: string]: SakanaWidgetCharacter;
     };
     /**
@@ -87,96 +79,93 @@ declare class SakanaWidget {
      * @static
      * registered a new character
      */
-    static registerCharacter(name: string, character: SakanaWidgetCharacter): void;
+    static registerCharacter: (name: string, character: SakanaWidgetCharacter) => void;
     constructor(options?: SakanaWidgetOptions);
     /**
      * @private
      * calculate limit and update from size
      */
-    _updateLimit(size: number): void;
+    private _updateLimit;
     /**
      * @private
      * refresh widget size
      */
-    _updateSize(size: number): void;
+    private _updateSize;
     /**
      * @private
      * create widget dom elements
      */
-    _updateDom(): void;
+    private _updateDom;
     /**
      * @private
      * calculate center of the image
      */
-    _calcCenterPoint(degree: number, radius: number, x: number, y: number): {
-        nx: number;
-        ny: number;
-    };
+    private _calcCenterPoint;
     /**
      * @private
      * draw a frame
      */
-    _draw(): void;
+    private _draw;
     /**
      * @private
      * run the widget in animation frame
      */
-    _run(): void;
+    private _run;
     /**
      * @private
      * manually move the widget
      */
-    _move(x: number, y: number): void;
+    private _move;
     /**
      * @private
      * handle mouse down event
      */
-    _onMouseDown(e: MouseEvent): void;
+    private _onMouseDown;
     /**
      * @private
      * handle touch start event
      */
-    _onTouchStart(e: TouchEvent): void;
+    private _onTouchStart;
     /**
      * @private
      * do a force on widget (for auto mode)
      */
-    _magicForce(): void;
+    private _magicForce;
     /**
      * @public
      * switch the auto mode
      */
-    triggetAutoMode(): void;
+    triggetAutoMode: () => void;
     /**
      * @public
      * set current state of widget
      */
-    setState(state: Partial<SakanaWidgetState>): this;
+    setState: (state: Partial<SakanaWidgetState>) => this;
     /**
      * @public
      * set current character of widget
      */
-    setCharacter(name: string): this;
+    setCharacter: (name: string) => this;
     /**
      * @public
      * set to next character of widget
      */
-    nextCharacter(): this;
+    nextCharacter: () => this;
     /**
      * @private
      * handle widget resize
      */
-    _onResize(rect: DOMRect): void;
+    _onResize: (rect: DOMRect) => void;
     /**
      * @public
      * mount the widget
      */
-    mount(el: HTMLElement | string): this;
+    mount: (el: HTMLElement | string) => this;
     /**
      * @public
      * unmount the widget
      */
-    unmount(): this;
+    unmount: () => this;
 }
 export default SakanaWidget;
 export type { SakanaWidgetCharacter, SakanaWidgetState, SakanaWidgetOptions };
