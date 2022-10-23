@@ -55,6 +55,24 @@ git submodule foreach git pull    #子模块更新
 ```
 
 -----
+## Linux (Ubuntu) 操作相关
+### 更改当前环境的 Java 版本
+```bash
+sudo update-alternatives --config java
+```
+
+### 创建无 Shell 的用户
+根据 [nobody - Ubuntu Wiki](https://wiki.ubuntu.com/nobody)，不建议将程序的运行权限设置为 `nobody:nogroup`，而是额外创建一个新的用户组。
+
+（没办法偷懒了呜呜呜）
+
+（方法来自 [How can I create a non-login user? - superuser](https://superuser.com/questions/77617/how-can-i-create-a-non-login-user)）
+```bash
+sudo useradd -r <username>
+```
+将会创建一个组名和用户名都为 `<username>` 的用户，且无用户目录。
+
+-----
 ## Certbot
 ### dns-challenge 自签名
 ```bash
