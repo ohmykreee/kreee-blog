@@ -1,6 +1,6 @@
 ---
-title: "PVE、OpnSense、Ubuntu Server设置小记"
-date: 2022-12-14T18:39:00+08:00
+title: "PVE、OPNSense、Ubuntu Server设置小记"
+date: 2022-12-24T18:39:00+08:00
 draft: false
 
 categories: ['Learning']
