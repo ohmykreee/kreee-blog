@@ -58,6 +58,16 @@ for g in `find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V`; do
 done;
 ```
 
+### 硬件直通故障排除
+由于我有一张无线网卡，想要直通到 OPNSense 所在的虚拟机中。而直接设置直通的话 qemu 会报错：`failed to add PCI capability 0x11[0x70]@0x90: table & pba overlap, or they don't fit in BARs, or don't align`。
+
+这里就需要多做一步：修改 pve 的 `/etc/pve/qemu-server/[虚拟机ID].conf`，在文件一行加上：
+```conf
+# 这里无线网卡在虚拟机中分配到的是 hostpci4，按需修改
+args: -set device.hostpci4.x-msix-relocation=bar2
+```
+更多信息可以参考：[Failed to PCI passthrough SSD with SMI SM2262 controller. - Kernel.org Bugzilla](https://bugzilla.kernel.org/show_bug.cgi?id=202055#c47)、[PCIe Passthrough of Atheros AR9280 - Promox Forums](https://forum.proxmox.com/threads/pcie-passthrough-of-atheros-ar9280.45012/)
+
 -----
 ## 安装和设置 OPNSense
 ### 安装 OPNSense
@@ -95,6 +105,24 @@ done;
 目前的解决方法是将 OPNSense 与 pve 的 IP 范围设置为同一个子网（比如 `192.168.3.x/24`），然后将 pve 的管理端口所在的网桥 vmbr0 添加进 OPNSense VM，在 OPNSense 中将该网口启用并加入到 `br-LAN` 中。因为 OPNSesne 的 DHCP 服务器默认从 `192.168.3.10/24` 开始分配 IP 地址，所以给予 pve 静态 IP 地址 `192.168.3.2/24`。这样就能从内网通过访问 `https://192.168.3.2:8006` 来访问 pve WebGUI 了。
 
 当 OPNSense 挂了后，就可以连接管理端口，手动配置 IP 地址在同一子网，来应急连接。
+
+### 配置 AP
+在 Interfaces -> Wireless 里创建一个无线网卡的克隆后，再到 Interfaces -> Assignments 里添加无线网卡的网口，保存应用。
+
+添加网口成功后，在对应网口设置里启用，并设置以下内容：
+
+Setting | Value
+--------|------
+Standard | 802.11na
+Mode | Access Point
+SSID | WiFi名字
+WPA | Enable WPA
+WPA Pre-Shared Key/EAP Password | WiFi密码
+WPA Mode | WPA2
+WPA Key Management Mode | Pre-Shared Keys
+WPA Pairwise | AES
+
+最后将该无线网口添加到 `br-LAN` 里就完成了。
 
 -----
 ## 配置透明代理
