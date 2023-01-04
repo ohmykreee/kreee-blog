@@ -1,5 +1,5 @@
 ---
-title: "PVE、OPNSense、Ubuntu Server设置小记"
+title: "PVE、OPNsense、Ubuntu Server设置小记"
 date: 2022-12-24T18:39:00+08:00
 draft: false
 
@@ -33,7 +33,7 @@ toc: false
 
 ## 设置 PVE
 ### 设置硬件直通
-由于想要将部分网卡直通给 OPNSense，所以要修改一下设置让 pve 支持硬件直通。
+由于想要将部分网卡直通给 OPNsense，所以要修改一下设置让 pve 支持硬件直通。
 
 在 WebGUI 的 node 处登录 Shell，修改 grub 文件 `/etc/default/grub`：`GRUB_CMDLINE_LINUX_DEFAULT=quite` 一栏的值为 `quite intel_iommu=on`（AMD 的就是`amd_iommu=on`）。保存后使用 `update-grub` 更新。
 
@@ -59,7 +59,7 @@ done;
 ```
 
 ### 硬件直通故障排除
-由于我有一张无线网卡，想要直通到 OPNSense 所在的虚拟机中。而直接设置直通的话 qemu 会报错：`failed to add PCI capability 0x11[0x70]@0x90: table & pba overlap, or they don't fit in BARs, or don't align`。
+由于我有一张无线网卡，想要直通到 OPNsense 所在的虚拟机中。而直接设置直通的话 qemu 会报错：`failed to add PCI capability 0x11[0x70]@0x90: table & pba overlap, or they don't fit in BARs, or don't align`。
 
 这里就需要多做一步：修改 pve 的 `/etc/pve/qemu-server/[虚拟机ID].conf`，在文件一行加上：
 ```conf
@@ -69,45 +69,45 @@ args: -set device.hostpci4.x-msix-relocation=bar2
 更多信息可以参考：[Failed to PCI passthrough SSD with SMI SM2262 controller. - Kernel.org Bugzilla](https://bugzilla.kernel.org/show_bug.cgi?id=202055#c47)、[PCIe Passthrough of Atheros AR9280 - Promox Forums](https://forum.proxmox.com/threads/pcie-passthrough-of-atheros-ar9280.45012/)
 
 -----
-## 安装和设置 OPNSense
-### 安装 OPNSense
-进入 pve WebGUI，上传 OPNSense 的 ISO 安装包。
+## 安装和设置 OPNsense
+### 安装 OPNsense
+进入 pve WebGUI，上传 OPNsense 的 ISO 安装包。
 
 在 pve 节点处新建一个网卡桥接，选择一个与管理网卡不同的网卡，且只填写 `Bridge Ports` 字段。这里名字为 vmbr1。
 
 新建一个虚拟机，设置参数（记得在 CPU 设置里把 aes 功能打开），添加网络设备 vmbr1 ，在 `Hardware` 里添加 PCI 设备，先只添加 enp1s0。
 
-启动虚拟机，首先进入的是 live mode（演示模式），其中在进入演示模式前会配置网络信息，这里建议手动配置设置好WAN口与LAN口，这里是把连接到光猫的 enp1s0 端口设置为 WAN，pve 的桥接网卡 vtnet0 设置为 LAN 口。
+启动虚拟机，首先进入的是 live mode（演示模式），其中在进入演示模式前会配置网络信息，这里建议手动配置设置好WAN口与LAN口，这里是把连接到光猫的 enp1s0 端口设置为 WAN，桥接网卡 vtnet0 设置为 LAN 口。
 
 在成功进入演示模式后，使用用户名 `installer` 与密码 `opnsense` 登录，就能进入安装模式，完成接下来的安装，与设置管理员密码。
 
 安装完成后，重启虚拟机，移除安装介质。
 
 ### 初步设置
-将电脑连接到 enp5s0 对应的网口上，并将电脑的手动地址改回为 DHCP 自动获取地址。使用默认地址 `192.168.1.1` 登录上 OPNSense 的 WebGUI 后，完成初始设置向导。在设置向导里可以更改 LAN 口地址，防止与光猫的 `192.168.1.1` 冲突（建议与 pve 的子网相同，原因后面会提及）。应用设置后，等待一段时间（比较长），重新用新的地址访问 WebGUI 界面。
+将电脑连接到 enp5s0 对应的网口上，并将电脑的手动地址改回为 DHCP 自动获取地址。使用默认地址 `192.168.1.1` 登录上 OPNsense 的 WebGUI 后，完成初始设置向导。在设置向导里可以更改 LAN 口地址，防止与光猫的 `192.168.1.1` 冲突（建议与 pve 的子网相同，原因后面会提及）。应用设置后，等待一段时间（比较长），重新用新的地址访问 WebGUI 界面。
 
 ### 配置多网口
-> 参考：[How to set up a LAN Bridge - OPNSense Docs](https://docs.opnsense.org/manual/how-tos/lan_bridge.html)
+> 参考：[How to set up a LAN Bridge - OPNsense Docs](https://docs.opnsense.org/manual/how-tos/lan_bridge.html)
 
-将网线重新插回 enp6s0 对应网口，重新设置电脑地址，将 OPNSense 虚拟机关闭，并添加 enp2s0、enp3s0、enp4s0 网卡。重新启动虚拟机。
+将网线重新插回 enp6s0 对应网口，重新设置电脑地址，将 OPNsense 虚拟机关闭，并添加 enp2s0、enp3s0、enp4s0 网卡。重新启动虚拟机。
 
-按上面的方法回到 OPNSense 的 WebGUI。在 Interfaces ‣ Assignments 把刚刚添加的所有端口都新建一遍，保存设置。再在 Interfaces ‣ [刚刚添加的各网口]，把刚刚添加的网口都启用，并应用更改。
+按上面的方法回到 OPNsense 的 WebGUI。在 Interfaces ‣ Assignments 把刚刚添加的所有端口都新建一遍，保存设置。再在 Interfaces ‣ [刚刚添加的各网口]，把刚刚添加的网口都启用，并应用更改。
 
-在 Interfaces ‣ Other Types ‣ Bridge 里，新建一个 `br-LAN` 网桥，然后把除最开始添加的 LAN 口外的其他网口全部添加进去。回到 Interface ‣ Assignments，把 LAN 口（即在标识名字后面是 lan 字样的）换到 `br-LAN`，保存并应用。此时将断开与 OPNSense 的连接，将电脑连接到其他的 LAN 口上可以重新连接。
+在 Interfaces ‣ Other Types ‣ Bridge 里，新建一个 `br-LAN` 网桥，然后把除最开始添加的 LAN 口外的其他网口全部添加进去。回到 Interface ‣ Assignments，把 LAN 口（即在标识名字后面是 lan 字样的）换到 `br-LAN`，保存并应用。此时将断开与 OPNsense 的连接，将电脑连接到其他的 LAN 口上可以重新连接。
 
-连接成功后，按照以上的操作方式把最开始的网口添加进 `br-LAN` ，保存并测试是否可以访问 OPNSense WebGUI。
+连接成功后，按照以上的操作方式把最开始的网口添加进 `br-LAN` ，保存并测试是否可以访问 OPNsense WebGUI。
 
 在 System ‣ Settings ‣ Tunables 里，将 `net.link.bridge.pfil_member` 改为 0，`net.link.bridge.pfil_bridge`改为 1，修改防火墙行为。
 
 ### 配置 pve 可从内网访问
 没找到什么其他的好办法。
 
-目前的解决方法是将 OPNSense 与 pve 的 IP 范围设置为同一个子网（比如 `192.168.3.x/24`），然后将 pve 的管理端口所在的网桥 vmbr0 添加进 OPNSense VM，在 OPNSense 中将该网口启用并加入到 `br-LAN` 中。因为 OPNSesne 的 DHCP 服务器默认从 `192.168.3.10/24` 开始分配 IP 地址，所以给予 pve 静态 IP 地址 `192.168.3.2/24`。这样就能从内网通过访问 `https://192.168.3.2:8006` 来访问 pve WebGUI 了。
+目前的解决方法是将 OPNsense 与 pve 的 IP 范围设置为同一个子网（比如 `192.168.3.x/24`），然后将 pve 的管理端口所在的网桥 vmbr0 添加进 OPNsense VM，在 OPNsense 中将该网口启用并加入到 `br-LAN` 中。因为 OPNSesne 的 DHCP 服务器默认从 `192.168.3.10/24` 开始分配 IP 地址，所以给予 pve 静态 IP 地址 `192.168.3.2/24`。这样就能从内网通过访问 `https://192.168.3.2:8006` 来访问 pve WebGUI 了。
 
-当 OPNSense 挂了后，就可以连接管理端口，手动配置 IP 地址在同一子网，来应急连接。
+当 OPNsense 挂了后，就可以连接管理端口，手动配置 IP 地址在同一子网，来应急连接。
 
 ### 配置 AP
-在 Interfaces -> Wireless 里创建一个无线网卡的克隆后，再到 Interfaces -> Assignments 里添加无线网卡的网口，保存应用。
+在 Interfaces ‣ Wireless 里创建一个无线网卡的克隆后，再到 Interfaces ‣ Assignments 里添加无线网卡的网口，保存应用。
 
 添加网口成功后，在对应网口设置里启用，并设置以下内容：
 
@@ -116,6 +116,7 @@ Setting | Value
 Standard | 802.11na
 Mode | Access Point
 SSID | WiFi名字
+Allow intra-BSS communication | True
 WPA | Enable WPA
 WPA Pre-Shared Key/EAP Password | WiFi密码
 WPA Mode | WPA2
@@ -126,11 +127,11 @@ WPA Pairwise | AES
 
 -----
 ## 配置透明代理
-> 参考： https://forum.opnsense.org/index.php?topic=19662.0
+> 参考： [在opnsense中使用透明代理科学上网的一种方法 - OPNsense Forum](https://forum.opnsense.org/index.php?topic=19662.0)
 ### 安装 Clash
-首先开启 OPNSense 的 ssh 连接方式：在 System ‣ Settings ‣ Administration 里 Enable Secure Shell，并允许 root 登录与密码登录，保存并应用设置。
+首先开启 OPNsense 的 ssh 连接方式：在 System ‣ Settings ‣ Administration 里 Enable Secure Shell，并允许 root 登录与密码登录，保存并应用设置。
 
-使用 ssh 登录 OPNSense，新建一个文件夹 `/usr/local/clash`，将 freebsd 版的二进制文件、配置文件、yacd面板文件都放进去，给予文件 `root:wheel` 所有者。完成后就地运行一次进行初始化。
+使用 ssh 登录 OPNsense，新建一个文件夹 `/usr/local/clash`，将 freebsd 版的二进制文件、配置文件、yacd面板文件都放进去，给予文件 `root:wheel` 所有者。完成后就地运行一次进行初始化。
 
 ### 创建系统服务
 新建文件 `/usr/local/etc/rc.d/clash`
