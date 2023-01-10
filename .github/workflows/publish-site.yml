@@ -1,6 +1,7 @@
 name: Publish site to GitHub Pages
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -11,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
         with:
           submodules: true
 
@@ -23,16 +24,17 @@ jobs:
           
       - name: Build
         run: |
-          hugo
+          hugo --minify
           touch ./public/.nojekyll
           
       - name: Deploy to GitHub Pages
         if: success()
-        uses: crazy-max/ghaction-github-pages@v2
+        uses: crazy-max/ghaction-github-pages@v3
         with:
           target_branch: gh-pages
           build_dir: public
           fqdn: blog.ohmykreee.top
+          jekyll: false
           dry_run: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
