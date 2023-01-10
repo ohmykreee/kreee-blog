@@ -16,10 +16,10 @@ jobs:
       with:
         ref: gh-pages
 
-    - name: Setup Algolia Cli
-      uses: algolia/setup-algolia-cli@master
-
     - name: Upload Index
-      run: |
-        algolia profile add --name "github-actions" --app-id ${{ secrets.ALGOLIA_APP_ID }} --admin-api-key ${{ secrets.ALGOLIA_ADMIN_KEY }} --default
-        algolia objects import ${{ secrets.ALGOLIA_INDEX_NAME }} -F index.json --auto-generate-object-id-if-not-exist
+      uses: wangchucheng/algolia-uploader@master
+      with:
+        app_id: ${{ secrets.ALGOLIA_APP_ID }}
+        admin_key: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+        index_name: ${{ secrets.ALGOLIA_INDEX_NAME }}
+        index_file_path: index.json
