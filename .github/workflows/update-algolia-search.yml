@@ -18,9 +18,8 @@ jobs:
 
     - name: Setup Algolia Cli
       uses: algolia/setup-algolia-cli@master
-      env:
-        ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APP_ID }}
-        ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
 
     - name: Upload Index
-      run: algolia objects import ${{ secrets.ALGOLIA_INDEX_NAME }} -F index.json --auto-generate-object-id-if-not-exist
+      run: |
+        algolia profile add --name "github-actions" --app-id ${{ secrets.ALGOLIA_APP_ID }} --admin-api-key ${{ secrets.ALGOLIA_ADMIN_KEY }} --default
+        algolia objects import ${{ secrets.ALGOLIA_INDEX_NAME }} -F index.json --auto-generate-object-id-if-not-exist
