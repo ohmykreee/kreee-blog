@@ -4,8 +4,8 @@
 <div id="donate-table"></div>
 
 <script>
-  var baseurl = document.querySelector('meta[name="siteBaseUrl"]').content;
-  var jsonfile = baseurl.concat("/res/page/donate/donate.json");
+  const baseurl = document.querySelector('meta[name="siteBaseUrl"]').content;
+  const jsonfile = baseurl.concat("/res/page/donate/donate.json");
     new gridjs.Grid({
   columns: ["时间", "打赏留言", "备注"],
   search: true,
