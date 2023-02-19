@@ -111,17 +111,17 @@ args: -set device.hostpci4.x-msix-relocation=bar2
 
 添加网口成功后，在对应网口设置里启用，并设置以下内容：
 
-Setting | Value
---------|------
-Standard | 802.11na
-Mode | Access Point
-SSID | WiFi名字
-Allow intra-BSS communication | True
-WPA | Enable WPA
-WPA Pre-Shared Key/EAP Password | WiFi密码
-WPA Mode | WPA2
-WPA Key Management Mode | Pre-Shared Keys
-WPA Pairwise | AES
+| Setting | Value |
+| ------------------------------- | ---------------- |
+| Standard                        | 802.11na         |
+| Mode                            | Access Point     |
+| SSID                            | WiFi名字         |
+| Allow intra-BSS communication   | True             |
+| WPA                             | Enable WPA       |
+| WPA Pre-Shared Key/EAP Password | WiFi密码         |
+| WPA Mode                        | WPA2             |
+| WPA Key Management Mode         | Pre-Shared Keys  |
+| WPA Pairwise                    | AES              |
 
 最后将该无线网口添加到 `br-LAN` 里就完成了。
 
@@ -250,10 +250,59 @@ message:restarting clash
 
 最后，设置上游代理。在 Web Proxy ‣ General Proxy Settings ‣ Parent Proxy Settings 里，启用，并设置为 `127.0.0.1:7890`。
 
+### 设置网站绕过代理
+有些服务很奇葩，即使在 Clash 规则里设置了直连，也不能用（说的就是你学习xx），估计是拥有某种方法检测透明代理。这里选择创建 NAT 规则将该域名绕过代理。
+
+首先在 Firewall ‣ Aliases 里创建一个条目 `NoRedirect1`，类型选择 Hosts，内容为域名以及 IP 地址，保存并应用。可以在 Firewall ‣ Diagnostics ‣ Aliases 里选择对应规则集查看域名是否成功解析为IP地址。
+
+其次在 Firewall ‣ NAT 里，在透明代理那两个规则之前再创建两个规则分别作用于 HTTP 与 HTTPS 端口：
+| Setting                | Value                                    |
+| ---------------------- | ---------------------------------------- |
+| No RDR (NOT)           | True                                     |
+| Interface              | LAN                                      |
+| Protocol               | TCP/UDP                                  |
+| Source                 | LAN net                                  |
+| Source port range      | any to any                               |
+| Destination            | NoRedirect1                              |
+| Destination port range | http/https to http/https                 |
+
+
 -----
 ## 安装和设置 Ubuntu Server
 没有什么特别的注意点，只是在新建虚拟机的时候选择 vmbr1 作为网络设备，就可以访问互联网。
 
 -----
 ## 设置安装有 OpenWRT 的路由器为纯 AP 模式
-等我回到学校拿到设备再说（刨坑预警）
+在 LuCI 的 Network ‣ Interfaces 里删除所有的 WAN 端口。
+
+配置 LAN 端口：
+
+General Settings：
+| Setting            | Value                 |
+| ------------------ | --------------------- |
+| Protocol           | Static address        |
+| Device             | br-lan                |
+| IPv4 address       | 192.168.3.3/24        |
+| IPv4 gateway       | 192.168.3.1           |
+
+Advanced Settings:
+| Setting                    | Value         |
+| -------------------------- | ------------- |
+| Use custom DNS servers     | 192.168.3.1   |
+| Delegate IPv6 prefixes     | False         |
+
+Firewall Settings:
+| Setting                       | Value         |
+| ----------------------------- | ------------- |
+| Create / Assign firewall-zone | unspecified   |
+
+DHCP Server:
+| Setting          | Value         |
+| ---------------- | ------------- |
+| Ignore interface | True          |
+
+然后把从软路由出来的网线插进无线路由器的 LAN 口就行。
+
+最后常规设置配置 WiFi 就完成了。
+
+
