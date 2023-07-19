@@ -253,9 +253,9 @@ message:restarting clash
 ### 设置网站绕过代理
 有些服务很奇葩，即使在 Clash 规则里设置了直连，也不能用（说的就是你学习xx），估计是拥有某种方法检测透明代理。这里选择创建 NAT 规则将该域名绕过代理。
 
-首先在 Firewall ‣ Aliases 里创建一个条目 `NoRedirect1`，类型选择 Hosts，内容为域名以及 IP 地址，保存并应用。可以在 Firewall ‣ Diagnostics ‣ Aliases 里选择对应规则集查看域名是否成功解析为IP地址。
+首先在 Firewall ‣ Aliases 里创建一个条目 `NoRedirect1`，类型选择 Hosts，内容为域名或 IP 地址，保存并应用。可以在 Firewall ‣ Diagnostics ‣ Aliases 里选择对应规则集查看域名是否成功解析为IP地址。
 
-其次在 Firewall ‣ NAT 里，在透明代理那两个规则之前再创建两个规则分别作用于 HTTP 与 HTTPS 端口：
+其次在 Firewall ‣ NAT 里，在透明代理那两个规则之前再创建一个规则：
 | Setting                | Value                                    |
 | ---------------------- | ---------------------------------------- |
 | No RDR (NOT)           | True                                     |
