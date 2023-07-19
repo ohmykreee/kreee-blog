@@ -266,6 +266,10 @@ message:restarting clash
 | Destination            | NoRedirect1                              |
 | Destination port range | http/https to http/https                 |
 
+### 设置仅指定设备通过代理
+与上一步类似，在 Firewall ‣ Aliases 里创建一个条目 `ProxyMAC1`，类型选择 MAC address，内容为需要走代理设备的 MAC 地址（设备记得关闭随机 MAC 地址功能），保存并应用。
+
+然后在上上一部 NAT 部分创建的那两个规则中的 Source 部分从 `LAN net` 改为 `ProxyMAC1`，就可以保存应用了。
 
 -----
 ## 安装和设置 Ubuntu Server
