@@ -77,6 +77,8 @@ args: -set device.hostpci4.x-msix-relocation=bar2
 
 新建一个虚拟机，设置参数（记得在 CPU 设置里把 aes 功能打开），添加网络设备 vmbr1 ，在 `Hardware` 里添加 PCI 设备，先只添加 enp1s0。
 
+**注意！** 建议在新建虚拟机的时候先不要设置自动启动，以便如果出现了 OPNsense 配置错误导致的 pve WebGUI 访问不了，可以通过强制重启机器来恢复。等全部配置完成并确认没有问题后再设置 OPNsense 虚拟机自动启动。
+
 启动虚拟机，首先进入的是 live mode（演示模式），其中在进入演示模式前会配置网络信息，这里建议手动配置设置好WAN口与LAN口，这里是把连接到光猫的 enp1s0 端口设置为 WAN，桥接网卡 vtnet0 设置为 LAN 口。
 
 在成功进入演示模式后，使用用户名 `installer` 与密码 `opnsense` 登录，就能进入安装模式，完成接下来的安装，与设置管理员密码。
