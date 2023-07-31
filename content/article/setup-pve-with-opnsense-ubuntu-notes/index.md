@@ -252,6 +252,150 @@ message:restarting clash
 
 最后，设置上游代理。在 Web Proxy ‣ General Proxy Settings ‣ Parent Proxy Settings 里，启用，并设置为 `127.0.0.1:7890`。
 
+### 一个自动更新核心和配置文件的脚本
+偷了一个小懒，请 ChatGPT (3.5) 帮我写了一个这个脚本 `update.sh`。只需要把这个脚本放置于任意位置，并配置好，就可以方便快捷更新核心和配置文件。
+
+其中 `current_directory` 为需要执行更新的文件夹，如果按照之前步骤操作则该部分不需要改动；`download_config_url`则为配置文件的下载地址，按需求更新；仓库信息部分基本上不需要改动，其中 `repo_filename` 需要注意的是脚本中使用的是 v3 版的核心，在老架构的 CPU 中可能会无法运行，此时需要更改为 `clash-freebsd-amd64-<version>.gz`。该脚本默认下载开源类型的内核，如果需要 premium 类型的内核需要自己修改一下相关内容。
+```bash
+#!/bin/sh
+
+# 设置当前工作目录的变量
+current_directory="/usr/local/clash"
+
+# 定义下载config.yaml的链接
+download_config_url="https://example.com/config.yaml"
+
+# 定义Clash core GitHub仓库信息
+repo_owner="Dreamacro"
+repo_name="clash"
+repo_filename="clash-freebsd-amd64-v3-<version>.gz"
+
+# 定义当前所要执行的更新命令
+current_command=$1
+
+# 帮助文档函数
+print_help() {
+  echo "Usage: $0 [config|core|stop|help]"
+  echo "Commands:"
+  echo "  config   更新config.yaml文件"
+  echo "  core     下载最新的clash可执行文件并替换"
+  echo "  stop     停止clash进程"
+  echo "  help     显示帮助文档"
+}
+
+# 备份并替换文件函数
+backup_file() {
+  if [ -f "$1" ]; then
+    mv -f "$1" "$1.bak"
+  fi
+}
+
+# 定义信号处理函数
+interrupt_handler() {
+  echo "下载被中止。"
+
+  # 根据当前执行的命令来选择是否替换文件
+  if [ "$current_command" = "core" ]; then
+    # 如果是下载 core，还原备份的clash（如果存在）
+    if [ -f "$current_directory/clash.bak" ]; then
+      cp -f "$current_directory/clash.bak" "$current_directory/clash"
+      echo "已还原备份的Clash。"
+    fi
+  elif [ "$current_command" = "core" ]; then
+    # 如果是下载 config，还原备份的config.yaml.bak（如果存在）
+    if [ -f "$current_directory/config.yaml.bak" ]; then
+      cp -f "$current_directory/config.yaml.bak" "$current_directory/config.yaml"
+      echo "已还原备份的config.yaml.bak。"
+    fi
+  fi
+
+  exit 1
+}
+
+# 设置信号处理程序
+trap interrupt_handler SIGINT
+
+# 获取最新版本的clash可执行文件下载链接函数
+get_core_latest_version() {
+  # 获取最新发布版本信息
+  release_url="https://api.github.com/repos/$repo_owner/$repo_name/releases/latest"
+  latest_release_info=$(curl -s "$release_url")
+
+  # 从版本信息中提取最新版本号
+  latest_version=$(echo "$latest_release_info" | grep -oE '"tag_name": "[^"]+"' | head -n 1 | cut -d '"' -f 4)
+
+  # 返回最新版本号
+  echo "$latest_version"
+}
+
+# 处理config命令
+if [ "$current_command" = "config" ]; then
+  # 备份并覆盖config.yaml.bak
+  backup_file "$current_directory/config.yaml" "$current_directory/config.yaml.bak"
+
+  # 使用curl下载文件并重命名为config.yaml，并添加“external-ui: ./ui”
+  curl -# -fSL -o "$current_directory/config.yaml" "$download_config_url"
+  download_result=$?  # 保存curl命令的退出码
+  echo "external-ui: ./ui" | cat - "$current_directory/config.yaml" > "$current_directory/temp" && mv "$current_directory/temp" "$current_directory/config.yaml"
+
+  # 检查下载是否成功
+  if [ $download_result -eq 0 ]; then
+    echo "config.yaml 更新成功！"
+    echo "停止 Clash 进程："
+    /usr/local/sbin/configctl clash stop
+  else
+    echo "下载失败。请检查URL是否正确或网络连接是否正常。"
+    # 如果下载失败，还原备份的config.yaml.bak（如果存在）
+    if [ -f "$current_directory/config.yaml.bak" ]; then
+      cp -f "$current_directory/config.yaml.bak" "$current_directory/config.yaml"
+      echo "已还原备份的config.yaml.bak。"
+    fi
+  fi
+
+# 处理core命令
+elif [ "$current_command" = "core" ]; then
+  # 获取最新版本的clash可执行文件下载链接
+  latest_version=$(get_core_latest_version)
+  # 更新 repo_filename，将 <version> 替换为实际的版本号
+  repo_filename=$(echo "$repo_filename" | sed "s/<version>/$latest_version/")
+  # 构建下载链接
+  download_core_url="https://github.com/$repo_owner/$repo_name/releases/download/$latest_version/$repo_filename"
+  echo "下载链接：$download_core_url"
+
+  # 备份并替换clash文件
+  backup_file "$current_directory/clash" "$current_directory/clash.bak"
+
+  # 下载最新的clash可执行文件并解压
+  curl -# -fSL "$download_core_url" | gunzip > "$current_directory/clash"
+  download_result=$?  # 保存curl命令的退出码
+  chmod +x "$current_directory/clash"
+
+  # 检查是否更新成功
+  if [ $download_result -eq 0 ]; then
+    echo "Clash core 更新成功！"
+    echo "最新版本：$latest_version"
+    echo "停止 Clash 进程："
+    /usr/local/sbin/configctl clash stop
+  else
+    echo "Clash 更新失败。"
+    # 如果更新失败，还原备份的clash（如果存在）
+    if [ -f "$current_directory/clash" ]; then
+      cp -f "$current_directory/clash.bak" "$current_directory/clash"
+      echo "已还原备份的clash。"
+    fi
+  fi
+
+# 处理stop命令
+elif [ "$current_command" = "stop" ]; then
+  /usr/local/sbin/configctl clash stop
+
+# 处理help命令或未知命令
+else
+  print_help
+fi
+```
+（说实话在和 ChatGPT 协作这个脚本的时候，前期还没太复杂的情况下一切进展得非常顺利，也非常舒心。可等到需求越来越多，代码越来越复杂，ChatGPT 就开始犯各种各样的小问题，最后还是我自己完成了最后代码的修改和整合，可能是我用的模型不太强大吧，等一手某人让我白嫖一个 4.0 模型使用权（误））
+
 ### 设置网站绕过代理
 有些服务很奇葩，即使在 Clash 规则里设置了直连，也不能用（说的就是你学习xx），估计是拥有某种方法检测透明代理。这里选择创建 NAT 规则将该域名绕过代理。
 
