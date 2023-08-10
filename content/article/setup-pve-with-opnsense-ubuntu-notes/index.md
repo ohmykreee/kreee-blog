@@ -133,7 +133,9 @@ args: -set device.hostpci4.x-msix-relocation=bar2
 ### 安装 Clash
 首先开启 OPNsense 的 ssh 连接方式：在 System ‣ Settings ‣ Administration 里 Enable Secure Shell，并允许 root 登录与密码登录，保存并应用设置。
 
-使用 ssh 登录 OPNsense，新建一个文件夹 `/usr/local/clash`，将 freebsd 版的二进制文件、配置文件、yacd面板文件都放进去，给予文件 `root:wheel` 所有者。完成后就地运行一次进行初始化。
+使用 ssh 登录 OPNsense，新建一个文件夹 `/usr/local/clash`，将 freebsd 版的二进制文件、配置文件、yacd面板文件都放进去。
+
+使用 `pw user add clash -c "Clash" -s /usr/sbin/nologin` 创建一个无登录的账号，并给予文件所有者为刚刚创建的用户 `clash:clash` 。完成后就地运行一次进行初始化。
 
 ### 创建系统服务
 新建文件 `/usr/local/etc/rc.d/clash`
@@ -166,6 +168,8 @@ load_rc_config $name
 command="/usr/local/clash/clash"
 #pidfile="/var/run/clash.pid"
 required_files="${clash_config}"
+clash_group="clash"
+clash_user="clash"
 
 command_args="-d $clash_config"
 
@@ -290,6 +294,13 @@ backup_file() {
   fi
 }
 
+# 停止进程并设置权限
+stop_and_cleanup() {
+  echo "停止 Clash 进程："
+  chown -R clash:clash $current_directory
+  /usr/local/sbin/configctl clash stop
+}
+
 # 定义信号处理函数
 interrupt_handler() {
   echo "下载被中止。"
@@ -309,6 +320,7 @@ interrupt_handler() {
     fi
   fi
 
+  stop_and_cleanup
   exit 1
 }
 
@@ -341,14 +353,14 @@ if [ "$current_command" = "config" ]; then
   # 检查下载是否成功
   if [ $download_result -eq 0 ]; then
     echo "config.yaml 更新成功！"
-    echo "停止 Clash 进程："
-    /usr/local/sbin/configctl clash stop
+    stop_and_cleanup
   else
     echo "下载失败。请检查URL是否正确或网络连接是否正常。"
     # 如果下载失败，还原备份的config.yaml.bak（如果存在）
     if [ -f "$current_directory/config.yaml.bak" ]; then
       cp -f "$current_directory/config.yaml.bak" "$current_directory/config.yaml"
       echo "已还原备份的config.yaml.bak。"
+      stop_and_cleanup
     fi
   fi
 
@@ -374,20 +386,20 @@ elif [ "$current_command" = "core" ]; then
   if [ $download_result -eq 0 ]; then
     echo "Clash core 更新成功！"
     echo "最新版本：$latest_version"
-    echo "停止 Clash 进程："
-    /usr/local/sbin/configctl clash stop
+    stop_and_cleanup
   else
     echo "Clash 更新失败。"
     # 如果更新失败，还原备份的clash（如果存在）
     if [ -f "$current_directory/clash" ]; then
       cp -f "$current_directory/clash.bak" "$current_directory/clash"
       echo "已还原备份的clash。"
+      stop_and_cleanup
     fi
   fi
 
 # 处理stop命令
 elif [ "$current_command" = "stop" ]; then
-  /usr/local/sbin/configctl clash stop
+  stop_and_cleanup
 
 # 处理help命令或未知命令
 else
