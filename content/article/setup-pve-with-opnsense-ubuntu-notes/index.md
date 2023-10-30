@@ -11,9 +11,7 @@ noSummary: false
 resizeImages: false
 toc: false
 ---
-**注意！** 这篇文章仅仅是作为自己边鼓捣边摸索出来的产物，并非为一篇教程。
-
-由于本人~~对于网络方面的知识一窍不通~~，所以并不能保证所有的内容全部正确，如有错误也欢迎指出。
+**注意！** 这篇文章仅仅是作为自己边鼓捣边摸索出来的产物，并非为一篇教程，并不能保证所有的内容全部正确，如有错误也欢迎指出。
 
 <!--more-->
 
@@ -178,7 +176,7 @@ run_rc_command "$1"
 并给予运行权限 `chmod +x /usr/local/etc/rc.d/clash`
 
 新建文件 `/usr/local/opnsense/service/conf/actions.d/actions_clash.conf`
-```conf
+```plaintext
 [start]
 command:/usr/local/etc/rc.d/clash onestart
 type:script
