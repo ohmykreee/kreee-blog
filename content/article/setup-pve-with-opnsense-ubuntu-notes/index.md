@@ -229,8 +229,6 @@ message:restarting clash
 
 ### 配置透明代理
 
-（其实这一步可以完全不用，只需要在 NAT 里配置流量全部往 Clash 里走就行）
-
 在 Services ‣ Web Proxy ‣ Administration 的 General Proxy Settings 里启用代理，在 Forward Proxy 里启用 `Enable Transparent HTTP proxy`、`Enable SSL inspection`、`Log SNI information only`，并点击每一栏 (i) 按钮中提示文字的 Add a new firewall rule（注意！添加完 NAT 项目后记得应用！）。
 
 再前往 System ‣ Trust ‣ Authorities 处新建一个证书，使用下面的设置：
@@ -257,7 +255,13 @@ message:restarting clash
 ### 一个自动更新核心和配置文件的脚本
 偷了一个小懒，请 ChatGPT (3.5) 帮我写了一个这个脚本 `update.sh`。只需要把这个脚本放置于任意位置，并配置好，就可以方便快捷更新核心和配置文件。
 
-其中 `current_directory` 为需要执行更新的文件夹，如果按照之前步骤操作则该部分不需要改动；`download_config_url`则为配置文件的下载地址，按需求更新；仓库信息部分基本上不需要改动，其中 `repo_filename` 需要注意的是脚本中使用的是 v3 版的核心，在老架构的 CPU 中可能会无法运行，此时需要更改为 `clash-freebsd-amd64-<version>.gz`。该脚本默认下载开源类型的内核，如果需要 premium 类型的内核需要自己修改一下相关内容。
+以下是这个脚本需要修改的地方：
+- `current_directory` 为需要执行更新的文件夹，如果按照之前步骤操作则该部分不需要改动；`download_config_url`则为配置文件的下载地址，按需求更新；
+- `update_core_proxy` 和 `update_config_proxy` 分别是更新内核和配置时所用的 http/socks5 代理，为空则不使用；
+- `download_ui_url` 为下载 `ui.zip` 的链接，文件中的链接为 [MetaCubeX/metacubexd](https://github.com/MetaCubeX/metacubexd/tree/gh-pages) 面板的下载链接。下载完成后需要自己解压 `ui.zip` 到相应目录。遵循 `update_core_proxy` 的设定；
+- 仓库信息部分分别为仓库拥有者 `repo_owner`，仓库名 `repo_name`，文件中提供的是 [Clash.Meta](https://github.com/MetaCubeX/Clash.Meta) 的 Stable 版；
+-  `repo_filename` 中 `<version>` 会替换为实时获取的最新版本。
+
 ```bash
 #!/bin/sh
 
@@ -265,12 +269,19 @@ message:restarting clash
 current_directory="/usr/local/clash"
 
 # 定义下载config.yaml的链接
-download_config_url="https://example.com/config.yaml"
+download_config_url="http://openmediavault:25500/getprofile?name=profiles/default.ini&token=xxx"
+
+# 定义下载ui.zip的链接
+download_ui_url="https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip"
 
 # 定义Clash core GitHub仓库信息
-repo_owner="Dreamacro"
-repo_name="clash"
-repo_filename="clash-freebsd-amd64-v3-<version>.gz"
+repo_owner="MetaCubeX"
+repo_name="Clash.Meta"
+repo_filename="clash.meta-freebsd-amd64-<version>.gz"
+
+# 添加代理变量
+update_core_proxy="socks5://opnsense:7891"
+update_config_proxy=""
 
 # 定义当前所要执行的更新命令
 current_command=$1
@@ -281,6 +292,7 @@ print_help() {
   echo "Commands:"
   echo "  config   更新config.yaml文件"
   echo "  core     下载最新的clash可执行文件并替换"
+  echo "  ui       下载最新的ui.zip文件"
   echo "  stop     停止clash进程"
   echo "  help     显示帮助文档"
 }
@@ -310,7 +322,7 @@ interrupt_handler() {
       cp -f "$current_directory/clash.bak" "$current_directory/clash"
       echo "已还原备份的Clash。"
     fi
-  elif [ "$current_command" = "core" ]; then
+  elif [ "$current_command" = "config" ]; then
     # 如果是下载 config，还原备份的config.yaml.bak（如果存在）
     if [ -f "$current_directory/config.yaml.bak" ]; then
       cp -f "$current_directory/config.yaml.bak" "$current_directory/config.yaml"
@@ -327,9 +339,11 @@ trap interrupt_handler SIGINT
 
 # 获取最新版本的clash可执行文件下载链接函数
 get_core_latest_version() {
+  local proxy_option="$1"  # 接受传入的core_proxy作为参数
+
   # 获取最新发布版本信息
   release_url="https://api.github.com/repos/$repo_owner/$repo_name/releases/latest"
-  latest_release_info=$(curl -s "$release_url")
+  latest_release_info=$(curl $proxy_option -s "$release_url")
 
   # 从版本信息中提取最新版本号
   latest_version=$(echo "$latest_release_info" | grep -oE '"tag_name": "[^"]+"' | head -n 1 | cut -d '"' -f 4)
@@ -341,42 +355,48 @@ get_core_latest_version() {
 # 处理config命令
 if [ "$current_command" = "config" ]; then
   # 备份并覆盖config.yaml.bak
-  backup_file "$current_directory/config.yaml" "$current_directory/config.yaml.bak"
+  backup_file "$current_directory/config.yaml"
 
-  # 使用curl下载文件并重命名为config.yaml，并添加“external-ui: ./ui”
-  curl -# -fSL -o "$current_directory/config.yaml" "$download_config_url"
+  # 设置代理，如果有的话
+  config_proxy=""
+  [ -n "$update_config_proxy" ] && config_proxy="-x $update_config_proxy"
+
+  # 使用curl下载文件并重命名为config.yaml
+  curl $config_proxy -# -fSL -o "$current_directory/config.yaml" "$download_config_url"
   download_result=$?  # 保存curl命令的退出码
-  echo "external-ui: ./ui" | cat - "$current_directory/config.yaml" > "$current_directory/temp" && mv "$current_directory/temp" "$current_directory/config.yaml"
 
   # 检查下载是否成功
   if [ $download_result -eq 0 ]; then
     echo "config.yaml 更新成功！"
-    stop_and_cleanup
   else
     echo "下载失败。请检查URL是否正确或网络连接是否正常。"
     # 如果下载失败，还原备份的config.yaml.bak（如果存在）
     if [ -f "$current_directory/config.yaml.bak" ]; then
       cp -f "$current_directory/config.yaml.bak" "$current_directory/config.yaml"
       echo "已还原备份的config.yaml.bak。"
-      stop_and_cleanup
     fi
   fi
+  stop_and_cleanup
 
 # 处理core命令
 elif [ "$current_command" = "core" ]; then
+  # 备份并替换clash文件
+  backup_file "$current_directory/clash"
+
+  # 设置代理，如果有的话
+  core_proxy=""
+  [ -n "$update_core_proxy" ] && core_proxy="-x $update_core_proxy"
+
   # 获取最新版本的clash可执行文件下载链接
-  latest_version=$(get_core_latest_version)
+  latest_version=$(get_core_latest_version "$core_proxy")
   # 更新 repo_filename，将 <version> 替换为实际的版本号
   repo_filename=$(echo "$repo_filename" | sed "s/<version>/$latest_version/")
   # 构建下载链接
   download_core_url="https://github.com/$repo_owner/$repo_name/releases/download/$latest_version/$repo_filename"
   echo "下载链接：$download_core_url"
 
-  # 备份并替换clash文件
-  backup_file "$current_directory/clash" "$current_directory/clash.bak"
-
   # 下载最新的clash可执行文件并解压
-  curl -# -fSL "$download_core_url" | gunzip > "$current_directory/clash"
+  curl $core_proxy -# -fSL "$download_core_url" | gunzip > "$current_directory/clash"
   download_result=$?  # 保存curl命令的退出码
   chmod +x "$current_directory/clash"
 
@@ -384,16 +404,36 @@ elif [ "$current_command" = "core" ]; then
   if [ $download_result -eq 0 ]; then
     echo "Clash core 更新成功！"
     echo "最新版本：$latest_version"
-    stop_and_cleanup
   else
     echo "Clash 更新失败。"
     # 如果更新失败，还原备份的clash（如果存在）
     if [ -f "$current_directory/clash" ]; then
       cp -f "$current_directory/clash.bak" "$current_directory/clash"
       echo "已还原备份的clash。"
-      stop_and_cleanup
     fi
   fi
+  stop_and_cleanup
+
+# 处理ui命令
+elif [ "$current_command" = "ui" ]; then
+  # 备份并覆盖ui.zip.bak
+  backup_file "$current_directory/ui.zip"
+
+  # 设置代理，如果有的话
+  ui_proxy=""
+  [ -n "$update_core_proxy" ] && ui_proxy="-x $update_core_proxy"
+
+  # 使用curl下载ui.zip文件到当前目录
+  curl $ui_proxy -# -fSL -o "$current_directory/ui.zip" "$download_ui_url"
+  download_result=$?  # 保存curl命令的退出码
+
+  # 检查下载是否成功
+  if [ $download_result -eq 0 ]; then
+    echo "ui.zip 更新成功！请自行解压到指定文件夹中。"
+  else
+    echo "下载 ui.zip 失败。请检查URL是否正确或网络连接是否正常。"
+    [ -f "$current_directory/ui.zip" ] && rm "$current_directory/ui.zip"  # 如果下载失败并且文件存在，则删除它
+  fi  
 
 # 处理stop命令
 elif [ "$current_command" = "stop" ]; then
