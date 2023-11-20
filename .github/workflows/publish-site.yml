@@ -1,4 +1,4 @@
-name: Publish site to GitHub Pages
+name: Publish site to Cloudflare Pages
 
 on:
   workflow_dispatch:
@@ -23,18 +23,22 @@ jobs:
           # extended: true
           
       - name: Build
-        run: |
-          hugo --minify
-          touch ./public/.nojekyll
+        run: hugo --minify
           
-      - name: Deploy to GitHub Pages
+      - name: Deploy to Cloudflare Pages
         if: success()
-        uses: crazy-max/ghaction-github-pages@v3
+        uses: cloudflare/pages-action@v1.5.0
         with:
-          target_branch: gh-pages
-          build_dir: public
-          fqdn: blog.ohmykreee.top
-          jekyll: false
-          dry_run: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: d73a30412652351305e3f89fd125f690
+          projectName: blog
+          directory: public
+          branch: main
+
+      - name: Upload Algolia Index
+        uses: wangchucheng/algolia-uploader@master
+        with:
+          app_id: ${{ secrets.ALGOLIA_APP_ID }}
+          admin_key: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+          index_name: ${{ secrets.ALGOLIA_INDEX_NAME }}
+          index_file_path: public/index.json
