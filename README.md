@@ -1,6 +1,6 @@
 # Kreee's Blog
 
-![](https://github.com/ohmykreee/kreee-blog/actions/workflows/publish-site.yml/badge.svg)
+[![](https://github.com/ohmykreee/kreee-blog/actions/workflows/publish-site.yml/badge.svg)](https://blog.ohmykreee.top)
 
 Just a blog, blogging my life.   
 ## 相关链接：
