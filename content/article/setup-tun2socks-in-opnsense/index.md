@@ -99,7 +99,7 @@ tun2socks_enable="YES"
 
 -----
 ## 新建 configd 文件
-新建文件 `/usr/local/opnsense/service/conf/actions.d/actions_tun2socks.conf` 并添加以下内容：
+新建文件 `/usr/local/opnsense/service/conf/actions.d/actions_tun2socks.conf` 并填写以下内容：
 ```conf
 [start]
 command:/usr/local/etc/rc.d/tun2socks start
