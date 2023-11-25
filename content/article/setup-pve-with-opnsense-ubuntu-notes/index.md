@@ -229,6 +229,8 @@ message:restarting clash
 
 ### 配置透明代理
 
+> **注意：** 由于 Squid 被曝多个严重漏洞且维护团队人手不够，无法及时修复，OPNsense 维护团队计划将 Squid 的支持降为 Tier2。且该方法不支持代理 UDP/Quic 流量。故建议参考文章 [在 OPNsense 上安装 tun2socks 服务](/article/setup-tun2socks-in-opnsense/) 以使用新方法。
+
 在 Services ‣ Web Proxy ‣ Administration 的 General Proxy Settings 里启用代理，在 Forward Proxy 里启用 `Enable Transparent HTTP proxy`、`Enable SSL inspection`、`Log SNI information only`，并点击每一栏 (i) 按钮中提示文字的 Add a new firewall rule（注意！添加完 NAT 项目后记得应用！）。
 
 再前往 System ‣ Trust ‣ Authorities 处新建一个证书，使用下面的设置：
