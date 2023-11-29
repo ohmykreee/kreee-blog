@@ -48,7 +48,7 @@ mtu: 1500
 udp-timeout: 120s
 ```
 
-运行 `tun2socks -config config.yaml`，测试配置文件是否正确。
+在文件夹 `/usr/local/tun2socks/` 内运行 `./tun2socks -config ./config.yaml`，测试配置文件是否正确。Ctrl+C 中止当前程序。
 
 -----
 ## 新建服务文件
