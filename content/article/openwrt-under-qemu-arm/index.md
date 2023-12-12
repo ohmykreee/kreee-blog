@@ -59,7 +59,7 @@ dmesg | grep -e DMAR -e IOMMU
 ```
 启用 IOMMU：   
 更改 `/etc/default/grub` 添加内核启动参数：
-```conf
+```bash
 GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on"
 ```
 应用更改：
@@ -88,7 +88,7 @@ IOMMU Group 19:
 ```
 这里可以看到 Wi-Fi 卡在单独的一个 IOMMU Group 里，所以就不需要进行分离。   
 解绑并绑定到 vfio-pci 上（通过添加内核启动参数）：
-```conf
+```bash
 # 两个参数之间只需要一个空格隔开就行，不同设备 ID 只需要用逗号隔开
 GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on vfio-pci.ids=8086:2723"
 ```

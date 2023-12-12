@@ -2,7 +2,7 @@
 title: "❤❤❤"
 date: 2021-06-06T17:20:33+08:00
 draft: false
-excludeFromTopNav: false
+menu: "topnav"
 weight: 4
 
 # set the link if you want to redirect the user.

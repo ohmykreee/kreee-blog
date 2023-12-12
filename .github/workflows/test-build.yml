@@ -2,9 +2,6 @@ name: Publish site to Cloudflare Pages
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
 
@@ -24,7 +21,15 @@ jobs:
           
       - name: Build
         run: hugo --minify
-          
+        
+      - name: Upload Build Artifact
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-result
+          path: public
+          if-no-files-found: error
+
       - name: Deploy to Cloudflare Pages
         if: success()
         uses: cloudflare/pages-action@v1.5.0
@@ -33,12 +38,4 @@ jobs:
           accountId: d73a30412652351305e3f89fd125f690
           projectName: blog
           directory: public
-          branch: main
-
-      - name: Upload Algolia Index
-        uses: wangchucheng/algolia-uploader@master
-        with:
-          app_id: ${{ secrets.ALGOLIA_APP_ID }}
-          admin_key: ${{ secrets.ALGOLIA_ADMIN_KEY }}
-          index_name: ${{ secrets.ALGOLIA_INDEX_NAME }}
-          index_file_path: public/index.json
+          branch: dev

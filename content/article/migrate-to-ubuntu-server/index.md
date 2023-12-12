@@ -86,7 +86,7 @@ sudo apt install linux-wifi-hotspot
 apt install dnsmasq
 ```
 编辑 `/etc/create_ap.conf` （[示例文件](https://github.com/lakinduakash/linux-wifi-hotspot/blob/master/src/scripts/create_ap.conf)）
-```conf
+```bash
 GATEWAY=192.168.6.1
 SHARE_METHOD=nat
 COUNTRY=CN
@@ -195,7 +195,7 @@ sudo bash ./kickstart.sh --local-files /tmp/netdata/netdata-(version-number-here
 > 参考：https://ehang-io.github.io/
 
 先将提前下好的 npc 文件复制到 `/tmp/npc` 下，并创建配置文件 `/etc/np-client.conf` ：
-```conf
+```bash
 [common]
 server_addr=cloud.ip:8024
 conn_type=kcp
