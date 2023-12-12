@@ -1,0 +1,41 @@
+name: Test building site
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+          
+      - name: Build
+        run: hugo --minify
+        
+      - name: Upload Build Artifact
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-result
+          path: public
+          if-no-files-found: error
+
+      - name: Deploy to Cloudflare Pages
+        if: success()
+        uses: cloudflare/pages-action@v1.5.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: d73a30412652351305e3f89fd125f690
+          projectName: blog
+          directory: public
+          branch: dev
