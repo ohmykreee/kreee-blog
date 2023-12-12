@@ -1,4 +1,4 @@
-name: Publish site to Cloudflare Pages
+name: Test building site
 
 on:
   workflow_dispatch:
