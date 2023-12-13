@@ -2,11 +2,11 @@ title = "Kreee's Blog"
 baseURL = "https://blog.ohmykreee.top"
 
 # Option 1 (recommended): adding the theme as a Hugo module
-theme = "github.com/Lednerb/bilberry-hugo-theme/v4"
+# theme = "github.com/Lednerb/bilberry-hugo-theme/v4"
 
 
 # Options 2 and 3: cloning/copying the theme files
-# theme = "bilberry-hugo-theme/v4"
+theme = "bilberry-hugo-theme/v4"
 
 # Generate the robots.txt file for SEO
 enableRobotsTXT = true
