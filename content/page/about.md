@@ -2,7 +2,7 @@
 title: "关于我"
 date: 2021-06-05T23:05:37+08:00
 draft: false
-excludeFromTopNav: false
+menu: "topnav"
 weight: 1
 
 # set the link if you want to redirect the user.

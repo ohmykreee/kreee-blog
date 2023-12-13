@@ -18,10 +18,11 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
-          
+
       - name: Build
-        run: hugo --minify
-        
+        run: |
+          hugo --minify
+
       - name: Upload Build Artifact
         if: success()
         uses: actions/upload-artifact@v3
@@ -30,7 +31,7 @@ jobs:
           path: public
           if-no-files-found: error
 
-      - name: Deploy to Cloudflare Pages
+      - name: Deploy dev page to Cloudflare Pages
         if: success()
         uses: cloudflare/pages-action@v1.5.0
         with:

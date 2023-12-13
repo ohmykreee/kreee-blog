@@ -60,7 +60,7 @@ done;
 由于我有一张无线网卡，想要直通到 OPNsense 所在的虚拟机中。而直接设置直通的话 qemu 会报错：`failed to add PCI capability 0x11[0x70]@0x90: table & pba overlap, or they don't fit in BARs, or don't align`。
 
 这里就需要多做一步：修改 pve 的 `/etc/pve/qemu-server/[虚拟机ID].conf`，在文件一行加上：
-```conf
+```bash
 # 这里无线网卡在虚拟机中分配到的是 hostpci4，按需修改
 args: -set device.hostpci4.x-msix-relocation=bar2
 ```

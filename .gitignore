@@ -3,3 +3,4 @@ rafts
 build-res
 resources
 .hugo_build.lock
+_vendor
