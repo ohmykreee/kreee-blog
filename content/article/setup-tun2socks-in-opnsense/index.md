@@ -259,7 +259,7 @@ function tuntosocks_syslog()
 在 Firewall ‣ Rules ‣ LAN 中添加规则，且该规则在默认的 `Default allow LAN to any rule` 和 `Default allow LAN IPv6 to any rule` 之前：
 
 | Setting | Value |
-| ------------------------------- | ---------------- |
+| ------------------------------- | ---------------------- |
 | TCP/IP Version                  | IPv4                   |
 | Protocol                        | TCP/UDP                |
 | Source                          | ProxyDevice            |
@@ -272,6 +272,38 @@ function tuntosocks_syslog()
 
 -----
 ## IPv6 相关配置
-施工中...
+**注意：该部分没有进行完全的验证/测试，故以下内容可能会有错误，请酌情参考。**
 
-由于目前还没有 IPv6 环境给我测试，故这个部分等以后再补充（或者有高人帮我完善）。
+在 Interfaces ‣ [对应网口]，进行以下设置，保存应用：
+| Setting | Value |
+| ------------------------------- | ----------------------------- |
+| Enable                          | Enable Interface              |
+| Description                     | TUN2SOCKS                     |
+| IPv4 Configuration Type         | Static IPv6                   |
+| IPv4 address                    | FEC0:0000:0000:0003::/64      |
+
+在 System ‣ Gateways ‣ Single 里，添加网关：
+
+| Setting | Value |
+| ------------------------------- | ----------------------- |
+| Name                            | TUN2SOCKS_PROXY_IPV6    |
+| Interface                       | TUN2SOCKS               |
+| Address Family                  | IPv6                    |
+| IP address                      | FEC0:0000:0000:0003::2  |
+| Disable Gateway Monitoring      | True                    |
+
+保存并应用。
+
+在 Firewall ‣ Rules ‣ LAN 中添加规则，且该规则在默认的 `Default allow LAN to any rule` 和 `Default allow LAN IPv6 to any rule` 之前：
+
+| Setting | Value |
+| ------------------------------- | ---------------------- |
+| TCP/IP Version                  | IPv6                   |
+| Protocol                        | TCP/UDP                |
+| Source                          | ProxyDevice            |
+| Destination / Invert            | True                   |
+| Destination                     | NoProxyGroup           |
+| Destination port range          | ProxyPort to ProxyPort |
+| Gateway                         | TUN2SOCKS_PROXY_IPV6   |
+
+保存并应用。
