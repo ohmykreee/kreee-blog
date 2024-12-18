@@ -28,7 +28,7 @@ disqusShortname = ""
   # Files are imported in the order they appear here, after
   # theme.css and theme.js, respectively.
   css_modules = ['https://unpkg.com/cookieconsent@3/build/cookieconsent.min.css']
-  js_modules = ['https://unpkg.com/cookieconsent@3/build/cookieconsent.min.js', '/js/init-cookieconsent.js', '/js/clarity-tracker.js', '/js/init-sakana.js']
+  js_modules = ['https://unpkg.com/cookieconsent@3/build/cookieconsent.min.js', '/js/init-cookieconsent.js', '/js/clarity-tracker.js']
 
   # Description and meta data for the search engines
   author = "Kreee"
