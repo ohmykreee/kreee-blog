@@ -35,9 +35,21 @@ jobs:
           directory: public
           branch: main
 
+      - name: Generate Index ID for Algolia
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs")
+            let data = require("public/index.json")
+            data = data.map((item, index) => ({
+              ...item,
+              objectID: item.objectID || `${index}`
+            }))
+            fs.writeFileSync("public/index_with_objectID.json", JSON.stringify(data, null, 2))
+
       - uses: algolia/setup-algolia-cli@master
       - name: Upload Algolia Index
-        run: algolia indices clear ${{ secrets.ALGOLIA_INDEX_NAME }} --confirm && algolia objects import ${{ secrets.ALGOLIA_INDEX_NAME }} --file public/index.json
+        run: algolia indices clear ${{ secrets.ALGOLIA_INDEX_NAME }} --confirm && algolia objects import ${{ secrets.ALGOLIA_INDEX_NAME }} --file public/index_with_objectID.json
         env:
           ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
