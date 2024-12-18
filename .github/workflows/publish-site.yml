@@ -40,7 +40,7 @@ jobs:
         with:
           script: |
             const fs = require("fs")
-            let data = require("public/index.json")
+            let data = JSON.parse(fs.readFileSync("public/index.json", "utf8"))
             data = data.map((item, index) => ({
               ...item,
               objectID: item.objectID || `${index}`
