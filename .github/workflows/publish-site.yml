@@ -35,10 +35,9 @@ jobs:
           directory: public
           branch: main
 
+      - uses: algolia/setup-algolia-cli@master
       - name: Upload Algolia Index
-        uses: wangchucheng/algolia-uploader@master
-        with:
-          app_id: ${{ secrets.ALGOLIA_APP_ID }}
-          admin_key: ${{ secrets.ALGOLIA_ADMIN_KEY }}
-          index_name: ${{ secrets.ALGOLIA_INDEX_NAME }}
-          index_file_path: public/index.json
+        run: algolia indices clear ${{ secrets.ALGOLIA_INDEX_NAME }} && algolia indices batch ${{ secrets.ALGOLIA_INDEX_NAME }} public/index.json
+        env:
+          ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}

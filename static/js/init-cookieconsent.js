@@ -11,7 +11,7 @@ CookieConsent.run({
   },
 
   onFirstConsent: ({ cookie }) => {
-    cookie.categories.includes("analytics")? window.clarity("consent") : window.clarity("not")
+    cookie.categories.includes("analytics")? window.clarity("consent") : window.clarity("not", false)
   },
 
   onChange: ({ cookie, changedCategories, changedServices }) => {
