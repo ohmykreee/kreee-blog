@@ -45,7 +45,7 @@ jobs:
               ...item,
               objectID: item.objectID || `${index}`
             }))
-            fs.writeFileSync("public/index_with_objectID.json", JSON.stringify(data, null, 2))
+            fs.writeFileSync("public/index_with_objectID.json", JSON.stringify(data))
 
       - uses: algolia/setup-algolia-cli@master
       - name: Upload Algolia Index
