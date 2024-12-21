@@ -24,6 +24,11 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14'
           
       - name: Build
         run: hugo --minify
@@ -36,21 +41,13 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy public --project-name=blog --branch main
 
-      - name: Generate Index ID for Algolia
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require("fs")
-            let data = JSON.parse(fs.readFileSync("public/index.json", "utf8"))
-            data = data.map((item, index) => ({
-              ...item,
-              objectID: item.objectID || `${index}`
-            }))
-            fs.writeFileSync("public/index_with_objectID.json", JSON.stringify(data))
-
-      - uses: algolia/setup-algolia-cli@master
-      - name: Upload Algolia Index
-        run: algolia indices clear ${{ secrets.ALGOLIA_INDEX_NAME }} --confirm && algolia objects import ${{ secrets.ALGOLIA_INDEX_NAME }} --file public/index_with_objectID.json
-        env:
-          ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+      - name: Upload Data # script from the hugo theme template
+        run: |
+          cp public/index.json themes/bilberry-hugo-theme/exampleSite/algolia/index.json
+          cd themes/bilberry-hugo-theme/exampleSite/algolia
+          npm install
+          npm run data-upload -- -c \
+            -f index.json \
+            -a ${{ secrets.ALGOLIA_APP_ID }} \
+            -k ${{ secrets.ALGOLIA_ADMIN_KEY }} \
+            -n ${{ secrets.ALGOLIA_INDEX_NAME }}
