@@ -16,8 +16,6 @@ toc: false
 由于 OPNsense 上的 Squid 包将被降低支持力度，且该方法无法代理 UDP/Quic 流量，故使用一种全新的方法来解决这个问题。
 <!--more-->
 
-![](network-topology.jpg)
-
 -----
 **目录：**
 {{<toc>}}
