@@ -13,7 +13,7 @@ weight: 1
 
 ## 我是 Kreee
 
-（说些什么呢，也没想好，就先放一个个人主页吧：[www.ohmykreee.top](https://ohmykreee.top)）
+（说些什么呢，也没想好，就先放一个个人主页吧：[www.kre3.net](https://kre3.net)）
 
 ![](/res/page/about-me/about-me-01.gif)
 
