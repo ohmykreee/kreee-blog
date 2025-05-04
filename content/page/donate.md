@@ -11,9 +11,7 @@ link: ""
 target: "_blank"
 ---
 
-## 富婆，饿饿，饭饭.jpg   
-
-![](/res/page/donate/donate.png)
+原捐赠渠道不可用，暂时关闭。
 
 -----
 
