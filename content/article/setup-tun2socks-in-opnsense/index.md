@@ -21,7 +21,6 @@ toc: false
 {{<toc>}}
 
 -----
-
 ## 准备可执行文件和配置文件
 前往 [xjasonlyu/tun2socks](https://github.com/xjasonlyu/tun2socks) 下载最新的适用于 FreeBSD 的 `tun2socks` 可执行文件于你喜欢的位置。这里就放置于 `/usr/local/tun2socks`。
 
@@ -305,3 +304,8 @@ function tuntosocks_syslog()
 | Gateway                         | TUN2SOCKS_PROXY_IPV6   |
 
 保存并应用。
+
+-----
+## 接下来读些什么
+
+- [使用 WireGuard 在 OPNsense 实现透明代理（进阶） - Kreee's Blog](/article/tproxy-in-opnsense-with-wireguard/)
