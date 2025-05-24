@@ -10,4 +10,4 @@ author: "Kreee"
 ---
 最近的单曲循环：   
 
-{{<aplayer server="netease" type="song" id="2653082370">}}
+{{<aplayer server="netease" type="song" id="1415785380">}}
