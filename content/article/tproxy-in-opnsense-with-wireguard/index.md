@@ -48,14 +48,14 @@ Why not:
 wg genkey | tee /etc/wireguard/privatekey | wg pubkey > /etc/wireguard/publickey
 ```
 编写 WireGuard 配置文件（`/etc/wireguard/tunnel.conf`）：
-```conf
+```cfg
 [Interface]
 Address = 10.0.0.1/24, fd00::1/64
 ListenPort = 51820
 PrivateKey = <刚刚生成的 EndPoint 私钥>
 
 [Peer]
-PublicKey = <OPNsense 生成的公钥，等会填写>
+PublicKey = <OPNsense生成的公钥，等会填写>
 AllowedIPs = 10.0.0.2/32, fd00::2/128
 ```
 
