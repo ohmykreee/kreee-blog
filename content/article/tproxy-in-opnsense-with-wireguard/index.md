@@ -31,14 +31,14 @@ Why?:
 - WireGuard 已经成为 OPNsense 的 first class citizen, why not?
 
 Why not:
-- 你不知道你自己在操作的时候每一步在干什么：这种方法涉及很多网络相关的深度知识，有些我自己也没有搞懂。对于我自己都没有搞懂的部分（我会在文章中明确标出），我不会尝试去回答；
-- 你不知道你自己在干什么：这篇文章不会说明一些**简单操作**的通用方法（比如安装WireGuard、配置 WireGuard、设置 WireGuard 自启等等），只会写出在我自己的环境下的配置方法，我也不一定会有时间去解答在你使用的系统中如何完成我文章里面的操作；
-- 这种方法的性能、资源使用、稳定性我都还没有测试过。
+- 你不知道你自己在干什么：这种方法涉及很多网络相关的深度知识，有些我自己也没有搞懂。对于我自己都没有搞懂的部分（我会在文章中明确标出），我不会尝试去回答相关问题；
+- 你不知道你自己在干什么：这篇文章不会说明一些**简单操作**在其他系统中的方法（比如安装WireGuard、配置 WireGuard、设置 WireGuard 自启等等），只会写出在我自己的环境下的配置方法；
+- 这种方法的性能、资源使用、稳定性我都还没有长期测试过。
 
 -----
 ## 我的环境
-1. EndPoint: 作为安装了你喜欢的代理工具和 WireGuard 出口的服务器，我选择的是 `Alpine Linux`（之后教程的操作也会基于该系统）；
-2. OPNsense: `2.5.17_2`（部分操作因为官方教程有更新，所以要重点注意部分我标明的地方）；
+1. EndPoint: 作为安装了代理工具和 WireGuard 出口的服务器，我选择的是 `Alpine Linux`（之后教程的操作也会基于该系统）；
+2. OPNsense: `2.5.17_2`（部分操作官方文档教程没有更新）；
 3. Proxy软件：`mihomo`
 
 -----
@@ -80,7 +80,7 @@ ln -s /etc/init.d/wg-quick /etc/init.d/wg-quick.tunnel
 | Peers                 | Tunnel（稍后配置）                               |
 | Disable routes        | True                                            |
 
-注意！：在原官方文档中，是有配置 `Gateways` 的地方的，新版的 UI 更改给改没了，所以我就把 IP 填进了 Tunnel address 中，虽然不知道有没有用，反正我是能用（逃）
+注意！：在原官方文档中，有一步为配置 `Gateways`，新版软件的 UI 更改给改没了，故我把 IP 填进了 Tunnel address 中，虽然不知道有没有用，反正我是能跑通（逃）
 
 在 VPN ‣ WireGuard ‣ Peers 里，创建一个 WireGuard 节点：
 | Setting | Value |
@@ -173,7 +173,7 @@ IPv6 你也可以再新建一个以上类似的规则，TCP/IP Version 使用 IP
 
 -----
 ## 配置更多的防火墙规则和 NAT OutBound 规则
-以下很多设置我都不太清楚原理（这些内容都是官方文档的操作中），我只能提供我所收集到的所有资料。
+以下很多设置我都不太清楚原理（这些内容为官方文档的操作），我只能提供我所收集到的所有资料。
 
 （配置转发由 OPNsense 生成的流量）在 Firewall ‣ Rules ‣ Floating 中添加规则：
 | Setting | Value |
@@ -192,7 +192,7 @@ IPv6 你也可以再新建一个以上类似的规则，TCP/IP Version 使用 IP
 | Advanced features                                        |
 | Allow Options           | True                           |
 
-IPv6 版本也可以按这个配置再配置一个，TCP/IP Version 选 IPv6，Source 和 Destination 选对应网口。
+IPv6 版本也可以按这个配置再配置一个，TCP/IP Version 选 IPv6，Source 和 Destination 选对应网关。
 
 （我也找到了一些人在讨论这个规则是不是有必要的帖子：[Wireguard Selective Routing - Why Step 9? - OPNsense Forum](https://forum.opnsense.org/index.php?topic=32074.0)，以及在这帖子里 [关于这一步很长的 Github Issues 讨论串](https://github.com/opnsense/core/issues/5329)（我并没有看），你可以尝试去阅读并思考，这个配置是否有必要的选择权交给你，反正我是这样配置的）
 
