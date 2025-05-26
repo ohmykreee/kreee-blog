@@ -11,10 +11,8 @@ noSummary: false
 resizeImages: false
 toc: false
 ---
-**注意！：此篇文章并非完整教程，因为部分环节的原理我还没弄懂（Help wanted），故这篇文章并非教程，并在照着这篇文章进行操作时请明白你自己在做什么！出现任何问题后果请自负！**
+**注意！：此篇文章涉及很多高级网络知识（有些我自己也是一知半解），故请在跟随这篇文章时请有一定的自我问题解决能力！**
 <!--more-->
-
-注意2：此篇文章全文未使用 AI 撰写（~~除了文章头图是尝试找了个 AI 生成了一个 meme 图~~ 来自未来的我：AI 真 tm 垃圾，算了还是我自己p吧），故请放心食用~
 
 -----
 **目录：**
@@ -216,12 +214,131 @@ IPv6 版本也可以按这个配置再配置一个，TCP/IP Version 选 IPv6。
 
 -----
 ## EndPoint：配置透明代理
-说句实话，对于这一部分我是真的一窍不通（iptables 和 Linux 网络栈相关内容），所以这一部分我会非常简略地带过。总之，help wanted.
+> 参考： [我的家庭网络设计思路，开启debian的旁路由之路（四） - Evine的个人博客](https://evine.win/p/%E6%88%91%E7%9A%84%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF%E5%BC%80%E5%90%AFdebian%E7%9A%84%E6%97%81%E8%B7%AF%E7%94%B1%E4%B9%8B%E8%B7%AF%E5%9B%9B/)
 
-这一部分主要是配置 EndPoint 服务器的透明代理规则，让从 `tunnel` 网口内的流量走本地的代理应用。而这一部分的配置我是全权让 `mihomo` 自动给我配置的 tproxy 模式，并且其所配置的规则是默认接受非内网 IP 的所有流量到其自生（所以你看我的文章里缺少了一部分关于如何配置 iptables 让 WireGuard 流量能够走向互联网）。
+（感谢大佬 Evine 的这篇文章，里面写的 `nftables` 规则虽然我看得并不是很懂，但是每一行都有注释让我也能大致理清思路，顺便将该规则用 `inet` 改写让其支持双栈）
 
-我也尝试打开 `mihomo` 的 debug 模式看它到底设置了哪些 iptables 命令，事实是我并看不懂。而且其设置的规则是非内网 IP 会经过其自身，内网 IP 因为没有额外配置路由所以流量就迷失在了系统里。而因为我们在 OPNsense 里配置透明代理的时候已经剔除了内网流量，所以影响不大，但是对部分人来说会存在问题。
+在 Alpine Linux 中，安装 `nftables`：`apk add nftables`；创建一个 `nftables` 脚本于 `/etc/wireguard/tproxy.nft`：
 
-（这篇文章就这样草草结束了，或者等我什么时候上完班有兴致来研究这一部分的内容，但是目前来说我是没有兴趣去研究。over。）
+```bash
+#!/usr/sbin/nft -f
+
+## 清空旧规则
+flush ruleset
+
+## 只处理指定网卡的流量，要和 IP 规则中的接口操持一致
+define interface = eth0
+
+## mihomo 的透明代理端口
+define tproxy_port = 7893
+
+## mihomo 打的标记（routing-mark）
+define mihomo_mark = 233
+
+## 常规流量标记，ip rule 中加的标记，要和ip规则中保持一致，对应 "ip rule add fwmark 1 lookup 100" 中的 "1"
+define default_mark = 1
+
+## 本机运行了服务并且需要在公网上访问的 TCP 端口（本机开放在公网上的端口），仅本地局域网访问的服务端口可不用在此变量中，以半角逗号分隔
+define local_tcp_port = {
+    22,        # ssh，按需设置
+    443        # webui，按需设置
+}
+
+## 要绕过的局域网内 TCP 流量经由本机访问的目标端口，也就是允许局域网内其他主机主动设置 DNS 服务器为其他服务器，而非旁路由
+define lan_2_dport_tcp = {
+    53     # dns查询
+}
+
+## 要绕过的局域网内 UDP 流量经由本机访问的目标端口，也就是允许局域网内其他主机主动设置 DNS 服务器为其他服务器，而非旁路由；另外也允许局域网内其他主机访问远程的 NTP 服务器
+define lan_2_dport_udp = {
+    53,    # dns查询
+    123    # ntp端口
+}
+
+table inet mihomo {
+
+    ## 保留 IPv4/IPv6 集合
+    set private_address4_set {
+        type ipv4_addr
+        flags interval
+        elements = {
+            127.0.0.0/8,
+            100.64.0.0/10,
+            169.254.0.0/16,
+            224.0.0.0/4,
+            240.0.0.0/4,
+            10.0.0.0/8,
+            172.16.0.0/12,
+            192.168.0.0/16
+        }
+    }
+    set private_address6_set {
+        type ipv6_addr
+        flags interval
+        elements = {
+            ::1/128,            # 本地环回
+            fc00::/7,           # 唯一本地地址（ULA，类似 IPv4 的私有地址）
+            fe80::/10,          # 链路本地地址（Link-local）
+            ff00::/8,           # 组播地址
+            64:ff9b::/96        # IPv4-IPv6 转换地址（NAT64）
+        }
+    }
+
+
+    ## prerouting链
+    chain prerouting {
+        type filter hook prerouting priority filter; policy accept;
+        meta l4proto { tcp, udp } socket transparent 1 meta mark set $default_mark accept # 绕过已经建立的连接
+        meta mark $default_mark goto mihomo_tproxy                                        # 已经打上 default_mar 标记的属于本机流量转过来的，直接进入透明代理
+        fib daddr type { local, broadcast, anycast, multicast } accept                    # 绕过本地、单播、组播、多播地址
+        tcp dport $lan_2_dport_tcp accept                                                 # 绕过经由本机到目标端口的 TCP 流量
+        udp dport $lan_2_dport_udp accept                                                 # 绕过经由本地到目标端口的 UDP 流量
+        meta nfproto ipv4 ip daddr @private_address4_set accept                           # 绕过目标地址为保留IP的地址(IPv4)
+        meta nfproto ipv6 ip6 daddr @private_address6_set accept                          # 绕过目标地址为保留IP的地址(IPv6)
+        goto mihomo_tproxy                                                                # 其他流量透明代理到 mihomo
+    }
+
+    ## 透明代理
+    chain mihomo_tproxy {
+        meta l4proto { tcp, udp } tproxy to :$tproxy_port meta mark set $default_mark
+    }
+
+    ## output链
+    chain output {
+        type route hook output priority filter; policy accept;
+        oifname != $interface accept                                                      # 绕过本机内部通信的流量（接口lo）
+        meta mark $mihomo_mark accept                                                     # 绕过本机 mihomo 发出的流量
+        fib daddr type { local, broadcast, anycast, multicast } accept                    # 绕过本地、单播、组播、多播地址
+        udp dport { 53, 123 } accept                                                      # 绕过本机 DNS 查询、NTP 流量
+        tcp sport $local_tcp_port accept                                                  # 绕过本地运行了服务的 TCP 端口，如果并不需要从公网访问这些端口，可以注释掉本行
+        meta nfproto ipv4 ip daddr @private_address4_set accept                           # 绕过目标地址为保留IP的地址(IPv4)
+        meta nfproto ipv6 ip6 daddr @private_address6_set accept                          # 绕过目标地址为保留IP的地址(IPv6)
+        meta l4proto { tcp, udp } meta mark set $default_mark                             # 其他流量重路由到prerouting
+    }
+}
+
+```
+其中要注意以下自行更改内容：
+1. `define interface = eth0` 网口要换成你自己的网口，在 mihomo 的配置文件中也要匹配；
+2. `define tproxy_port = 7893` 透明代理端口也要和 mihomo 匹配得上；
+3. `define mihomo_mark = 233` 包标识要和 mihomo 的 `routing-mark` 匹配得上。
+
+保存并给予运行权限 `chmod +x /etc/wireguard/tproxy.nft`。同时在 WireGuard 配置文件中添加以下两行以配置启动/停止运行命令以自动配置防火墙规则：
+```cfg
+[Interface]
+...
+
+PostUp = ip route add local default dev eth0 table 100 ; ip rule add fwmark 1 lookup 100 ; /etc/wireguard/tproxy.nft
+PostDown = nft flush ruleset ; ip route del local default dev eth0 table 100 ; ip rule del fwmark 1 lookup 100
+
+...
+[Peer]
+...
+```
+其中 `eth0` 要换成你自己的网口，上同。
+
+至此转发规则已经配置完成。注意这个规则是会将 IPv4 和 IPv6 的私有地址直接放行而未经过透明代理，而系统配置中可能未配置这些流量的转发，故访问这些私有地址的流量可能会迷失在系统里。但是因为我们在 OPNsense 里配置透明代理的时候已经剔除了内网流量，所以影响不大，需要注意。
+
+关于 IPv6 的问题，很多特殊服务提供商并不会提供关于 IPv6 的服务，故某些人可能会遇到打开一个特殊应用转半天圈，最后才加载出来的情况。这大概率是应用开始时使用 IPv6 模式，但是发现不通后 fallback 到 IPv4 模式。故个人推荐是直接在 OPNsense 的防火墙规则中 Block 代理设备的前往国外（用 GeoIP 匹配）的流量。
 
 （偷偷做一个不相干的安利：`os-caddy` 插件的 layer 4 proxy 模式真好用，懂的人会懂，支持 UDP，可以去试试）
