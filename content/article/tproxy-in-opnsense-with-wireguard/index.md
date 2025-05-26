@@ -323,7 +323,7 @@ table inet mihomo {
 2. `define tproxy_port = 7893` 透明代理端口也要和 mihomo 匹配得上；
 3. `define mihomo_mark = 233` 包标识要和 mihomo 的 `routing-mark` 匹配得上。
 
-保存并给予运行权限 `chmod +x /etc/wireguard/tproxy.nft`。同时在 WireGuard 配置文件中添加以下两行以配置启动/停止运行命令以自动配置防火墙规则：
+保存并给予运行权限 `chmod +x /etc/wireguard/tproxy.nft`。同时在 WireGuard 配置文件 `/etc/wireguard/tunnel.conf` 中添加以下两行以自动配置防火墙规则：
 ```cfg
 [Interface]
 ...
@@ -337,8 +337,8 @@ PostDown = nft flush ruleset ; ip route del local default dev eth0 table 100 ; i
 ```
 其中 `eth0` 要换成你自己的网口，上同。
 
-至此转发规则已经配置完成。注意这个规则是会将 IPv4 和 IPv6 的私有地址直接放行而未经过透明代理，而系统配置中可能未配置这些流量的转发，故访问这些私有地址的流量可能会迷失在系统里。但是因为我们在 OPNsense 里配置透明代理的时候已经剔除了内网流量，所以影响不大，需要注意。
+至此透明代理规则已经配置完成。注意这个规则是会将 IPv4 和 IPv6 的私有地址直接放行而未经过透明代理，而系统配置中可能未配置这些流量的转发，故访问这些私有地址的流量可能会迷失在系统里。但是因为我们在 OPNsense 里配置透明代理的时候已经剔除了内网流量，所以影响不大，需要注意。
 
-关于 IPv6 的问题，很多特殊服务提供商并不会提供关于 IPv6 的服务，故某些人可能会遇到打开一个特殊应用转半天圈，最后才加载出来的情况。这大概率是应用开始时使用 IPv6 模式，但是发现不通后 fallback 到 IPv4 模式。故个人推荐是直接在 OPNsense 的防火墙规则中 Block 代理设备的前往国外（用 GeoIP 匹配）的流量。
+关于 IPv6 的问题，很多特殊服务提供商并不会提供关于 IPv6 的服务，故某些人可能会遇到打开一个特殊应用转半天圈，最后才加载出来的情况。这大概率是应用开始时使用 IPv6 模式，但是发现不通后 fallback 到 IPv4 模式。故个人推荐是直接在 OPNsense 的防火墙规则中 Reject 代理设备的前往国外（用 GeoIP 匹配）的流量。
 
 （偷偷做一个不相干的安利：`os-caddy` 插件的 layer 4 proxy 模式真好用，懂的人会懂，支持 UDP，可以去试试）
