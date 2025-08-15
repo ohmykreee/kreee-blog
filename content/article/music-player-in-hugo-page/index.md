@@ -2,25 +2,20 @@
 title: "在 Hugo 里内嵌音乐播放器（APlayer）"
 date: 2021-06-07T11:10:33+08:00
 draft: false
-
 categories: ['Learning']
 tags: ['Hugo', 'Selfhosted', 'Learning', '2021']
-author: "Kreee"
-noSummary: false
-
-resizeImages: true
+summary: "就是置顶状态的那个音乐播放器。想要吗？只需要短短三步哦！ "
 ---
+
 就是置顶状态的那个音乐播放器。  
 想要吗？只需要短短三步哦！   
 
-<!--more-->
-
-## 零、工作开始前
+## 0. 工作开始前
 * 使用的 Hugo 版本：0.83.1 ，更高版本的应该也行。
 * 使用的播放器： [APlayer](https://github.com/DIYgod/APlayer) ，一个大家都在用我不用不行的看上去还行的播放器小组件。
 * 使用的解析器： [MetingJS](https://github.com/metowolf/MetingJS) ，很强大，支持许多音乐平台。本人常用网易云音乐平台。
 
-## 一、添加依赖
+## 1. 添加依赖
 虽然只有短短四个字，但是对于许多萌新（包括我）来说这一步就是个噩梦（误）。   
 
 首先，这个东西是因所使用的模板而异。有的模板做的比较好（比如我这个，不得不说德国人是真的严谨），会在配置文件中预留可追加 `.css` 和 `.js` 的设置项；而有的模板只会提供 `.css` ，或者甚至没有。   
@@ -38,7 +33,9 @@ resizeImages: true
 <!-- require MetingJS -->
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 ```
-**注意**，如果你的模板是通过 submodule 方式导入的，并且在非本地环境进行渲染和发布（如 GitHub Action），在每次模板更新后，最好重复以上步骤确保不会出啥奇奇怪怪的问题。   
+{{< alert >}}
+**注意** 如果你的模板是通过 submodule 方式导入的，并且在非本地环境进行渲染和发布（如 GitHub Action），在每次模板更新后，最好重复以上步骤确保不会出啥奇奇怪怪的问题。  
+{{< /alert >}}  
 
 完事后，如何检测依赖成功被加载呢？   
 只需要启动 Hugo 内置服务器，打开网页，按下~~高贵的~~`F12`按钮打开开发者工具。如果一切顺利，可以在控制台里看到两个 outputs ：
@@ -50,7 +47,7 @@ resizeImages: true
 如果没有呢？那就是轮到你头痛的时候了😏   
 也不需要太着急，我也是头痛了一下午才搞定的。毕竟整这东西玩的这就是折腾，不是吗？
 
-## 二、 **（可选）** 定义 shortcodes
+## 2. **（可选）** 定义 shortcodes
 当然你这步不想做完全可以，只需要在想添加音乐播放器的地方插入这一行就行：
 ```html
 <meting-js server="netease" type="playlist" id="769332917"></meting-js>
@@ -73,7 +70,7 @@ resizeImages: true
 ```
 就能达到之前那行 HTML 语句一样的效果。
 
-## 三、更改 Goldmark 设置
+## 3. 更改 Goldmark 设置
 你以为到这里就完事了？但是我有说需要三步啊。最后一步，也是 Hugo 版本更新遗留问题。    
 如果你头铁，直接去部署网页；等你部署完了，你就会发现，本来应该出现音乐播放器的地方，竟然一片空白。   
 不要慌张，和我一起，按下~~高贵的~~`F12`按钮打开开发者工具，使用元素检查选中本应该出现播放器的地方。然后，你就会在代码查看器里看到一行字：   
@@ -94,11 +91,10 @@ resizeImages: true
   defaultMarkdownHandler = "blackfriday"
 ```
 
-## 四、总结
+## 4. 总结
 So，导致播放器组件不起作用的可能原因分这三种：
 1. css 和 js 依赖没有被成功添加 **（最有可能）**；
 2. Goldmark 设置没有更改；
 3. 其他傻X错误比如代码写错了或者传递参数不正确啥的。   
 
 如果一切顺利的话，你也可以让自己的博客里充满音乐了！Enjoy！
-{{<aplayer server="netease" type="song" id="29550185">}}

@@ -2,18 +2,11 @@
 title: "在 QEMU 里运行 OpenWRT(arm32)"
 date: 2021-07-17T21:36:03+08:00
 draft: true
-
 categories: ['Learning']
 tags: ['Selfhosted', 'Learning', 'QEMU', '2021']
-author: "Kreee"
-noSummary: false
-
-resizeImages: false
 ---
 烂尾了烂尾了，AP 的事先不打算整了。    
 这篇文章有部分可以参考，就先留在这里了。
-
-<!--more-->
 
 > 参考： https://gist.github.com/extremecoders-re/f2c4433d66c1d0864a157242b6d83f67    
 

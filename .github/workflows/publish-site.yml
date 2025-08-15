@@ -41,14 +41,3 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy public --project-name=kre3-blog --branch main
-
-      - name: Upload Data # script from the hugo theme template
-        run: |
-          cp public/index.json themes/bilberry-hugo-theme/exampleSite/algolia/index.json
-          cd themes/bilberry-hugo-theme/exampleSite/algolia
-          npm install
-          npm run data-upload -- -c \
-            -f index.json \
-            -a ${{ secrets.ALGOLIA_APP_ID }} \
-            -k ${{ secrets.ALGOLIA_ADMIN_KEY }} \
-            -n ${{ secrets.ALGOLIA_INDEX_NAME }}

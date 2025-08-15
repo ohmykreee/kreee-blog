@@ -2,24 +2,15 @@
 title: "PVE、OPNsense、Ubuntu Server设置小记"
 date: 2022-12-24T18:39:00+08:00
 draft: false
-
 categories: ['Learning']
 tags: ['Selfhosted', 'Learning', '2022']
-author: "Kreee"
-
-noSummary: false
-resizeImages: false
-toc: false
+summary: "注意：这篇文章仅仅是作为自己边鼓捣边摸索出来的产物，并非为一篇教程，并不能保证所有的内容全部正确，如有错误也欢迎指出。"
 ---
-**注意！** 这篇文章仅仅是作为自己边鼓捣边摸索出来的产物，并非为一篇教程，并不能保证所有的内容全部正确，如有错误也欢迎指出。
-
-<!--more-->
+{{< alert >}}
+**注意** 这篇文章仅仅是作为自己边鼓捣边摸索出来的产物，并非为一篇教程，并不能保证所有的内容全部正确，如有错误也欢迎指出。
+{{< /alert >}}
 
 ![](network-topology.jpg)
-
------
-**目录：**
-{{<toc>}}
 
 -----
 ## 安装 PVE
@@ -75,7 +66,10 @@ args: -set device.hostpci4.x-msix-relocation=bar2
 
 新建一个虚拟机，设置参数（记得在 CPU 设置里把 aes 功能打开），添加网络设备 vmbr1 ，在 `Hardware` 里添加 PCI 设备，先只添加 enp1s0。
 
-**注意！** 建议在新建虚拟机的时候先不要设置自动启动，以便如果出现了 OPNsense 配置错误导致的 pve WebGUI 访问不了，可以通过强制重启机器来恢复。等全部配置完成并确认没有问题后再设置 OPNsense 虚拟机自动启动。
+{{< alert >}}
+**注意** 建议在新建虚拟机的时候先不要设置自动启动，以便如果出现了 OPNsense 配置错误导致的 pve WebGUI 访问不了，可以通过强制重启机器来恢复。等全部配置完成并确认没有问题后再设置 OPNsense 虚拟机自动启动。
+{{< /alert >}}
+
 
 启动虚拟机，首先进入的是 live mode（演示模式），其中在进入演示模式前会配置网络信息，这里建议手动配置设置好WAN口与LAN口，这里是把连接到光猫的 enp1s0 端口设置为 WAN，桥接网卡 vtnet0 设置为 LAN 口。
 
@@ -228,8 +222,11 @@ message:restarting clash
 最后等待一段时间，在 Monit ‣ Status 里查看是否运行。
 
 ### 配置透明代理
+{{< alert >}}
+**注意** 由于 Squid 被曝多个严重漏洞且维护团队人手不够，无法及时修复，OPNsense 维护团队计划将 Squid 的支持降为 Tier2。且该方法不支持代理 UDP/Quic 流量。故建议阅读以下文章 。
+{{< /alert >}}
 
-> **注意：** 由于 Squid 被曝多个严重漏洞且维护团队人手不够，无法及时修复，OPNsense 维护团队计划将 Squid 的支持降为 Tier2。且该方法不支持代理 UDP/Quic 流量。故建议参考文章 [在 OPNsense 上安装 tun2socks 服务](/article/setup-tun2socks-in-opnsense/) 以使用新方法。
+{{< article link="/article/tproxy-in-opnsense-with-wireguard/" showSummary=true compactSummary=true >}}
 
 在 Services ‣ Web Proxy ‣ Administration 的 General Proxy Settings 里启用代理，在 Forward Proxy 里启用 `Enable Transparent HTTP proxy`、`Enable SSL inspection`、`Log SNI information only`，并点击每一栏 (i) 按钮中提示文字的 Add a new firewall rule（注意！添加完 NAT 项目后记得应用！）。
 
