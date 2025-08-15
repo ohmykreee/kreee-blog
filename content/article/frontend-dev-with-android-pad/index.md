@@ -4,13 +4,12 @@ date: 2021-12-05T09:48:10+08:00
 draft: false
 categories: ['Learning']
 tags: ['Termux', 'Frontend', 'Learning', 'VSCode', 'code-server', '2021']
+summary: "四舍五入安卓系统是 Linux，四舍五入可以在安卓系统上直接进行开发。四舍五入又水了一篇。"
 ---
 
 四舍五入安卓系统是 Linux，四舍五入可以在安卓系统上直接进行开发。
 
 ~~四舍五入又水了一篇~~
-
-<!--more-->
 
 -----
 ## 写在前面

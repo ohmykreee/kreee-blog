@@ -4,12 +4,11 @@ date: 2021-06-07T11:10:33+08:00
 draft: false
 categories: ['Learning']
 tags: ['Hugo', 'Selfhosted', 'Learning', '2021']
+summary: "就是置顶状态的那个音乐播放器。想要吗？只需要短短三步哦！ "
 ---
 
 就是置顶状态的那个音乐播放器。  
 想要吗？只需要短短三步哦！   
-
-<!--more-->
 
 ## 零、工作开始前
 * 使用的 Hugo 版本：0.83.1 ，更高版本的应该也行。

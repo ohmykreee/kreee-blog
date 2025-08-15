@@ -4,11 +4,10 @@ date: 2021-06-06T19:53:42+08:00
 draft: false
 categories: ['Learning']
 tags: ['Selfhosted', 'Learning', '2021']
+summary: "一个自用的备忘录表，记录一下要用但是又容易忘记的命令。不断更新中..."
 ---
 一个自用的备忘录表，记录一下要用但是又容易忘记的命令。   
 不断更新中...
-
-<!--more-->
 
 -----
 

@@ -4,11 +4,10 @@ date: 2021-10-19T12:29:53+08:00
 draft: false
 categories: ['Learning']
 tags: ['Python', 'JavaScript', 'Frontend', 'GitHub', 'Learning', '2021']
+summary: "又为：论如何嫖秃 GitHub 服务器"
 ---
 
 ~~又为：论如何嫖秃 GitHub 服务器~~
-
-<!--more-->
 
 ## 万恶之源
 一切都应该从那时说起：~~在一个月黑风高的夜晚~~，我翻译博客的 404 页面时，望着空荡荡的页面，心里突发奇想：如果这里能有一个随机展示我喜欢过的推特的一个小组件，是不是很 nice（顺便展示一下我奇怪的 xp ）。

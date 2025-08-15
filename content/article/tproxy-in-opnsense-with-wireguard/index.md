@@ -4,12 +4,11 @@ date: 2025-05-24T20:21:00+08:00
 draft: false
 categories: ['Learning']
 tags: ['Selfhosted', 'Learning', '2025']
+summary: "注意：此篇文章涉及很多高级网络知识（有些我自己也是一知半解），故请在跟随这篇文章时请有一定的自我问题解决能力！"
 ---
 {{< alert >}}
 **注意** 此篇文章涉及很多高级网络知识（有些我自己也是一知半解），故请在跟随这篇文章时请有一定的自我问题解决能力！
 {{< /alert >}}
-
-<!--more-->
 
 -----
 ## Why and why you shouldn't

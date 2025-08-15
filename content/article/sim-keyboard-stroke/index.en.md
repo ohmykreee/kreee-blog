@@ -1,29 +1,36 @@
 ---
-title: "模拟键盘输入"
+title: "Simulating Keyboard Input"
 date: 2021-06-26T10:40:42+08:00
 draft: false
 categories: ['Code']
 tags: ['Python', 'Study', 'Code Sharing', '2021']
-summary: "懂的都懂这是干啥用的。"
+summary: "Those who know, know what this is for."
 ---
-懂的都懂这是干啥用的。
 
-`requirements.txt` ：
+{{< alert icon="language">}}
+The English version is translated by AI (Gemini 2.5 Pro Preview). If you want to view the original content, please switch to Chinese version.
+{{< /alert >}}
+
+---
+
+Those who know, know what this is for.
+
+`requirements.txt`:
 ```plaintext
 pynput==1.7.3
 six==1.16.0
 ```
-大佬建议直接用 `requirements.txt` 安装依赖。
+Experts suggest installing dependencies directly using `requirements.txt`.
 
-安装方法（建议使用Pycharm）：   
-新建项目，将代码复制粘贴。   
-然后在下面的 Terminal 标签页里运行：
+Installation method (Pycharm is recommended):
+Create a new project and copy and paste the code.
+Then run in the Terminal tab below:
 ```plaintext
 pip install pynput
 ```
 
 -----
-话不多说，直接上代码：
+Without further ado, here's the code:
 ```python
 import pynput
 import time

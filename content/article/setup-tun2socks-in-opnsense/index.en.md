@@ -1,31 +1,38 @@
 ---
-title: "在 OPNsense 上安装 tun2socks 服务"
+title: "Setting up tun2socks service on OPNsense"
 date: 2023-11-25T17:06:00+08:00
 draft: false
 categories: ['Learning']
 tags: ['Selfhosted', 'Learning', '2023']
-summary: "由于 OPNsense 上的 Squid 包将被降低支持力度，且该方法无法代理 UDP/Quic 流量，故使用一种全新的方法来解决这个问题。"
+summary: "Since the Squid package on OPNsense will be deprecated and this method cannot proxy UDP/Quic traffic, a new method is used to solve this problem."
 ---
-~~吐槽一下：距离上次写博文已经快一年了，可想而知我有多懒。~~
 
-由于 OPNsense 上的 Squid 包将被降低支持力度，且该方法无法代理 UDP/Quic 流量，故使用一种全新的方法来解决这个问题。
+{{< alert icon="language">}}
+The English version is translated by AI (Gemini 2.5 Pro Preview). If you want to view the original content, please switch to Chinese version.
+{{< /alert >}}
+
+---
+
+~~Let me complain: it's been almost a year since I last wrote a blog post, so you can imagine how lazy I am.~~
+
+Since the Squid package on OPNsense will be deprecated and this method cannot proxy UDP/Quic traffic, a new method is used to solve this problem.
 
 -----
-## 准备可执行文件和配置文件
-前往 [xjasonlyu/tun2socks](https://github.com/xjasonlyu/tun2socks) 下载最新的适用于 FreeBSD 的 `tun2socks` 可执行文件于你喜欢的位置。这里就放置于 `/usr/local/tun2socks`。
+## Prepare executable files and configuration files
+Go to [xjasonlyu/tun2socks](https://github.com/xjasonlyu/tun2socks) to download the latest `tun2socks` executable file for FreeBSD to your preferred location. Here it is placed in `/usr/local/tun2socks`.
 
-新建配置文件 `/usr/local/tun2socks/config.yaml` 并填写以下内容：
+Create a new configuration file `/usr/local/tun2socks/config.yaml` and fill in the following content:
 ```yaml
 # debug / info / warning / error / silent
 loglevel: info
 
 # URL format: [protocol://]host[:port]
-# 这里填写到代理服务器的链接
-# 配置透明网关可参考文章：https://rxclc.club/index.php/archives/18/
+# Fill in the link to the proxy server here
+# For configuring a transparent gateway, please refer to the article: https://rxclc.club/index.php/archives/18/
 proxy: socks5://192.168.3.10:7891
 
 # URL format: [driver://]name
-# TUN 设备名称，避免使用 tun0
+# TUN device name, avoid using tun0
 device: tun://proxytun2socks0
 
 # Maximum transmission unit for each packet
@@ -35,11 +42,11 @@ mtu: 1500
 udp-timeout: 120s
 ```
 
-在文件夹 `/usr/local/tun2socks/` 内运行 `./tun2socks -config ./config.yaml`，测试配置文件是否正确。Ctrl+C 中止当前程序。
+In the `/usr/local/tun2socks/` folder, run `./tun2socks -config ./config.yaml` to test whether the configuration file is correct. Press Ctrl+C to terminate the current program.
 
 -----
-## 新建服务文件
-新建文件 `/usr/local/etc/rc.d/tun2socks` 并填写以下内容：
+## Create a new service file
+Create a new file `/usr/local/etc/rc.d/tun2socks` and fill in the following content:
 ```bash
 #!/bin/sh
 
@@ -75,18 +82,18 @@ tun2socks_start()
 
 run_rc_command "$1"
 ```
-给予运行权限 `chmod +x /usr/local/etc/rc.d/tun2socks`。
+Grant execution permission `chmod +x /usr/local/etc/rc.d/tun2socks`.
 
-如果你有将 `tun2socks` 可执行文件和配置文件放于其他地方，要记得更改文件内的相应内容。
+If you have placed the `tun2socks` executable file and configuration file in other places, remember to change the corresponding content in the file.
 
-创建 `/etc/rc.conf` 并添加以下内容：
+Create `/etc/rc.conf` and add the following content:
 ```plaintext
 tun2socks_enable="YES"
 ```
 
 -----
-## 新建 configd 文件
-新建文件 `/usr/local/opnsense/service/conf/actions.d/actions_tun2socks.conf` 并填写以下内容：
+## Create a new configd file
+Create a new file `/usr/local/opnsense/service/conf/actions.d/actions_tun2socks.conf` and fill in the following content:
 ```bash
 [start]
 command:/usr/local/etc/rc.d/tun2socks start
@@ -112,13 +119,13 @@ parameters:
 type:script_output
 message:request tun2socks status
 ```
-运行 `service configd restart` 以重启 `configd` 服务来应用更改。
+Run `service configd restart` to restart the `configd` service to apply the changes.
 
 -----
-## 新建插件
-> 参考： [Using plugins - OPNsense Documentation](https://docs.opnsense.org/development/backend/legacy.html)
+## Create a new plugin
+> Reference: [Using plugins - OPNsense Documentation](https://docs.opnsense.org/development/backend/legacy.html)
 
-新建文件 `/usr/local/etc/inc/plugins.inc.d/tuntosocks.inc` 并填写以下内容：
+Create a new file `/usr/local/etc/inc/plugins.inc.d/tuntosocks.inc` and fill in the following content:
 ```php
 <?php
 
@@ -179,30 +186,30 @@ function tuntosocks_syslog()
     return $logfacilities;
 }
 ```
-使用 `pluginctl -s` 读取并加载插件。如果输出列表中有出现 `tun-socks` 且在 Web-GUI 的 Services 内出现 `tun-socks` 服务，点击运行能够成功运行，则说明插件注册成功。
+Use `pluginctl -s` to read and load the plugin. If `tun-socks` appears in the output list and the `tun-socks` service appears in the Services in the Web-GUI, and it can be run successfully by clicking run, it means that the plugin has been registered successfully.
 
 -----
-## 使服务在 Early Stage 启动
-> 参考： [Bootup / autorun options - OPNsense Documentation](https://docs.opnsense.org/development/backend/autorun.html)
+## Make the service start in the Early Stage
+> Reference: [Bootup / autorun options - OPNsense Documentation](https://docs.opnsense.org/development/backend/autorun.html)
 
-创建文件 `/usr/local/etc/rc.syshook.d/early/60-tun2socks`，注意最好前面的数字不要和文件夹内已有文件重复。填写以下内容：
+Create the file `/usr/local/etc/rc.syshook.d/early/60-tun2socks`, note that it is best that the preceding number does not conflict with existing files in the folder. Fill in the following content:
 ```bash
 #!/bin/sh
 
 # Start tun2socks service
 /usr/local/etc/rc.d/tun2socks start
 ```
-给予文件可执行权限 `chmod +x /usr/local/etc/rc.syshook.d/early/60-tun2socks`。
+Grant the file executable permission `chmod +x /usr/local/etc/rc.syshook.d/early/60-tun2socks`.
 
-然后重启系统，测试 `tun2socks` 是否正常启动。
+Then restart the system to test whether `tun2socks` starts normally.
 
 -----
-## 新建端口，和配置网关
-> 参考： [opnsense使用透明代理并分流 - OPNsense Forum](https://forum.opnsense.org/index.php?topic=27078.0)
+## Create a new port and configure the gateway
+> Reference: [opnsense uses transparent proxy and shunts - OPNsense Forum](https://forum.opnsense.org/index.php?topic=27078.0)
 
-在 Interfaces ‣ Assignments 里，将刚刚创建的 TUN 设备新建为新端口，保存设置。
+In Interfaces ‣ Assignments, create the newly created TUN device as a new port and save the settings.
 
-在 Interfaces ‣ [刚刚添加的网口]，进行以下设置，保存应用：
+In Interfaces ‣ [the newly added network port], make the following settings and save and apply:
 | Setting | Value |
 | ------------------------------- | ---------------- |
 | Enable                          | Enable Interface |
@@ -210,9 +217,9 @@ function tuntosocks_syslog()
 | IPv4 Configuration Type         | Static IPv4      |
 | IPv4 address                    | 10.0.3.1/24      |
 
-其中 IPv4 地址要和目前所用局域网地址不同。
+The IPv4 address should be different from the currently used local area network address.
 
-在 System ‣ Gateways ‣ Single 里，添加网关：
+In System ‣ Gateways ‣ Single, add a gateway:
 
 | Setting | Value |
 | ------------------------------- | ---------------- |
@@ -222,28 +229,28 @@ function tuntosocks_syslog()
 | IP address                      | 10.0.3.2         |
 | Disable Gateway Monitoring      | True             |
 
-保存并应用。
+Save and apply.
 
 -----
-## 善用别名（Aliases）
+## Make good use of Aliases
 
-别名的配置在 Firewall ‣ Aliases 里，可以通过自定义别名来快速选定一个或多个对象。
+The configuration of aliases is in Firewall ‣ Aliases. You can quickly select one or more objects by customizing aliases.
 
-本人常用的别名类型为 Host(s)、Port(s)、MAC Address、Network Group。其中 Host(s) 类型用来存储那些不想被代理的网站，Port(s) 类型用来存储想要代理的端口，MAC Address 类型用来存储想要代理的单个设备，Network Group 类型用来存储代理设备集合、非代理目标集合。
+The alias types I commonly use are Host(s), Port(s), MAC Address, and Network Group. The Host(s) type is used to store websites that I don't want to be proxied, the Port(s) type is used to store ports that I want to be proxied, the MAC Address type is used to store individual devices that I want to be proxied, and the Network Group type is used to store a collection of proxy devices and a collection of non-proxy targets.
 
-故接下来将要使用的别名有：
+Therefore, the aliases to be used next are:
 
 | Name | Type | Description | 
 | -------------- | -------------- | ----------------------------- |
-| NoProxyGroup   | Network group  | 包括非代理域名、局域网地址      |
-| ProxyDevices   | Network group  | 包括所有想要代理的设备 MAC 地址 |
-| ProxyPort      | Port(s)        | 80 端口和 443 端口             |
+| NoProxyGroup   | Network group  | Includes non-proxy domains and local area network addresses      |
+| ProxyDevices   | Network group  | Includes the MAC addresses of all devices to be proxied |
+| ProxyPort      | Port(s)        | Port 80 and port 443             |
 
-如果你原意，也可以上 GeoIP 规则，需要注册 MaxMind 账号：[MaxMind GeoIP’s Setup - OPNsense Documentation](https://docs.opnsense.org/manual/how-tos/maxmind_geo_ip.html)。
+If you want, you can also use GeoIP rules, which require registering a MaxMind account: [MaxMind GeoIP’s Setup - OPNsense Documentation](https://docs.opnsense.org/manual/how-tos/maxmind_geo_ip.html).
 
 -----
-## 配置防火墙规则
-在 Firewall ‣ Rules ‣ LAN 中添加规则，且该规则在默认的 `Default allow LAN to any rule` 和 `Default allow LAN IPv6 to any rule` 之前：
+## Configure firewall rules
+In Firewall ‣ Rules ‣ LAN, add a rule, and this rule should be before the default `Default allow LAN to any rule` and `Default allow LAN IPv6 to any rule`:
 
 | Setting | Value |
 | ------------------------------- | ---------------------- |
@@ -255,17 +262,17 @@ function tuntosocks_syslog()
 | Destination port range          | ProxyPort to ProxyPort |
 | Gateway                         | TUN2SOCKS_PROXY        |
 
-保存并应用。
+Save and apply.
 
 -----
-## IPv6 相关配置
+## IPv6 related configuration
 
 {{< alert >}}
-**注意** 该部分没有进行完全的验证/测试，故以下内容可能会有错误，请酌情参考。
+**Note** This part has not been fully verified/tested, so the following content may be incorrect, please refer to it with caution.
 {{< /alert >}}
 
 
-在 Interfaces ‣ [对应网口]，进行以下设置，保存应用：
+In Interfaces ‣ [corresponding network port], make the following settings and save and apply:
 | Setting | Value |
 | ------------------------------- | ----------------------------- |
 | Enable                          | Enable Interface              |
@@ -273,7 +280,7 @@ function tuntosocks_syslog()
 | IPv4 Configuration Type         | Static IPv6                   |
 | IPv4 address                    | FEC0:0000:0000:0003::/64      |
 
-在 System ‣ Gateways ‣ Single 里，添加网关：
+In System ‣ Gateways ‣ Single, add a gateway:
 
 | Setting | Value |
 | ------------------------------- | ----------------------- |
@@ -283,9 +290,9 @@ function tuntosocks_syslog()
 | IP address                      | FEC0:0000:0000:0003::2  |
 | Disable Gateway Monitoring      | True                    |
 
-保存并应用。
+Save and apply.
 
-在 Firewall ‣ Rules ‣ LAN 中添加规则，且该规则在默认的 `Default allow LAN to any rule` 和 `Default allow LAN IPv6 to any rule` 之前：
+In Firewall ‣ Rules ‣ LAN, add a rule, and this rule should be before the default `Default allow LAN to any rule` and `Default allow LAN IPv6 to any rule`:
 
 | Setting | Value |
 | ------------------------------- | ---------------------- |
@@ -297,9 +304,9 @@ function tuntosocks_syslog()
 | Destination port range          | ProxyPort to ProxyPort |
 | Gateway                         | TUN2SOCKS_PROXY_IPV6   |
 
-保存并应用。
+Save and apply.
 
 -----
-## 接下来读些什么
+## What to read next
 
 {{< article link="/article/tproxy-in-opnsense-with-wireguard/" showSummary=true compactSummary=true >}}
