@@ -1,6 +1,6 @@
 ---
 title: "Status"
-description: "Some short announcements."
+description: "Some short updates."
 
 cascade:
   showDate: true
@@ -9,11 +9,11 @@ cascade:
 ---
 
 {{< lead >}}
-Some short announcements.
+Some short updates.
 {{< /lead >}}
 
-Recent single loop:
+Recent loop music:
 
-{{<aplayer server="netease" type="song" id="1353951869">}}
+{{<aplayer server="netease" type="song" id="1978104048">}}
 
 ---
