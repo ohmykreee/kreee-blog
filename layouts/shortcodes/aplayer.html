@@ -4,4 +4,16 @@
 <!-- require MetingJS -->
 <script src="https://unpkg.com/meting/dist/Meting.min.js"></script>
 
+<style>
+  .dark .aplayer {
+    background: #44403c;
+  }
+  .dark .aplayer .aplayer-lrc:before {
+    background: linear-gradient(180deg, #44403c 0, hsla(0, 0%, 100%, 0));
+  }
+  .dark .aplayer .aplayer-lrc:after {
+    background: linear-gradient(180deg,hsla(0,0%,100%,0) 0,#44403c);
+  }
+</style>
+
 <meting-js server="{{ .Get "server" }}" type="{{ .Get "type" }}" id="{{ .Get "id" }}" theme="#1d1f38"></meting-js>
