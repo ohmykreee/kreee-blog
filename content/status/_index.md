@@ -3,9 +3,8 @@ title: "公告"
 description: "一些简短的公告。"
 
 cascade:
-  showDate: false
+  showDate: true
   showAuthor: false
-  invertPagination: false
   groupByYear: false
 ---
 

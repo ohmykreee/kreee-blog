@@ -233,9 +233,7 @@ Finally, wait for a while and check if it is running in Monit ‣ Status.
 **Note** Since Squid has been exposed to multiple serious vulnerabilities and the maintenance team is understaffed and unable to fix them in time, the OPNsense maintenance team plans to downgrade Squid's support to Tier 2. And this method does not support proxying UDP/Quic traffic. Therefore, it is recommended to read the following articles.
 {{< /alert >}}
 
-{{< article link="/article/setup-tun2socks-in-opnsense/" showSummary=true compactSummary=true >}}
--
-{{< article link="/article/tproxy-in-opnsense-with-wireguard/" showSummary=true compactSummary=true >}}
+{{< article link="/en/article/tproxy-in-opnsense-with-wireguard/" showSummary=true compactSummary=true >}}
 
 In Services ‣ Web Proxy ‣ Administration's General Proxy Settings, enable the proxy. In Forward Proxy, enable `Enable Transparent HTTP proxy`, `Enable SSL inspection`, `Log SNI information only`, and click on the "Add a new firewall rule" text in the prompt for each column (i) (Note! Remember to apply after adding the NAT item!).
 

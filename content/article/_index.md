@@ -1,10 +1,6 @@
 ---
 title: "文章"
 description: "一些技术类或生活类的博客文章。"
-cascade:
-  showDate: true
-  showAuthor: true
-  invertPagination: false
 ---
 
 {{< lead >}}

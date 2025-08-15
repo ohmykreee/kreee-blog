@@ -104,4 +104,5 @@ So, the possible reasons why the player component does not work are divided into
 3. Other stupid errors such as wrong code or incorrect parameters.
 
 If everything goes well, you can also fill your blog with music! Enjoy!
+
 {{<aplayer server="netease" type="song" id="29550185">}}

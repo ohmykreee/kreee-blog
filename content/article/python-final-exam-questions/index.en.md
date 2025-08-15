@@ -858,5 +858,5 @@ primeNumbers(number)
 ```
 
 -----
-### Sir, you've seen it all, why not have a furry picture 👍 (mistake)
+**Sir, you've seen it all, why not have a furry picture 👍**
 ![](python-questions-bonus.jpg)

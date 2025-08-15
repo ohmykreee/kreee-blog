@@ -1,8 +1,6 @@
 ---
 title: "Migrated to a new domain"
 date: 2025-05-04T15:26:00+08:00
-showDate: true
-groupByYear: false
 ---
 
 {{< alert icon="language">}}

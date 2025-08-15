@@ -3,9 +3,8 @@ title: "Status"
 description: "Some short announcements."
 
 cascade:
-  showDate: false
+  showDate: true
   showAuthor: false
-  invertPagination: false
   groupByYear: false
 ---
 

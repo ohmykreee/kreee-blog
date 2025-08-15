@@ -1,9 +1,8 @@
 ---
 title: "迁移到新域名"
 date: 2025-05-04T15:26:00+08:00
-showDate: true
-groupByYear: false
 ---
+
 买了个新域名，`ohmykreee.top` -> `kre3.net`，之后也会逐渐弃用 `ohmykreee.top` 这个域名。
 
 （缘由？阿里云无缘无故提升域名续费价格导致对其失去信任.jpg）

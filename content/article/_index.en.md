@@ -1,10 +1,6 @@
 ---
 title: "Articles"
 description: "Some technical or life-related blog articles."
-cascade:
-  showDate: true
-  showAuthor: true
-  invertPagination: false
 ---
 
 {{< lead >}}
