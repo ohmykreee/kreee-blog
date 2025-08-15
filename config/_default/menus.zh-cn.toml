@@ -31,7 +31,7 @@
 [[main]]
  pre = "heart" 
  name = "关于我"
- url = "https://www.kre3.net/about/"
+ url = "https://www.kre3.net/"
  weight = 40
 
 #[[main]]
