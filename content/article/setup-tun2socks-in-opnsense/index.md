@@ -2,23 +2,14 @@
 title: "在 OPNsense 上安装 tun2socks 服务"
 date: 2023-11-25T17:06:00+08:00
 draft: false
-
 categories: ['Learning']
 tags: ['Selfhosted', 'Learning', '2023']
-author: "Kreee"
-
-noSummary: false
-resizeImages: false
-toc: false
 ---
 ~~吐槽一下：距离上次写博文已经快一年了，可想而知我有多懒。~~
 
 由于 OPNsense 上的 Squid 包将被降低支持力度，且该方法无法代理 UDP/Quic 流量，故使用一种全新的方法来解决这个问题。
-<!--more-->
 
------
-**目录：**
-{{<toc>}}
+<!--more-->
 
 -----
 ## 准备可执行文件和配置文件
@@ -269,7 +260,11 @@ function tuntosocks_syslog()
 
 -----
 ## IPv6 相关配置
-**注意：该部分没有进行完全的验证/测试，故以下内容可能会有错误，请酌情参考。**
+
+{{< alert >}}
+**注意** 该部分没有进行完全的验证/测试，故以下内容可能会有错误，请酌情参考。
+{{< /alert >}}
+
 
 在 Interfaces ‣ [对应网口]，进行以下设置，保存应用：
 | Setting | Value |
@@ -308,4 +303,4 @@ function tuntosocks_syslog()
 -----
 ## 接下来读些什么
 
-- [使用 WireGuard 在 OPNsense 实现透明代理（进阶） - Kreee's Blog](/article/tproxy-in-opnsense-with-wireguard/)
+{{< article link="/article/tproxy-in-opnsense-with-wireguard/" showSummary=true compactSummary=true >}}

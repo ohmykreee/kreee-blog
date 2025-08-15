@@ -2,23 +2,14 @@
 title: "将后端服务器系统迁移至 Ubuntu server"
 date: 2021-07-16T14:31:14+08:00
 draft: false
-
 categories: ['Learning']
 tags: ['Selfhosted', 'Learning', '2021']
 author: "Kreee"
-noSummary: false
-
-resizeImages: false
+summary: "本来用 CentOS 7 用得开开心心的，结果了解到 Redhat 公司要整治一下我们这群白嫖怪（感觉被强行喂了一口💩）。So, 为了服务器的可持续发展（其实是放假闲得无聊），顺便重装一下机器的系统，以及更新一下远古的备忘指南。"
 ---
 ## What happend?
 本来用 CentOS 7 用得开开心心的，结果了解到 Redhat 公司要整治一下我们这群白嫖怪（感觉被强行喂了一口💩）。   
 So, 为了服务器的可持续发展（其实是放假闲得无聊），顺便重装一下机器的系统，以及更新一下远古的备忘指南，Let's begin!
-
-<!--more-->
-
------
-**目录：**
-{{<toc>}}
 
 -----
 ## Install OS

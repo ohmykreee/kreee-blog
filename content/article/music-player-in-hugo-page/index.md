@@ -2,14 +2,10 @@
 title: "在 Hugo 里内嵌音乐播放器（APlayer）"
 date: 2021-06-07T11:10:33+08:00
 draft: false
-
 categories: ['Learning']
 tags: ['Hugo', 'Selfhosted', 'Learning', '2021']
-author: "Kreee"
-noSummary: false
-
-resizeImages: true
 ---
+
 就是置顶状态的那个音乐播放器。  
 想要吗？只需要短短三步哦！   
 
@@ -38,7 +34,9 @@ resizeImages: true
 <!-- require MetingJS -->
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 ```
-**注意**，如果你的模板是通过 submodule 方式导入的，并且在非本地环境进行渲染和发布（如 GitHub Action），在每次模板更新后，最好重复以上步骤确保不会出啥奇奇怪怪的问题。   
+{{< alert >}}
+**注意** 如果你的模板是通过 submodule 方式导入的，并且在非本地环境进行渲染和发布（如 GitHub Action），在每次模板更新后，最好重复以上步骤确保不会出啥奇奇怪怪的问题。  
+{{< /alert >}}  
 
 完事后，如何检测依赖成功被加载呢？   
 只需要启动 Hugo 内置服务器，打开网页，按下~~高贵的~~`F12`按钮打开开发者工具。如果一切顺利，可以在控制台里看到两个 outputs ：

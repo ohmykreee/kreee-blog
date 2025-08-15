@@ -2,14 +2,10 @@
 title: "关于部署 Next.js 静态网页到 GitHub Pages 有关注意事项"
 date: 2021-11-18T16:17:41+08:00
 draft: false
-
-categories: ['Learning']
 tags: ['JavaScript', 'Frontend', 'GitHub', 'Learning', 'React', 'Next.js', '2021']
-author: "Kreee"
-noSummary: false
-
-resizeImages: true
+categories: ['Learning']
 ---
+
 个人主页 [www.ohmykreee.top](https://www.ohmykreee.top) ~~涅槃重生啦~~ ，快去围观吧！
 
 （怎么这文案一股营销号的味道）

@@ -1,8 +1,8 @@
 ---
+title: "迁移到新域名"
 date: 2025-05-04T15:26:00+08:00
-
-icon: "fa-rocket"
 showDate: true
+groupByYear: false
 ---
 买了个新域名，`ohmykreee.top` -> `kre3.net`，之后也会逐渐弃用 `ohmykreee.top` 这个域名。
 

@@ -2,13 +2,8 @@
 title: "模拟键盘输入"
 date: 2021-06-26T10:40:42+08:00
 draft: false
-
 categories: ['Code']
 tags: ['Python', 'Study', 'Code Sharing', '2021']
-author: "Kreee"
-noSummary: false
-
-resizeImages: false
 ---
 懂的都懂这是干啥用的。
 

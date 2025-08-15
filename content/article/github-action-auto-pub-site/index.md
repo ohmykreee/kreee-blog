@@ -2,21 +2,15 @@
 title: "使用 GitHub Action 自动渲染和发布网页"
 date: 2021-06-07T10:21:29+08:00
 draft: false
-
 categories: ['Learning']
 tags: ['GitHub', 'Learning', '2021']
-author: "Kreee"
-noSummary: false
-
-resizeImages: false
+summary: "所以秉承着人类科技进步的本质是懒这一原则，顺便学学 GitHub Action 做到网页渲染和发布一条龙吧。"
 ---
 ## Why?
 根据 GitHub Pages 的政策，一个 GitHub 账号只能拥有一个个人主页和多个项目主页。我的个人主页名额给了服务器的 Landing Page，所以这个博客只能以项目主页的名义发布了。   
 然鹅有一个问题是，不同于个人主页，项目主页的网页是要托管在 `gh-pages` 分支的，所以如果完全手动的话需要我自己在本地渲染好网页后，手动 push 到 `gh-pages` 分支上。   
 所以秉承着人类科技进步的本质是~~懒~~这一原则，顺便学学 GitHub Action 做到网页渲染和发布一条龙吧。   
 So, let's begin!
-
-<!--more-->
 
 废话不多说，上 `/.github/workflows/publish-site.yml` ：
 ```yml

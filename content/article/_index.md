@@ -1,0 +1,16 @@
+---
+title: "文章"
+description: "一些技术类或生活类的博客文章。"
+cascade:
+  showDate: true
+  showAuthor: true
+  invertPagination: false
+---
+
+{{< lead >}}
+一些技术类或生活类的博客文章。
+{{< /lead >}}
+
+非专业，通常为鼓捣出来的产物，或是有感而发。
+
+---

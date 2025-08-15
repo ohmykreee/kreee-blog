@@ -1,18 +1,13 @@
 ---
 title: "Notes for Setting Up Back-end Server"
 date: 2021-01-13T22:58:38+08:00
-
+draft: false
 categories: ['Learning']
 tags: ['Selfhosted', 'Learning', '2021']
-author: "Kreee"
-noSummary: false
-
-resizeImages: false
+summary: "OS: CentOS 7 Minimal "
 ---
 ## Install CentOS
 OS: CentOS 7 Minimal 
-
-<!--more-->
  
 Summary:  
 1. Date & Time: Shanghai
