@@ -309,4 +309,4 @@ Save and apply.
 -----
 ## What to read next
 
-{{< article link="/article/tproxy-in-opnsense-with-wireguard/" showSummary=true compactSummary=true >}}
+{{< article link="/en/article/tproxy-in-opnsense-with-wireguard/" showSummary=true compactSummary=true >}}

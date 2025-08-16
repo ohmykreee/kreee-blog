@@ -19,7 +19,7 @@ The English version is translated by AI (Gemini 2.5 Pro Preview). If you want to
 
 -----
 ## Why and why you shouldn't
-This article is a follow-up and advanced version of [“Installing tun2socks service on OPNsense - Kreee's Blog”](/article/setup-tun2socks-in-opnsense/) (~~meaning I procrastinated for 3 years and then squeezed out an article~~), mainly focusing on some thoughts after using the `tun2socks` solution for 3 years (+ my personal mental cleanliness). Here are the reasons why I want to use this method and my **personal advice** on when not to use it:
+This article is a follow-up and advanced version of [“Installing tun2socks service on OPNsense - Kreee's Blog”](/en/article/setup-tun2socks-in-opnsense/) (~~meaning I procrastinated for 3 years and then squeezed out an article~~), mainly focusing on some thoughts after using the `tun2socks` solution for 3 years (+ my personal mental cleanliness). Here are the reasons why I want to use this method and my **personal advice** on when not to use it:
 
 Why?:
 - Found that `tun2socks` has certain performance issues: when there are a huge number of TCP connections, `tun2socks` will have a higher CPU usage;
@@ -131,7 +131,7 @@ Note!: The IP address configured here should not conflict with existing IPs, tha
 
 -----
 ## OPNsense: Configuring Gateway Firewall Rules
-(Next is the part of configuring Aliases and configuring transparent proxy, which were mentioned in my previous article [“Installing tun2socks service on OPNsense - Kreee's Blog”](/article/setup-tun2socks-in-opnsense/). Here, ~~to pad the word count~~ for your convenience so you don't have to jump back and forth, I will directly copy the content I wrote at that time below)
+(Next is the part of configuring Aliases and configuring transparent proxy, which were mentioned in my previous article [“Installing tun2socks service on OPNsense - Kreee's Blog”](/en/article/setup-tun2socks-in-opnsense/). Here, ~~to pad the word count~~ for your convenience so you don't have to jump back and forth, I will directly copy the content I wrote at that time below)
 
 **Make good use of Aliases**
 

@@ -14,7 +14,7 @@ The English version is translated by AI (Gemini 2.5 Pro Preview). If you want to
 ---
 
 ## The Root of All Evil
-Continued from: [wolf-bites-tweets and wolf-chews-tweets Development Notes](/article/notes-of-developing-wbt-and-wct/)
+Continued from: [wolf-bites-tweets and wolf-chews-tweets Development Notes](/en/article/notes-of-developing-wbt-and-wct/)
 
 Project address: [https://github.com/ohmykreee/wolf-bites-tweets](https://github.com/ohmykreee/wolf-bites-tweets)
 

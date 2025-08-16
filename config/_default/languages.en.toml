@@ -14,6 +14,9 @@ title = "Kre³'s Blog"
   # description = "My awesome website"
   # copyright = "Copy, _right?_ :thinking_face:"
 
+[params.homepage]
+  showMoreLinkDest = "/en/article/"
+
 [params.author]
   name = "Kre³"
   email = "contact@kre3.net"
