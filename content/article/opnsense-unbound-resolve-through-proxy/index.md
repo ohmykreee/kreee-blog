@@ -1,5 +1,5 @@
 ---
-title: "OPNSense 的 Unbound 使用代理进行递归查询"
+title: "OPNsense 的 Unbound 使用代理进行递归查询（无DNS泄露）"
 date: 2025-10-07T00:44:01+08:00
 draft: false
 categories: ['Learning']
@@ -58,7 +58,7 @@ summary: "方法很简单也很邪门，但是也是当下（可能的）最优�
 1. 国外网站的解析能保证干净；
 2. 满足你的小小洁癖/癖好，解析过程是相对安全的；
 3. 能够使用 DNSSEC；
-4. DNS-leak safe.
+4. 无DNS泄露。
 
 -----
 ## 缺点

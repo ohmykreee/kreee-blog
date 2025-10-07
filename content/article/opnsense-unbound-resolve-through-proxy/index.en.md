@@ -1,5 +1,5 @@
 ---
-title: "Using Proxy for Recursive Queries in OPNSense's Unbound"
+title: "Using Proxy for Recursive Queries in OPNSense's Unbound (No DNS Leaks)"
 date: 2025-10-07T00:44:01+08:00
 draft: false
 categories: ['Learning']
@@ -57,7 +57,7 @@ In Services ‣ Unbound DNS ‣ General, enable `Enable DNSSEC Support` and appl
 ## Advantages
 1. Satisfies your minor obsession/preference, the resolution process is relatively secure;
 2. Able to use DNSSEC;
-3. DNS-leak safe.
+3. DNS leaks safe.
 
 -----
 ## Disadvantages
