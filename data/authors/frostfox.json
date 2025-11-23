@@ -1,0 +1,9 @@
+{
+    "name": "FrostFox-霜狐",
+    "image" : "https://pic.frostfox.cn/Admin1.png",
+    "bio": "致力于分享经验和制作教程的站长！",
+    "social": [
+        { "link": "https://www.frostfox.cn/" },
+        { "youtube": "https://space.bilibili.com/2021273070" }
+    ]
+}
