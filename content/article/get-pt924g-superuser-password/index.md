@@ -5,10 +5,8 @@ draft: false
 categories: ['Learning']
 tags: ['Republish', 'Learning', '2025']
 summary: "转载自：@FrostFox-霜狐"
-showAuthor: false
 authors:
   - "frostfox"
-  - "kyree"
 ---
 
 > 转载自：[获取中国移动PT924(G)等光猫的超级管理员密码-FrostFox](https://www.frostfox.cn/tittle-tattle/blog/2024/light-cat.html)
