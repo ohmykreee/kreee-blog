@@ -12,7 +12,7 @@ title = "Kre³'s Blog"
   logo = "img/logo.png"
   # secondaryLogo = "img/secondary-logo.png"
   # description = "My awesome website"
-  # copyright = "Copy, _right?_ :thinking_face:"
+  copyright = "© 2021 - 2025 Kre³"
 
 [params.homepage]
   showMoreLinkDest = "/en/article/"
