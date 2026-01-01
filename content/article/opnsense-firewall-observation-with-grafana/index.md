@@ -281,8 +281,18 @@ loki.relabel "hostname_labels" {
   }
 }
 ```
+{{< mermaid >}}
+graph LR;
+A[syslog_firewall:8901]-->B[firewall_ips];
+B-->C[hostname_labels]
+C-->D[local_loki]
+
+E[syslog_ids:8902]-->F[ids_ips];
+F-->C
+{{< /mermaid >}}
+
 几个重要的 Label，会被之后的 Dashboard 所用：
-1. 必须要有 `hostname`，配置文件中放在了 `loki.relabel "hostname_labels"`。因为在个人测试中 Alloy 死活读不出 `__syslog_connection_hostname` 或者 `__syslog_message_hostname`，所以这里我就写死了（因为我只有一个机器需要监控）。~~如果有有缘人可以帮我调查一下。~~这里的 `hostname` 会被之后的 Dashboard 进行筛选数据来源
+1. 必须要有 `hostname`，配置文件中放在了 `loki.relabel "hostname_labels"`。因为在个人测试中 Alloy 死活读不出 `__syslog_connection_hostname` 或者 `__syslog_message_hostname`，所以这里我就写死了（因为我只有一个机器需要监控）。 ~~如果有有缘人可以帮我调查一下。~~ 这里的 `hostname` 会被之后的 Dashboard 进行筛选数据来源
 2. 必须要有 `app` 并且为 `filterlog` 或 `suricata` 的其中之一。这里通过两个不同的端口：`8901` 给 filterlog，`8902` 给 suricata。之后会被 Dashboard 判断来自哪个应用
 3. 为了展示地图数据要有经纬度：`src_location_latitude` `src_location_longitude` `dst_location_latitude` `dst_location_longitude`
 4. 为了能够匹配 IP 的地理位置，要给 Alloy 提供 `/etc/alloy/GeoLite2-City.mmdb`

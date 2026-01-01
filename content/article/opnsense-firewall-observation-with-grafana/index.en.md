@@ -281,6 +281,16 @@ loki.relabel "hostname_labels" {
   }
 }
 ```
+{{< mermaid >}}
+graph LR;
+A[syslog_firewall:8901]-->B[firewall_ips];
+B-->C[hostname_labels]
+C-->D[local_loki]
+
+E[syslog_ids:8902]-->F[ids_ips];
+F-->C
+{{< /mermaid >}}
+
 Several important labels that will be used by the Dashboard later:
 1. Must have `hostname`, which is placed in `loki.relabel "hostname_labels"` in the configuration file. In my personal testing, Alloy couldn't read `__syslog_connection_hostname` or `__syslog_message_hostname`, so I hardcoded it here (because I only have one machine to monitor). ~~If anyone could help me investigate this.~~ This `hostname` will be used by the Dashboard later to filter data sources
 2. Must have `app` which must be either `filterlog` or `suricata`. Here, two different ports are used: `8901` for filterlog, `8902` for suricata. The Dashboard will use this later to determine which application the data comes from
