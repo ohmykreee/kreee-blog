@@ -14,6 +14,6 @@ Some short updates.
 
 Recent loop music:
 
-{{<aplayer server="netease" type="song" id="1978104048">}}
+{{<aplayer server="netease" type="song" id="2165412590">}}
 
 ---
