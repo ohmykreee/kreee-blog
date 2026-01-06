@@ -139,7 +139,7 @@ common:
 
 schema_config:
   configs:
-    - from: 2020-10-24
+    - from: 2021-01-13
       store: tsdb
       object_store: filesystem
       schema: v13
