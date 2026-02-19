@@ -322,7 +322,7 @@ let { index = $bindable() } = $props()
 
 ```
 
-Postscript #2: Using the `$state` outside components method is equivalent to a simple Global state.
+Postscript #2: Using the `$state` outside components method is equivalent to a simple Global state, anywhere you change the value of the state can trigger all the state it referred.
 
 ### input
 
