@@ -25,13 +25,13 @@
 [[main]]
  pre = "image" 
  name = "Portfolio"
- pageRef = "portfolio"
+ url = "https://www.kre3.net/folio"
  weight = 30
 
 [[main]]
  pre = "heart" 
  name = "About"
- url = "https://www.kre3.net/"
+ pageRef = "pages/about-me"
  weight = 40
 
 #[[main]]
