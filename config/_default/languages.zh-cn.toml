@@ -2,7 +2,7 @@ disabled = false
 languageCode = "zh-cn"
 languageName = "简体中文"
 weight = 1
-title = "混动犬"
+title = "TurboKre的博客"
 
 [params]
   displayName = "简体中文"
@@ -12,13 +12,13 @@ title = "混动犬"
   logo = "img/logo.png"
   # secondaryLogo = "img/secondary-logo.png"
   # description = "My awesome website"
-  copyright = "© 2021 - 2026 Kre³"
+  copyright = "© 2021 - 2026 TurboKre"
 
 [params.homepage]
   showMoreLinkDest = "/article/"
 
 [params.author]
-  name = "Kre³"
+  name = "TurboKre"
   email = "contact@kre3.net"
   image = "https://avatars.githubusercontent.com/u/76862878"
   imageQuality = 96

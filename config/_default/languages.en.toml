@@ -2,7 +2,7 @@ disabled = false
 languageCode = "en"
 languageName = "English"
 weight = 2
-title = "Kre³'s Blog"
+title = "TurboKre's Blog"
 
 [params]
   displayName = "English"
@@ -12,17 +12,17 @@ title = "Kre³'s Blog"
   logo = "img/logo.png"
   # secondaryLogo = "img/secondary-logo.png"
   # description = "My awesome website"
-  copyright = "© 2021 - 2026 Kre³"
+  copyright = "© 2021 - 2026 TurboKre"
 
 [params.homepage]
   showMoreLinkDest = "/en/article/"
 
 [params.author]
-  name = "Kre³"
+  name = "TurboKre"
   email = "contact@kre3.net"
   image = "https://avatars.githubusercontent.com/u/76862878"
   imageQuality = 96
-  headline = "The Turbo Canine"
+  headline = "Turbo Energy Canine"
   bio = "Doing code and art with ❤"
   links = [
     { bluesky = "https://bsky.app/profile/kreee.bsky.social" },
