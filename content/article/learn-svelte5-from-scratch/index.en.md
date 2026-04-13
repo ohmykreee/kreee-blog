@@ -38,9 +38,9 @@ This also declares a reactive variable, but it is calculated from `$state`. Its 
 If you want to use `console.log`, the official team has wrapped a `$inspect` for you. It's equivalent to helping you perform a snapshot before `console.log`, and you can also specify a function. More conveniently, this code is automatically removed in production builds.
 
 ```svelte
-<script>
-  let numbers = $state([1, 2, 3, 4])
-  let total = $derived(numbers.reduce((t, n) => t + n, 0))
+<script lang='ts'>
+  let numbers = $state<Array<number>>([1, 2, 3, 4])
+  let total = $derived<Array<number>>(numbers.reduce((t, n) => t + n, 0))
 
   function addNumber() {
     numbers.push(numbers.length + 1)
@@ -50,7 +50,6 @@ If you want to use `console.log`, the official team has wrapped a `$inspect` for
   // OR
   $inspect(numbers).with(console.trace)
 </script>
-
 ```
 
 ### `$effect`
@@ -64,9 +63,9 @@ If the effect does not depend on any `$state`, it will only run once when the co
 `$effect` cannot run during server-side rendering (SSR).
 
 ```svelte
-<script>
-  let elapsed = $state(0)
-  let interval = $state(1000)
+<script lang='ts'>
+  let elapsed = $state<number>(0)
+  let interval = $state<number>(1000)
   $effect(() => {  // Triggered if interval is modified
   const id = setInterval(() => {
     elapsed += 1
@@ -92,18 +91,19 @@ You can place `$state` in an external file to act as a shared state. Note that e
 Also, note that this js/ts file must be declared as Svelte content (using the `.svelte.js` or `.svelte.ts` extension).
 
 shared.svelte.js
+```ts
+interface Counter {
+  count: number
+}
 
-```js
-export const counter = $state({ // state is used here
+export const counter = $state<Counter>({ // state is used here
   count: 0
 })
-
 ```
 
 Button.svelte
-
 ```svelte
-<script>
+<script lang='ts'>
   import { counter } from './shared.svelte.js';
 </script>
 
@@ -120,10 +120,14 @@ Declares parameters in child components. You can pass many parameters.
 They can be destructured and assigned default values.
 
 Child.svelte
-
 ```svelte
-<script>
-  let {answer, writer = 'kyree'} = $props() // Sets default value of writer to 'kyree'
+<script lang='ts'>
+  interface Props {
+    answer: number
+    writer: string
+  }
+
+  let {answer, writer = 'kyree'}: Props = $props() // Sets default value of writer to 'kyree'
 </script>
 
 <p>The answer is {answer}, written by {writer}.</p>
@@ -131,10 +135,9 @@ Child.svelte
 ```
 
 App.svelte
-
 ```svelte
-<script>
-  import Child from './Child.svelte'
+<script lang='ts'>
+  import Nested from './Child.svelte'
 </script>
 
 <Child answer={42}/>
@@ -265,10 +268,14 @@ If Capture and Bubbling phases are mixed, Capture group events will always occur
 Functions can be passed as parameters to child components. If you pass a function called `onclick`, it can even be destructured directly from `props` in the child component for use:
 
 Stepper.svelte
-
 ```svelte
-<script>
-  let { increment, decrement } = $props();
+<script lang='ts'>
+  interface Props {
+    increment: number
+    decrement: number
+  }
+
+  let { increment, decrement }: Props = $props();
 </script>
 
 <button onclick={decrement}>-1</button>
@@ -277,12 +284,11 @@ Stepper.svelte
 ```
 
 App.svelte
-
 ```svelte
-<script>
+<script lang='ts'>
   import Stepper from './Stepper.svelte';
 
-  let value = $state(0);
+  let value = $state<number>(0);
 </script>
 
 <p>The current value is {value}</p>
@@ -301,8 +307,8 @@ App.svelte
 In Svelte, data flow defaults to passing from the parent component to the child component via `props` or by setting child component attributes directly. If a child component needs to pass data to the parent component (especially regarding form elements and other HTML components), Binding must be used:
 
 ```svelte
-<script>
-  let name = $state('world');
+<script lang='ts'>
+  let name = $state<string>('world');
 </script>
 
 <input bind:value={name} />
@@ -341,15 +347,31 @@ For `<select>`, you need to use `bind:value` again, while **noting**:
 * Syntax Sugar #2: If the displayed value of an `<option>` is the same as the `value` attribute, you can just pass the displayed value; Svelte will automatically assign it to `value` (not shown in the example).
 
 ```html
-<script>
-  let questions = [
-    { id: 1, text: `Where did you go to school?` },
-    { id: 2, text: `What is your mother's name?` },
-    { id: 3, text: `What is another personal fact that an attacker could easily find with Google?` }
+<script lang='ts'>
+
+  interface Item {
+    id: number
+    text: string
+  }
+
+  let questions: Array<Item> = [
+    {
+      id: 1,
+      text: `Where did you go to school?`
+    },
+    {
+      id: 2,
+      text: `What is your mother's name?`
+    },
+    {
+      id: 3,
+      text: `What is another personal fact that an attacker could easily find with Google?`
+    }
   ];
 
-  let selected = $state();
-  let answer = $state('');
+  let selected = $state<Item>();
+
+  let answer = $state<string>('');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -454,8 +476,8 @@ Operations on the element here are all native JS operations. One point to note i
 
 Passing parameters is also possible, as seen in this official example:
 ```svelte
-<script>
-  let content = $state('Hello!')
+<script lang='ts'>
+  let content = $state<string>('Hello!')
 
   function tooltip(content) {
     return (node) => {
@@ -481,9 +503,9 @@ Passing parameters is also possible, as seen in this official example:
 Svelte has some built-in preset transition animations for convenience. For example, in this simple `fade` example, after importing `fade` from `svelte/transition`, you declare `transition:fade` directly inside the `<p>` to add animation when it joins or leaves the DOM:
 
 ```svelte
-<script>
+<script lang='ts'>
   import {fade} from 'svelte/transition'
-  let visible = $state(true);
+  let visible = $state<boolean>(true);
 </script>
 
 <label>
@@ -540,7 +562,7 @@ function spin(node, { duration }) {
   };
 }
 
-// js transition
+// js transision
 function typewriter(node, { speed = 1 }) {
   const valid = node.childNodes.length === 1 & node.childNodes[0].nodeType === Node.TEXT_NODE;
 
@@ -559,7 +581,6 @@ function typewriter(node, { speed = 1 }) {
     }
   };
 }
-
 ```
 
 ### Transition events
@@ -588,10 +609,10 @@ By default, component transition animations only occur when the component itself
 Svelte's animations only work on component destruction/loading. If sometimes only the content of a component changes but I still want it to have an animation, I can wrap it in `{#key}`. This way, Svelte will monitor changes (like `i` in the example) and automatically "destroy and rebuild" the component for you, executing the animation:
 
 ```svelte
-<script>
+<script lang='ts'>
   // i here is also state
   // Full typewriter code not pasted, only shown as a simple example
-  let i = $state(-1)
+  let i = $state<number>(-1)
 </script>
 
 {#key i}
