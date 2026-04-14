@@ -622,3 +622,221 @@ Svelte's animations only work on component destruction/loading. If sometimes onl
 {/key}
 
 ```
+
+## Advanced Usage
+
+I've selected a few advanced techniques that I find useful/interesting; they can serve as inspiration/references.
+
+### `$state.raw()`
+
+Same usage as `$state()`, except that regular state creates a state variable with deep reactivity, while raw state has shallow reactivity and won't trigger on changes to values inside the object at construction time.
+
+If you need to trigger this raw state, you need to reassign a new value.
+
+Suitable for performance optimization when the state structure is very complex (such as Three.js objects).
+
+### getter & setter
+
+You can rewrite the assignment and reading behavior for state:
+
+```svelte
+<script>
+  const MAX_SIZE = 200;
+
+  class Box {
+    #width = $state(0); // Make it a private variable of this class by adding # before the variable
+    #height = $state(0);
+    area = $derived(this.#width * this.#height);
+
+    constructor(width, height) {
+      this.#width = width;
+      this.#height = height;
+    }
+
+    get width() {
+      return this.#width;
+    }
+
+    get height() {
+      return this.#height;
+    }
+
+    set width(value) {
+      this.#width = Math.max(0, Math.min(MAX_SIZE, value));
+    }
+
+    set height(value) {
+      this.#height = Math.max(0, Math.min(MAX_SIZE, value));
+    }
+
+    embiggen(amount) {
+      this.width += amount;
+      this.height += amount;
+    }
+  }
+
+  const box = new Box(100, 100);
+</script>
+
+<label>
+  <input type="range" bind:value={box.width} min={0} max={MAX_SIZE} />
+  {box.width}
+</label>
+<label>
+  <input type="range" bind:value={box.height} min={0} max={MAX_SIZE} />
+  {box.height}
+</label>
+<button onclick={() => box.embiggen(10)}>embiggen</button>
+<div
+  class="box"
+  style:width="{box.width}px"
+  style:height="{box.height}px"
+>
+  {box.area}
+</div>
+```
+
+### Built-in Methods
+
+In the [svelte/reactivity](https://svelte.dev/docs/svelte/svelte-reactivity) package, you can directly create corresponding `$state()` objects.
+
+For example, directly creating `const large = new MediaQuery('min-width: 800px')` will return a reactive variable that can be read at `large.current`, and changes will automatically trigger updates.
+
+### Store
+
+Why still use Store when we have `$state() outside components`: Store allows for lifecycle operations when subscribers subscribe/unsubscribe. While `$state()` is convenient, it can only synchronize value changes.
+
+shared.js
+```js
+import { writable } from 'svelte/store'
+
+export const count = writable(0)
+```
+
+Counter.svelte
+```svelte
+<script>
+  import { count } from './shared.js'
+</script>
+
+<!-- $count += 1 is shorthand for: count.update((n) => n + 1) -->
+<button onclick={() => $count += 1}>
+  clicks: {$count}
+</button>
+```
+
+Some more usage methods:
+```ts
+import { writable } from 'svelte/store'
+
+const count = writable<number>(0, () => {
+  console.log('got a subscriber') // Triggered when there's a first new subscriber
+  return () => console.log('no more subscribers') // Triggered after all subscribers are cleared
+})
+
+count.set(1) // No action
+
+const unsubscribe = count.subscribe((value) => {
+  console.log(value);
+}) // Logs: got a subscriber, then 1
+
+count.set(2) // Logs: 2
+
+count.update((n) => n + 1) // Logs: 3
+
+unsubscribe() // Logs: no more subscribers
+```
+
+`readable` can be initialized when the first subscription occurs, and can call itself to complete some value changes (value cannot be changed from outside), and clean up when the last subscriber leaves:
+```ts
+import { readable } from 'svelte/store'
+
+const ticktock = readable<string>('tick', (set, update) => {
+  const interval = setInterval(() => {
+    update((sound) => (sound === 'tick' ? 'tock' : 'tick')) // Self-callback function, can change its own value
+  }, 1000)
+
+  return () => clearInterval(interval)
+})
+```
+
+`derived` can calculate values from other Stores and trigger callbacks when the first subscriber appears or referenced values change:
+```ts
+import { derived } from 'svelte/store';
+
+const delayedIncrement = derived(a, ($a, set, update) => {
+  set($a);
+  setTimeout(() => update((x) => x + 1), 1000);
+  // every time $a produces a value, this produces two
+  // values, $a immediately and then $a + 1 a second later
+
+  return () => {
+    // Triggered after the last subscriber leaves
+  }
+})
+```
+
+`readonly` can convert a `writable` to read-only:
+```ts
+import { readonly, writable } from 'svelte/store'
+
+const writableStore = writable(1)
+const readableStore = readonly(writableStore)
+```
+
+If you want to read the value without subscribing and without triggering events, you can use `get`:
+```ts
+import { get } from 'svelte/store'
+
+const value = get(store)
+```
+
+### Interpolation
+
+If you want to change values while achieving interpolation during the change process, you can use `Tween()` and `Spring()`:
+```svelte
+<script lang="ts">
+  import { Tween } from 'svelte/motion'
+  import { cubicOut } from 'svelte/easing' // You can reference interpolation methods from this library
+
+  let progress = new Tween(0, {
+    duration: 400,
+    easing: cubicOut
+  })
+</script>
+
+<!-- Read value -->
+<progress value={progress.current}></progress>
+
+<!-- Set value -->
+<button onclick={() => (progress.target = 50)}>
+  50%
+</button>
+
+<!-- Or you can use progress.set(value, options), which returns a Promise when interpolation is complete -->
+```
+
+`Spring()` is similar and can also complete interpolation. It's more like a spring, with physical properties to its motion: `stiffness` and `damping`.
+
+### Advanced Animation Behaviors
+
+Use `crossfade` or `flip` to implement (where `flip` refers to "First Last Invert Play").
+
+### Context
+
+Use the Context API to achieve context-unified state sharing.
+```ts
+// in a parent component
+import { setContext } from 'svelte';
+
+let context = $state({...});
+setContext('my-context', context);
+
+// in a child component
+import { getContext } from 'svelte';
+
+const context = getContext('my-context');
+```
+
+1. The Context identifier (key) can be anything, and you can store anything in it;
+2. Context storage and retrieval must be executed during component initialization.
