@@ -2,7 +2,7 @@
 title: "About Me"
 date: 2026-01-01T00:00:00+08:00
 draft: false
-summary: "Turbo Energy Coyote"
+summary: "Turbo Energy Canine"
 ---
 
 ## Intro
