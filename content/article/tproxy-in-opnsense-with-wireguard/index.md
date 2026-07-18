@@ -165,6 +165,14 @@ IPv6 你也可以再新建一个以上类似的规则，TCP/IP Version 使用 IP
 ## 配置更多的防火墙规则和 NAT OutBound 规则
 以下很多设置我都不太清楚原理（这些内容为官方文档的操作），我只能提供我所收集到的所有资料。
 
+{{< alert >}}
+**注意** 从 26.1 开始，OPNsense 迁移到了新的统一 MVC/API 防火墙规则界面，直接在 Firewall ‣ Rules 中添加，设置对应字段。以下内容针对老版本 OPNsense。
+{{< /alert >}}
+
+{{< alert >}}
+**注意** 从 26.7 开始，OPNsense 将 Outbound NAT 合并到 Source NAT 页面，直接在 Firewall ‣ NAT ‣ Source NAT 中添加，设置对应字段。以下内容针对老版本 OPNsense。
+{{< /alert >}}
+
 （配置转发由 OPNsense 生成的流量）在 Firewall ‣ Rules ‣ Floating 中添加规则：
 | Setting | Value |
 | ----------------------- | ------------------------------ |
