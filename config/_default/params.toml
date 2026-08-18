@@ -12,6 +12,8 @@ autoSwitchAppearance = true
 enableA11y = false
 enableSearch = true
 enableCodeCopy = true
+enableStructuredBreadcrumbs = false
+enableStyledScrollbar = true # disable to use native scrollbar style (defaults to true)
 
 replyByEmail = false
 
@@ -23,9 +25,15 @@ disableImageOptimizationMD = false
 disableTextInHeader = false
 # backgroundImageWidth = 1200
 
-# defaultBackgroundImage = "IMAGE.jpg" # used as default for background images 
+# defaultBackgroundImage = "IMAGE.jpg" # used as default for background images
+# backgroundCanvas = false # render defaultBackgroundImage as a fixed backdrop on every page 
 # defaultFeaturedImage = "IMAGE.jpg" # used as default for featured images in all articles
 # defaultSocialImage = "/android-chrome-512x512.png" # used as default for social media sharing (Open Graph and Twitter)
+hotlinkFeatureImage = false
+# Thumbnail aspect ratio as a number (e.g., "1.5", "1.0", "1.777")
+# thumbnailAspectRatio = "1.5"
+# imagePosition = "50% 50%"
+
 
 highlightCurrentMenuArea = true
 smartTOC = true
@@ -36,8 +44,19 @@ fingerprintAlgorithm = "sha512" # Valid values are "sha512" (default), "sha384",
 # giteaDefaultServer = "https://git.fsfe.org"
 # forgejoDefaultServer = "https://v11.next.forgejo.org"
 
+[languageRedirect]
+  enabled = false # Enable client-side language redirects for multilingual sites.
+  storageKey = "blowfish_preferred_language" # localStorage key for manual language selections.
+  # fallbackLanguage = "" # Language to use when no browser language matches. Defaults to Hugo's default content language.
+  browserRedirectHomeOnly = true # Restrict browser-language redirects to home pages.
+  storedLanguageRedirect = true # Redirect to the stored language when a matching translation exists.
+
+[seo]
+# metaDescriptionOrder = ["summary", "description", "site"] # Controls the fallback order for the HTML meta description. Valid values are "summary", "description", and "site".
+
 [header]
-  layout = "fixed" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur
+  layout = "floating" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur
+  mobileMenuStyle = "fullscreen" # valid options: fullscreen, dropdown
 
 [footer]
   showMenu = true
@@ -48,6 +67,7 @@ fingerprintAlgorithm = "sha512" # Valid values are "sha512" (default), "sha384",
 
 [homepage]
   layout = "hero" # valid options: page, profile, hero, card, background, custom
+  # layoutSwitcher = false # opt-in interactive preview of the built-in layouts
   homepageImage = "img/background.webp" # used in: hero, and card
   showRecent = true
   showRecentItems = 6
@@ -79,20 +99,25 @@ fingerprintAlgorithm = "sha512" # Valid values are "sha512" (default), "sha384",
   showHeadingAnchors = true
   showPagination = true
   invertPagination = true
-  showReadingTime = true
+  showReadingTime = false
+  showReadingProgress = true
   showTableOfContents = true
   # showRelatedContent = false
   # relatedContentLimit = 3
-  showTaxonomies = false # use showTaxonomies OR showCategoryOnly, not both
-  showCategoryOnly = true # use showTaxonomies OR showCategoryOnly, not both
+  showTaxonomies = true # Enable the display of taxonomies for the related article.
+  showCategories = true # These will show if showTaxonomies is true.
+  showTags = true # These will show if showTaxonomies is true.
+  showCategoriesInSecondaryColor = true # This will change the color of category badges, so the user can better distinguish between the two. Only if showTaxonomies is true.
   showAuthorsBadges = false
   showWordCount = true
   # sharingLinks = [ "linkedin", "twitter", "bluesky", "mastodon", "reddit", "pinterest", "facebook", "email", "whatsapp", "telegram", "line"]
   showZenMode = true
   showComments = true
+  # externalLinkForceNewTab = false # disable to allow external links in the same tab (defaults to true)
 
 [list]
   showHero = false
+  # featureImageHover = false # subtle zoom on card thumbnails on hover
   # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
   layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
@@ -115,6 +140,8 @@ fingerprintAlgorithm = "sha512" # Valid values are "sha512" (default), "sha384",
   showTermCount = true
   showHero = false
   # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
+  layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
   showBreadcrumbs = false
   showViews = false
   showLikes = false
@@ -124,6 +151,8 @@ fingerprintAlgorithm = "sha512" # Valid values are "sha512" (default), "sha384",
 [term]
   showHero = false
   # heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
+  layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
   showBreadcrumbs = false
   showViews = false
   showLikes = false
@@ -161,7 +190,7 @@ fingerprintAlgorithm = "sha512" # Valid values are "sha512" (default), "sha384",
   # globalWidget = true
   # globalWidgetMessage = "Hello"
   # globalWidgetColor = "#FFDD00"
-  # globalWidgetPosition = "Right"
+  # globalWidgetPosition = "right"
 
 [verification]
   # google = ""
